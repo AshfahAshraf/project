@@ -1,0 +1,41 @@
+
+.carousel-item{
+    height: 80vh;
+}
+.carousel-item img {
+    width: 100%;
+    height: 80vh;
+    object-fit: contain;
+    background: #c6c9ce;
+}
+.product-img {
+    width: 100%;
+    aspect-ratio: 3 / 4;   /* same proportion for all images */
+    object-fit: cover;
+}
+
+
+.carousel-item {
+    padding: 0;
+    background: transparent !important;
+}
+
+.carousel-item .row {
+    margin: 0;
+}
+.gallery-img {
+    height: auto;
+    width: 100%;
+    display: block;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.gallery-img:hover {
+    transform: scale(1.05);
+}
+
+
+
+
+
