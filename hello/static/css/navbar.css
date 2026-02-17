@@ -1,0 +1,52 @@
+/* ========================= */
+/* NAVBAR SLIDE DOWN */
+/* ========================= */
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.navbar {
+  animation: slideDown 0.8s ease;
+}
+
+
+/* ========================= */
+/* DROPDOWN ANIMATION */
+/* ========================= */
+
+@media (min-width: 992px) {
+
+  .dropdown-menu {
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+
+  .dropdown:hover > .dropdown-menu {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+}
+
+/* Keep Bootstrap click working */
+.dropdown-menu.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.dropdown-menu {
+  min-width: 220px;   /* increase width */
+  padding: 10px 0;
+}
+.dropdown-item:hover {
+  background-color: #d23636;
+}
