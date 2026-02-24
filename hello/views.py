@@ -14,3 +14,6 @@ def footer(request):
 
 def home(request):
     return render(request ,"Home.html")
+
+def aboutus(request):
+    return render(request, "aboutUs.html")

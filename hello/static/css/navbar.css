@@ -35,12 +35,6 @@
     transform: translateY(0);
   }
 
-}
-
-.dropdown-menu {
-  padding: 0;
-}
-
 .dropdown-item {
   padding: 10px 20px;
 }
@@ -50,15 +44,6 @@
   color: white;
 }
 .navbar-nav {
-  list-style: none;
-  padding-left: 0;
-}
-.navbar-nav {
-  list-style: none;
-  padding-left: 0;
   margin-bottom: 0;
 }
-.navbar-nav {
-  display: flex;
-  align-items: center;
 }
