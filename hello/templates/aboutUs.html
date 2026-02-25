@@ -5,27 +5,40 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+      <link rel="stylesheet" href="{% static 'css/aboutUs.css' %}">
 
 </head>
+
+
 <body>
-<div class="container mt-5 ">
-    <div class="col-12">
-        <img src="{% static 'images/about_us.jpg' %}" alt="" style="height: 80vh; width: 80vh;">
+  <h1 class="text-center p-5 bg">About Us</h1>
+<div class="container mt-5 bg-light p-5 fade-in">
+  <div class="row align-items-center">
+
+    <!--images-->
+
+    <div class="col-lg-6 col-md-6 col-12  ">
+        <img src="{% static 'images/about_us.jpg' %}" alt="" class="img-fluid rounded-5 w-100">
     </div>
-    <div>
+    <div class="col-lg-6 col-md-6 col-12 text-center ">
         <h2>Crafted with Passion.Designed with Heart</h2>
-        <P>Authentic handmade creations inspired by tradition and creativity.</P>
+        <P class="mt-3">Authentic handmade creations inspired by tradition and creativity.</P>
+    </div>
     </div>
 </div>
 
-<section>
+<section class="container mt-5 mb-5">
 
-    <div class="accordion accordion-flush" id="accordionFlushExample">
-  <div class="accordion-item">
+    
+  <div class="accordion accordion-flush" id="accordionFlushExample">
+  
+    <div class="accordion-item">
+
     <h2 class="accordion-header">
-      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+      <button class="accordion-button collapsed fs-4 fw-semibold" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
         About Craftover Artisan
       </button>
     </h2>
@@ -35,9 +48,12 @@
     </div>
     </div>
   </div>
+
+
+
   <div class="accordion-item">
     <h2 class="accordion-header">
-      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+      <button class="accordion-button collapsed fs-4 fw-semibold" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
         Our Journey
       </button>
     </h2>
@@ -48,9 +64,11 @@
     </div>
     </div>
   </div>
+
+
   <div class="accordion-item">
     <h2 class="accordion-header">
-      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+      <button class="accordion-button collapsed fs-4 fw-semibold" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
        Our Mission
       </button>
     </h2>
@@ -67,81 +85,92 @@
       </div>
     </div>
   </div>
+
+
    <div class="accordion-item">
     <h2 class="accordion-header">
-      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
-        Our Journey
+      <button class="accordion-button collapsed fs-4 fw-semibold" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapsefour" aria-expanded="false" aria-controls="flush-collapsefour">
+        Our Vision
       </button>
     </h2>
-    <div id="flush-collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
-      <div class="accordion-body">Craftover Artisan began with a simple idea: to preserve and promote the beauty of handmade craftsmanship. What started as a passion for creating meaningful art gradually evolved into a growing platform that supports creativity and skilled artisans.<br><br>
-        We noticed that many talented artisans struggle to showcase their work in today’s competitive market. At the same time, customers are searching for products that feel personal and special. Craftover Artisan was created to bridge that gap — connecting creators with people who value authentic handmade products.<br><br>
-        From small beginnings to a growing community, our journey is built on dedication, hard work, and a deep respect for craftsmanship.
+    <div id="flush-collapsefour" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+      <div class="accordion-body">Our vision is to become a trusted destination for handmade products, recognized for quality, authenticity, and customer satisfaction. We aspire to build a strong community that appreciates art, supports local talent, and values sustainable production.
+    </div>
+    </div>
+  </div>
+
+
+   <div class="accordion-item">
+    <h2 class="accordion-header">
+      <button class="accordion-button collapsed fs-4 fw-semibold" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapsefive" aria-expanded="false" aria-controls="flush-collapsefive">
+        What Makes Craftover Artisan Unique?
+      </button>
+    </h2>
+    <div id="flush-collapsefive" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+      <div class="accordion-body">We focus on quality, originality, and authenticity. Every product is:
+        <ul>
+          <li>Carefully handmade with attention to detail</li>
+          <li>Designed with creativity and passion</li>
+          <li>Crafted using quality materials</li>
+          <li>Created in limited quantities to maintain uniqueness</li>
+        </ul>
+        Unlike mass-produced items, our products carry individuality. No two handmade pieces are exactly the same  and that's what makes them special.
+    </div>
+    </div>
+  </div>
+
+
+   <div class="accordion-item">
+    <h2 class="accordion-header">
+      <button class="accordion-button collapsed fs-4 fw-semibold" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapsesix" aria-expanded="false" aria-controls="flush-collapsesix">
+       Our Commitment to Quality
+      </button>
+    </h2>
+    <div id="flush-collapsesix" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+      <div class="accordion-body">Quality is at the heart of everything we do. From selecting materials to final finishing touches, we ensure that each product meets our standards of excellence. We believe our customers deserve products that are durable, beautiful, and meaningful.
+    </div>
+    </div>
+  </div>
+
+
+   <div class="accordion-item">
+    <h2 class="accordion-header">
+      <button class="accordion-button collapsed fs-4 fw-semibold" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseseven" aria-expanded="false" aria-controls="flush-collapseseven">
+        Supporting Artisans & Sustainable Craft
+      </button>
+    </h2>
+    <div id="flush-collapseseven" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+      <div class="accordion-body">Craftover Artisan is committed to ethical practices and sustainable production. By supporting handmade creations, we contribute to preserving traditional skills and encouraging responsible consumption.
+        <br>When you purchase from Craftover Artisan, you are not just buying a product  you are supporting creativity, culture, and craftsmanship.
     </div>
     </div>
   </div>
    <div class="accordion-item">
     <h2 class="accordion-header">
-      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
-        Our Journey
+      <button class="accordion-button collapsed fs-4 fw-semibold" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseeight" aria-expanded="false" aria-controls="flush-collapseeight">
+       Our Values
       </button>
     </h2>
-    <div id="flush-collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
-      <div class="accordion-body">Craftover Artisan began with a simple idea: to preserve and promote the beauty of handmade craftsmanship. What started as a passion for creating meaningful art gradually evolved into a growing platform that supports creativity and skilled artisans.<br><br>
-        We noticed that many talented artisans struggle to showcase their work in today’s competitive market. At the same time, customers are searching for products that feel personal and special. Craftover Artisan was created to bridge that gap — connecting creators with people who value authentic handmade products.<br><br>
-        From small beginnings to a growing community, our journey is built on dedication, hard work, and a deep respect for craftsmanship.
+    <div id="flush-collapseeight" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+      <div class="accordion-body"><ul>
+        <li>Integrity - We believe in honesty and transparency</li>
+        <li>Creativity - We celebrate originality and innovation</li>
+        <li>Quality - We prioritize excellence in every product</li>
+        <li>Community - We support artisans and value our customers</li>
+        <li>Sustainability - We encourage mindful production</li>
+      </ul>
     </div>
     </div>
   </div>
    <div class="accordion-item">
     <h2 class="accordion-header">
-      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
-        Our Journey
+      <button class="accordion-button collapsed fs-4 fw-semibold" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapsenine" aria-expanded="false" aria-controls="flush-collapsenine">
+        Join Our Creative Community
       </button>
     </h2>
-    <div id="flush-collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
-      <div class="accordion-body">Craftover Artisan began with a simple idea: to preserve and promote the beauty of handmade craftsmanship. What started as a passion for creating meaningful art gradually evolved into a growing platform that supports creativity and skilled artisans.<br><br>
-        We noticed that many talented artisans struggle to showcase their work in today’s competitive market. At the same time, customers are searching for products that feel personal and special. Craftover Artisan was created to bridge that gap — connecting creators with people who value authentic handmade products.<br><br>
-        From small beginnings to a growing community, our journey is built on dedication, hard work, and a deep respect for craftsmanship.
-    </div>
-    </div>
-  </div>
-   <div class="accordion-item">
-    <h2 class="accordion-header">
-      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
-        Our Journey
-      </button>
-    </h2>
-    <div id="flush-collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
-      <div class="accordion-body">Craftover Artisan began with a simple idea: to preserve and promote the beauty of handmade craftsmanship. What started as a passion for creating meaningful art gradually evolved into a growing platform that supports creativity and skilled artisans.<br><br>
-        We noticed that many talented artisans struggle to showcase their work in today’s competitive market. At the same time, customers are searching for products that feel personal and special. Craftover Artisan was created to bridge that gap — connecting creators with people who value authentic handmade products.<br><br>
-        From small beginnings to a growing community, our journey is built on dedication, hard work, and a deep respect for craftsmanship.
-    </div>
-    </div>
-  </div>
-   <div class="accordion-item">
-    <h2 class="accordion-header">
-      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
-        Our Journey
-      </button>
-    </h2>
-    <div id="flush-collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
-      <div class="accordion-body">Craftover Artisan began with a simple idea: to preserve and promote the beauty of handmade craftsmanship. What started as a passion for creating meaningful art gradually evolved into a growing platform that supports creativity and skilled artisans.<br><br>
-        We noticed that many talented artisans struggle to showcase their work in today’s competitive market. At the same time, customers are searching for products that feel personal and special. Craftover Artisan was created to bridge that gap — connecting creators with people who value authentic handmade products.<br><br>
-        From small beginnings to a growing community, our journey is built on dedication, hard work, and a deep respect for craftsmanship.
-    </div>
-    </div>
-  </div>
-   <div class="accordion-item">
-    <h2 class="accordion-header">
-      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
-        Our Journey
-      </button>
-    </h2>
-    <div id="flush-collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
-      <div class="accordion-body">Craftover Artisan began with a simple idea: to preserve and promote the beauty of handmade craftsmanship. What started as a passion for creating meaningful art gradually evolved into a growing platform that supports creativity and skilled artisans.<br><br>
-        We noticed that many talented artisans struggle to showcase their work in today’s competitive market. At the same time, customers are searching for products that feel personal and special. Craftover Artisan was created to bridge that gap — connecting creators with people who value authentic handmade products.<br><br>
-        From small beginnings to a growing community, our journey is built on dedication, hard work, and a deep respect for craftsmanship.
+    <div id="flush-collapsenine" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+      <div class="accordion-body">We invite you to explore our collection and discover the beauty of handmade artistry. Whether you are looking for something unique for your home, a meaningful gift, or a creative expression, Craftover Artisan is here to bring craftsmanship closer to you.
+        <br>Thank you for being part of our journey.
     </div>
     </div>
   </div>
