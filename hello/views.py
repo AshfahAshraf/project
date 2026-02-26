@@ -20,3 +20,6 @@ def aboutus(request):
 
 def contact(request):
     return render(request,"contact.html")
+
+def cart(request):
+    return render (request,"cart.html")
