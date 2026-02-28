@@ -1,0 +1,33 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'css/my_account.css' %}">
+</head>
+<body>
+    <div class="container my-5">
+        <div class="row g-4">
+
+            <div class="col-lg-3 col-md-4 col-12">
+                <div class="sidebar shadow-sm">
+           
+                    <div class="text-center mb-4">
+                        <img src="{% static 'images/profile.jpg' %}" class="rounded-circle img-fluid profile-img" alt="profile">
+                        <h5 class="mb-0">Ashfah Ashraf</h5>
+                        <small class="text-muted">ashfahashraf@gmail.com</small>
+                    </div>
+                    <a href=""><i class="fa-solid fa-house me-2"></i> Dashboard</a>
+                    <a href=""><i class="fa-solid fa-box me-2"></i> Orders</a>
+                    <a href=""><i class="fa-solid fa-location-dot me-2"></i> Address</a>
+        </div>
+         </div>
+         </div>
+    </div>
+</body>
+</html>

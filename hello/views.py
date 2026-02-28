@@ -36,3 +36,6 @@ def return_refund(request):
 
 def shipping_info(request):
     return render(request,"shipping_info.html")
+
+def my_account(request):
+    return render(request,"my_account.html")

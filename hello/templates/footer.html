@@ -39,10 +39,10 @@
                     <h3 class="mb-5 ms-3">Customer Service</h3>
                     <ul class="list-unstyled d-flex flex-column gap-4 ms-3">
                         <a href="{% url 'contact' %}"><li >Contact Us </li></a>
-                        <li>FAQs </li>
-                        <li>Return Policy</li>
-                        <li>Shipping info</li>
-                        <li>Cancellation Policy</li>
+                        <a href="{% url 'faq' %}"><li>FAQs </li></a>
+                        <a href="{% url 'return_refund' %}"><li>Return Policy</li></a>
+                        <a href="{% url 'shipping_info' %}"><li>Shipping info</li></a>
+                        
 
                     </ul>
 
