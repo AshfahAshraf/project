@@ -23,3 +23,16 @@ def contact(request):
 
 def cart(request):
     return render (request,"cart.html")
+
+def wishlist(request):
+    return render(request,"wishlist.html")
+
+def faq(request):
+    return render(request,'faq.html')
+
+def return_refund(request):
+    return render(request,"return_refund.html")
+
+
+def shipping_info(request):
+    return render(request,"shipping_info.html")

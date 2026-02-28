@@ -45,7 +45,7 @@
               </a>
               </li>
               <li class="nav-item">
-              <a class="nav-link" href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="Cart">
+              <a class="nav-link" href="{% url 'cart' %}" data-bs-toggle="tooltip" data-bs-placement="top" title="Cart">
                 <i class="fa-solid fa-bag-shopping "></i>
               </a>
               </li>
@@ -63,9 +63,9 @@
 
                   <ul class="dropdown-menu dropdown-menu-end">
                       <li><a class="dropdown-item" href="#">Order</a></li>
-                      <li><a class="dropdown-item" href="#">Wishlist</a></li>
+                      <li><a class="dropdown-item" href="{% url 'wishlist' %}">Wishlist</a></li>
                       <li><a class="dropdown-item" href="{% url 'about_Us' %}">About Us</a></li>
-                      <li><a class="dropdown-item" href="#">Contact</a></li>
+                      <li><a class="dropdown-item" href="{% url 'contact' %}">Contact</a></li>
                   </ul>
 
                 </li>
