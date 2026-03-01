@@ -1,33 +1,108 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="stylesheet" href="{% static 'css/my_account.css' %}">
+
+    
 </head>
+
 <body>
     <div class="container my-5">
         <div class="row g-4">
 
             <div class="col-lg-3 col-md-4 col-12">
                 <div class="sidebar shadow-sm">
-           
+
                     <div class="text-center mb-4">
-                        <img src="{% static 'images/profile.jpg' %}" class="rounded-circle img-fluid profile-img" alt="profile">
+                        <img src="{% static 'images/profile.jpg' %}" class="rounded-circle img-fluid profile-img"
+                            alt="profile">
                         <h5 class="mb-0">Ashfah Ashraf</h5>
                         <small class="text-muted">ashfahashraf@gmail.com</small>
                     </div>
                     <a href=""><i class="fa-solid fa-house me-2"></i> Dashboard</a>
                     <a href=""><i class="fa-solid fa-box me-2"></i> Orders</a>
                     <a href=""><i class="fa-solid fa-location-dot me-2"></i> Address</a>
+                    <a href=""><i class="fa-solid fa-heart me-2"></i> Wishlist</a>
+                    <a href=""><i class="fa-solid fa-lock me-2"></i> Change Password</a>
+                    <a href=""><i class="fa-solid fa-arrow-right-from-bracket"></i> Sign out</a>
+                </div>
+            </div>
+
+            <div class="col-lg-9 col-md-8 col-12">
+                <div class="card shadow-sm mb-4">
+                    <div class="card-body">
+                        <div
+                            class="d-flex flex-column flex-md-row justify-content-between align-items-end align-items-md-center">
+                            <div>
+                                <h5>Profile information</h5>
+                                <p><strong>Name</strong>: Ashfah Ashraf</p>
+                                <p><strong>Email</strong>: ashfahashraf@gmail.com</p>
+                                <p><strong>Phone</strong>: +91 12345 67890</p>
+                            </div>
+                            <button class="btn btn-primary">Edit profile</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card shadow-sm mb-4">
+
+                    <div class="card-body">
+                        <h5 class="mb-3">Recent orders</h5>
+
+                        <div class="d-flex justify-content-between border-bottom py-2 flex-column flex-md-row">
+                            <span> #1023 Handcrafted Mug-</span>
+                            <span class="btn btn-success"> Delivered</span>
+                        </div>
+                        <div class="d-flex justify-content-between border-bottom py-2 flex-column flex-md-row">
+                            <span> #1022 Wooden Jewlery Box</span>
+                            <span class="btn btn-warning"> Pending</span>
+                        </div>
+
+                        <div class="d-flex justify-content-between border-bottom py-2 flex-column flex-md-row">
+                            <span> #1021 wooden tote Bag</span>
+                            <span class="btn btn-danger"> Cancelled</span>
+                        </div>
+                        <div class="text-end py-2 mt-2">
+                            <button class="btn btn-primary">View All orders</button>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="card shadow-sm mb-4 p-4">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <h5>Saved Address</h5>
+                            <button class="btn btn-primary"> + Add New Address </button>
+                        </div>
+
+                        <p class="mb-1 fw-bold">Ashfah Ashraf</p>
+                        <p class="mb-1">Dherwesh Manzil</p>
+                        <p class="mb-1">Near Aniyaram South lp School</p>
+                        <p class="mb-1">Peringathur(po), Thalassery,Kannur,Kerala</p>
+                        <p class="mb-1">Pin Code :670675</p>
+                        <p class="mb-2">Phone : 12345 67890</p>
+                   
+                    <div class="d-flex gap-2 justify-content-end mb-3">
+                        <button class="btn btn-outline-primary ">Edit</button>
+                        <button class="btn btn-outline-danger ">Delete</button>
+                    </div>
+                     </div>
+                </div>
+            </div>
         </div>
-         </div>
-         </div>
     </div>
 </body>
+
 </html>
