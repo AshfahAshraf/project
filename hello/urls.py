@@ -13,6 +13,7 @@ urlpatterns = [
       re_path('^return_refund$',views.return_refund,name="return_refund"),
       re_path('^shipping_info$',views.shipping_info,name="shipping_info"),
       re_path('^my_account$',views.my_account,name="my_account"),
+      re_path('^order$',views.order,name="order"),
 
 
  ]

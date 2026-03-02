@@ -39,3 +39,6 @@ def shipping_info(request):
 
 def my_account(request):
     return render(request,"my_account.html")
+
+def order(request):
+    return render(request,"order.html")
