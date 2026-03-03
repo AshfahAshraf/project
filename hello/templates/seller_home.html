@@ -6,16 +6,15 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
 <style>
-
-/* ========================= */
+    /* ========================= */
 /* GLOBAL */
 /* ========================= */
 
 body{
     margin:0;
     font-family:Segoe UI, sans-serif;
-    background:#0d3b2e;
-    color:white;
+    background:#ffffff;      /* changed to white */
+    color:#222;              /* dark text */
     overflow-x:hidden;
 }
 
@@ -26,51 +25,23 @@ body{
 .experience-section{
     height:200vh;
     position:relative;
-    background:
-        radial-gradient(circle at 20% 10%, rgba(40,120,60,0.6), transparent 40%),
-        radial-gradient(circle at 80% 90%, rgba(150,110,20,0.6), transparent 40%),
-        #000;
-}
-
-.experience-wrapper{
-    position:sticky;
-    top:0;
-    height:100vh;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    padding:0 8%;
-    transition: transform 0.3s ease, opacity 0.3s ease;
-}
-
-.experience-text{
-    width:50%;
+    background:#f8f9fa;      /* light grey instead of dark gradient */
 }
 
 .experience-text h1{
     font-size:70px;
     font-weight:300;
-    color:#e8dcc4;
+    color:#222;              /* dark text */
 }
 
 .experience-text span{
-    color:#f4c76b;
+    color:#d4a017;           /* gold accent */
 }
 
 .experience-text p{
     margin-top:30px;
     font-size:18px;
-    color:#cfcfcf;
-}
-
-.experience-product{
-    width:40%;
-}
-
-.experience-product img{
-    width:100%;
-    border-radius:30px;
-    box-shadow:0 40px 80px rgba(0,0,0,0.7);
+    color:#555;              /* softer dark */
 }
 
 /* ========================= */
@@ -80,49 +51,22 @@ body{
 .horizontal-section{
     position:relative;
     height:300vh;
-}
-
-.horizontal-wrapper{
-    position:sticky;
-    top:0;
-    height:100vh;
-    display:flex;
-    align-items:center;
-    overflow:hidden;
-}
-
-.horizontal-cards{
-    display:flex;
-    gap:40px;
-    padding-left:100px;
-    transition:transform 0.1s linear;
+    background:#ffffff;      /* white */
 }
 
 .card{
     min-width:600px;
     height:350px;
-    background:#06261d;
+    background:#ffffff;      /* white card */
     border-radius:20px;
     display:flex;
     align-items:center;
     padding:30px;
-    box-shadow:0 20px 40px rgba(0,0,0,0.5);
-}
-
-.card img{
-    width:50%;
-    height:100%;
-    object-fit:cover;
-    border-radius:15px;
-}
-
-.card-content{
-    width:50%;
-    padding-left:30px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.08);  /* soft shadow */
 }
 
 .card-content h2{
-    color:#f4c76b;
+    color:#d4a017;
 }
 
 /* ========================= */
@@ -131,45 +75,20 @@ body{
 
 .excellence-section{
     padding:120px 0;
-    background: radial-gradient(circle at top left, #0d3b2e, #021b14 70%);
+    background:#f8f9fa;      /* light grey */
 }
 
 .excellence-title{
     font-size:70px;
     font-weight:300;
-    color:#e8dcc4;
-    margin-bottom:60px;
+    color:#222;
 }
 
-.big-card{
-    position:relative;
-    border-radius:30px;
-    overflow:hidden;
-    height:420px;
-}
-
-.big-card img{
-    width:100%;
-    height:100%;
-    object-fit:cover;
-}
-
+/* Remove dark overlay */
 .big-overlay{
     position:absolute;
     inset:0;
-    background:linear-gradient(to right, rgba(0,0,0,0.75), rgba(0,0,0,0.2));
-}
-
-.big-content{
-    position:absolute;
-    bottom:40px;
-    left:50px;
-    max-width:80%;
-}
-
-.big-content h3{
-    font-size:26px;
-    margin-bottom:15px;
+    background:linear-gradient(to right, rgba(255,255,255,0.9), rgba(255,255,255,0.2));
 }
 
 /* ========================= */
@@ -178,34 +97,27 @@ body{
 
 .stats-section{
     padding:120px 5%;
-    background: radial-gradient(circle at top left, #0d3b2e, #021b14 70%);
+    background:#ffffff;
 }
 
 .stats-title{
     font-size:70px;
     font-weight:300;
-    color:#e8dcc4;
-    margin-bottom:80px;
-}
-
-.stats-grid{
-    display:grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap:30px;
+    color:#222;
 }
 
 .stat-card{
-    background: rgba(255,255,255,0.05);
-    border:1px solid rgba(255,255,255,0.15);
+    background:#ffffff;
+    border:1px solid #eee;
     border-radius:30px;
     padding:60px 40px;
+    box-shadow:0 8px 25px rgba(0,0,0,0.05);
 }
 
 .stat-number{
     font-size:50px;
     font-weight:300;
-    color:#f4c76b;
-    margin-bottom:20px;
+    color:#d4a017;
 }
 
 /* ========================= */
@@ -214,44 +126,35 @@ body{
 
 .cta-section{
     padding:120px 5%;
-    background: radial-gradient(circle at top left, #0d3b2e, #021b14 70%);
+    background:#f8f9fa;
 }
 
 .cta-container{
-    background: linear-gradient(135deg, #06261d, #0d3b2e);
+    background:#ffffff;
     border-radius:40px;
     padding:100px 80px;
     display:flex;
     align-items:center;
     justify-content:space-between;
-}
-
-.cta-left{
-    width:55%;
+    box-shadow:0 15px 40px rgba(0,0,0,0.08);
 }
 
 .cta-left h1{
     font-size:60px;
     font-weight:300;
-    color:#e8dcc4;
+    color:#222;
 }
 
 .cta-left p{
     font-size:18px;
-    color:#cfcfcf;
-    margin:30px 0 40px;
-}
-
-.cta-buttons{
-    display:flex;
-    gap:20px;
+    color:#555;
 }
 
 .btn-primary{
     padding:14px 35px;
     border-radius:40px;
-    background:#f4c76b;
-    color:#000;
+    background:#d4a017;
+    color:#fff;
     text-decoration:none;
     font-weight:500;
 }
@@ -259,67 +162,362 @@ body{
 .btn-secondary{
     padding:14px 35px;
     border-radius:40px;
-    border:1px solid rgba(255,255,255,0.2);
-    background:rgba(255,255,255,0.05);
-    color:#fff;
+    border:1px solid #ddd;
+    background:#fff;
+    color:#333;
     text-decoration:none;
 }
 
-.cta-right{
-    width:40%;
+
+
+
+/* HERO SECTION */
+.hero{
+    height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:0 10%;
+    background: linear-gradient(-45deg, #ffffff, #f9f9f9, #f3f3f3, #ffffff);
+    background-size: 400% 400%;
+    animation: gradientMove 12s ease infinite;
 }
 
-.cta-right img{
-    width:100%;
+@keyframes gradientMove{
+    0%{ background-position:0% 50%; }
+    50%{ background-position:100% 50%; }
+    100%{ background-position:0% 50%; }
 }
+
+.hero-content h1{
+    font-size:65px;
+    font-weight:300;
+    color:#222;
+    margin-bottom:30px;
+}
+
+.highlight{
+    color:#d4a017; /* gold */
+        text-shadow:0 0 20px rgba(212,160,23,0.3);
+
+}
+.hero-btn{
+    display:inline-block;
+    margin-top:40px;
+    padding:14px 40px;
+    background:#d4a017;
+    color:white;
+    border-radius:40px;
+    text-decoration:none;
+    transition:0.3s;
+    position:relative;
+    overflow:hidden;
+}
+
+.hero-btn:hover{
+    transform:translateY(-5px);
+    box-shadow:0 10px 25px rgba(212,160,23,0.4);
+}
+
+/* Paragraph */
+.hero-content p{
+    font-size:20px;
+    color:#555;
+    line-height:1.8;
+}
+
+/* Button */
 
 /* ========================= */
-/* RESPONSIVE */
+/* TEXT ANIMATION */
 /* ========================= */
 
-@media(max-width:992px){
+.line{
+    display:block;
+    opacity:0;
+    transform:translateY(30px);
+    animation:fadeUp 1s forwards;
+}
 
-    .experience-wrapper,
-    .cta-container{
-        flex-direction:column;
-        text-align:center;
-    }
+/* Delay for each line */
 
-    .experience-text,
-    .experience-product,
-    .cta-left,
-    .cta-right{
-        width:100%;
+.line1{ animation-delay:0.3s; }
+.line2{ animation-delay:0.8s; }
+.line3{ animation-delay:1.5s; }
+.line4{ animation-delay:2.3s; }
+.line5{ animation-delay:3.1s; }
+.line6{ animation-delay:3.9s; }
+
+.hero-btn{
+    opacity:0;
+    animation:fadeUp 1s forwards;
+    animation-delay:4.7s;
+}
+
+/* Animation keyframe */
+
+@keyframes fadeUp{
+    to{
+        opacity:1;
+        transform:translateY(0);
     }
 }
 
+
+
+
+
+/* Showcase Section - Shrinking Image + Glass Cards */
+.showcase {
+    height: 400vh;
+    /* Extra height for slower, premium scroll */
+    position: relative;
+    background: radial-gradient(circle at center, #0f1c1a 0%, #030712 100%);
+}
+
+.showcase-sticky {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.showcase-content {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    max-width: 1400px;
+}
+
+.center-image-wrapper {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.shrinking-image {
+    width: 700px;
+    max-width: 1000px;
+    /* Start massive */
+    height: auto;
+    object-fit: cover;
+    border-radius: 40px;
+    transform: scale(2);
+    /* filter: drop-shadow(0 0 100px rgba(0, 255, 150, 0.3)); */
+    transition: transform 0.15s linear, border-radius 0.15s ease-out;
+}
+
+.features-wrapper {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.feature-card {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 1.8rem 2.2rem;
+    border-radius: 24px;
+    display: flex;
+    align-items: center;
+    gap: 1.8rem;
+    color: white;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+    min-width: 380px;
+    opacity: 0;
+    z-index: 5;
+    transform: translateY(40px);
+    transition:all 1.2s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.8s ease-out;
+}
+
+/* Card Positions Around Center */
+.item-tl {
+    top: 20%;
+    left: 5%;
+    transform: translate(-30px, -30px);
+}
+
+.item-tr {
+    top: 20%;
+    right: 5%;
+    transform: translate(30px, -30px);
+}
+
+.item-bl {
+    bottom: 20%;
+    left: 5%;
+    transform: translate(-30px, 30px);
+}
+
+.item-br {
+    bottom: 20%;
+    right: 5%;
+    transform: translate(30px, 30px);
+}
+
+.feature-card.visible {
+    opacity: 1;
+    transform: translate(0);
+}
+
+.card-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.card-text strong {
+    font-size: 1.2rem;
+    margin-bottom: 0.3rem;
+    background: linear-gradient(to right, #fff, #9ca3af);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.card-text span {
+    font-size: 0.95rem;
+    color: #9ca3af;
+    line-height: 1.4;
+}
+
+.icon-circle {
+    width: 50px;
+    height: 50px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    flex-shrink: 0;
+}
+
+/* Animations */
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease-out;
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.reveal-text {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: revealText 1s forwards;
+}
+
+.delay-1 {
+    animation-delay: 0.3s;
+}
+
+.delay-2 {
+    animation-delay: 0.6s;
+}
+
+@keyframes revealText {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
 </style>
 </head>
 
 <body>
 
 <!-- HERO SECTION -->
-<section class="experience-section" id="experienceSection">
-    <div class="experience-wrapper">
-        <div class="experience-text">
-            <h1>
-                Sell Online With <span>Artisan Hub</span>
-            </h1>
-            <p>
-                Reach crores of customers across India.
-                List your handmade products, receive secure payments,
-                and grow your craft business with complete support.
-            </p>
-        </div>
+<section class="hero">
+    <div class="hero-content">
+        <h1>
+            <span class="line line1">Sell Online With</span>
+            <span class="line line2 highlight">Artisan Hub</span>
+        </h1>
 
-        <div class="experience-product">
-            <img src="https://images.unsplash.com/photo-1602524204448-4bb9d0c1fba8">
-        </div>
+        <p>
+            <span class="line line3">Reach crores of customers across India.</span>
+            <span class="line line4">List your handmade products.</span>
+            <span class="line line5">Receive secure payments.</span>
+            <span class="line line6">Grow your craft business with complete support.</span>
+        </p>
+
+        <a href="#" class="hero-btn">Get Started</a>
     </div>
 </section>
 
+
+ <!-- Showcase Section: Shrinking Masterpiece & Glass Cards -->
+        <section class="showcase">
+            <div class="showcase-sticky">
+                <div class="showcase-content">
+                    <div class="features-wrapper">
+                        <!-- Top Left -->
+                        <div class="feature-card item-tl">
+                            <div class="icon-circle">🎨</div>
+                            <div class="card-text">
+                                <strong>An Integrated Ecosystem</strong>
+                                <span>That unites creativity and manufacturing.</span>
+                            </div>
+                        </div>
+                        <!-- Top Right -->
+                        <div class="feature-card item-tr">
+                            <div class="icon-circle">👥</div>
+                            <div class="card-text">
+                                <strong>A Dedicated Team</strong>
+                                <span>Driving success and trusted partnerships.</span>
+                            </div>
+                        </div>
+                        <!-- Bottom Left -->
+                        <div class="feature-card item-bl">
+                            <div class="icon-circle">🇸🇦</div>
+                            <div class="card-text">
+                                <strong>A Saudi Identity</strong>
+                                <span>Fusing authenticity with modern expression.</span>
+                            </div>
+                        </div>
+                        <!-- Bottom Right -->
+                        <div class="feature-card item-br">
+                            <div class="icon-circle">💡</div>
+                            <div class="card-text">
+                                <strong>Advanced Manufacturing</strong>
+                                <span>Enabling customization and innovation.</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="center-image-wrapper">
+                        <!-- High-quality artisan masterpiece product -->
+                        <!-- <img src="woodencraft1.jpg" alt="Artisan Masterpiece" class="shrinking-image"> -->
+                    <img src="https://picsum.photos/1000/1000?random=1" class="shrinking-image">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
 <!-- HORIZONTAL CARDS -->
-<section class="horizontal-section">
+<!-- <section class="horizontal-section">
     <div class="horizontal-wrapper">
         <div class="horizontal-cards" id="scrollContainer">
 
@@ -349,17 +547,17 @@ body{
 
         </div>
     </div>
-</section>
+</section> -->
 
 <!-- SUCCESS STORIES -->
-<section class="excellence-section">
+<!-- <section class="excellence-section">
     <div class="container-fluid px-4">
         <h1 class="excellence-title">Seller Success Stories</h1>
     </div>
-</section>
+</section> -->
 
 <!-- STATS -->
-<section class="stats-section">
+<!-- <section class="stats-section">
     <h1 class="stats-title">Why Sell With Us</h1>
     <div class="stats-grid">
         <div class="stat-card">
@@ -387,10 +585,10 @@ body{
             <p>Growing Artisan Sellers</p>
         </div>
     </div>
-</section>
+</section> -->
 
 <!-- CTA -->
-<section class="cta-section">
+<!-- <section class="cta-section">
     <div class="cta-container">
         <div class="cta-left">
             <h1>Start Selling Today</h1>
@@ -408,24 +606,41 @@ body{
             <img src="https://picsum.photos/800/1000?grayscale">
         </div>
     </div>
-</section>
-
+</section> -->
 <script>
-const horizontalSection = document.querySelector(".horizontal-section");
-const scrollContainer = document.getElementById("scrollContainer");
+const showcase = document.querySelector('.showcase');
+const shrinkingImage = document.querySelector('.shrinking-image');
+const featureCards = document.querySelectorAll('.feature-card');
 
-if(horizontalSection && scrollContainer){
-    window.addEventListener("scroll", () => {
-        const sectionTop = horizontalSection.offsetTop;
-        const scrollY = window.scrollY - sectionTop;
+window.addEventListener('scroll', () => {
 
-        if(scrollY >= 0 && scrollY <= horizontalSection.offsetHeight){
-            scrollContainer.style.transform =
-                `translateX(-${scrollY}px)`;
-        }
-    });
-}
+    const sectionTop = showcase.offsetTop;
+    const sectionHeight = showcase.offsetHeight;
+    const scrollY = window.scrollY;
+
+    // Total scroll distance inside showcase
+    const scrollDistance = sectionHeight - window.innerHeight;
+
+    let progress = (scrollY - sectionTop) / scrollDistance;
+    progress = Math.max(0, Math.min(1, progress));
+
+    let scale;
+
+    // Keep big first 70%
+    scale = 2 - (progress * 1.4); 
+// 2 → 0.6 smoothly across whole section
+
+shrinkingImage.style.transform = `scale(${scale})`;
+
+    shrinkingImage.style.transform = `scale(${scale})`;
+
+    if (progress > 0.95) {
+        featureCards.forEach(card => card.classList.add('visible'));
+    } else {
+        featureCards.forEach(card => card.classList.remove('visible'));
+    }
+
+});
 </script>
-
 </body>
 </html>
