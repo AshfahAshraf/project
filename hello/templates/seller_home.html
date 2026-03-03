@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Seller Page</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+
+/* ========================= */
+/* GLOBAL */
+/* ========================= */
+
+body{
+    margin:0;
+    font-family:Segoe UI, sans-serif;
+    background:#0d3b2e;
+    color:white;
+    overflow-x:hidden;
+}
+
+/* ========================= */
+/* EXPERIENCE SECTION */
+/* ========================= */
+
+.experience-section{
+    height:200vh;
+    position:relative;
+    background:
+        radial-gradient(circle at 20% 10%, rgba(40,120,60,0.6), transparent 40%),
+        radial-gradient(circle at 80% 90%, rgba(150,110,20,0.6), transparent 40%),
+        #000;
+}
+
+.experience-wrapper{
+    position:sticky;
+    top:0;
+    height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 8%;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.experience-text{
+    width:50%;
+}
+
+.experience-text h1{
+    font-size:70px;
+    font-weight:300;
+    color:#e8dcc4;
+}
+
+.experience-text span{
+    color:#f4c76b;
+}
+
+.experience-text p{
+    margin-top:30px;
+    font-size:18px;
+    color:#cfcfcf;
+}
+
+.experience-product{
+    width:40%;
+}
+
+.experience-product img{
+    width:100%;
+    border-radius:30px;
+    box-shadow:0 40px 80px rgba(0,0,0,0.7);
+}
+
+/* ========================= */
+/* HORIZONTAL SCROLL SECTION */
+/* ========================= */
+
+.horizontal-section{
+    position:relative;
+    height:300vh;
+}
+
+.horizontal-wrapper{
+    position:sticky;
+    top:0;
+    height:100vh;
+    display:flex;
+    align-items:center;
+    overflow:hidden;
+}
+
+.horizontal-cards{
+    display:flex;
+    gap:40px;
+    padding-left:100px;
+    transition:transform 0.1s linear;
+}
+
+.card{
+    min-width:600px;
+    height:350px;
+    background:#06261d;
+    border-radius:20px;
+    display:flex;
+    align-items:center;
+    padding:30px;
+    box-shadow:0 20px 40px rgba(0,0,0,0.5);
+}
+
+.card img{
+    width:50%;
+    height:100%;
+    object-fit:cover;
+    border-radius:15px;
+}
+
+.card-content{
+    width:50%;
+    padding-left:30px;
+}
+
+.card-content h2{
+    color:#f4c76b;
+}
+
+/* ========================= */
+/* EXCELLENCE SECTION */
+/* ========================= */
+
+.excellence-section{
+    padding:120px 0;
+    background: radial-gradient(circle at top left, #0d3b2e, #021b14 70%);
+}
+
+.excellence-title{
+    font-size:70px;
+    font-weight:300;
+    color:#e8dcc4;
+    margin-bottom:60px;
+}
+
+.big-card{
+    position:relative;
+    border-radius:30px;
+    overflow:hidden;
+    height:420px;
+}
+
+.big-card img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+.big-overlay{
+    position:absolute;
+    inset:0;
+    background:linear-gradient(to right, rgba(0,0,0,0.75), rgba(0,0,0,0.2));
+}
+
+.big-content{
+    position:absolute;
+    bottom:40px;
+    left:50px;
+    max-width:80%;
+}
+
+.big-content h3{
+    font-size:26px;
+    margin-bottom:15px;
+}
+
+/* ========================= */
+/* STATS SECTION */
+/* ========================= */
+
+.stats-section{
+    padding:120px 5%;
+    background: radial-gradient(circle at top left, #0d3b2e, #021b14 70%);
+}
+
+.stats-title{
+    font-size:70px;
+    font-weight:300;
+    color:#e8dcc4;
+    margin-bottom:80px;
+}
+
+.stats-grid{
+    display:grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap:30px;
+}
+
+.stat-card{
+    background: rgba(255,255,255,0.05);
+    border:1px solid rgba(255,255,255,0.15);
+    border-radius:30px;
+    padding:60px 40px;
+}
+
+.stat-number{
+    font-size:50px;
+    font-weight:300;
+    color:#f4c76b;
+    margin-bottom:20px;
+}
+
+/* ========================= */
+/* CTA SECTION */
+/* ========================= */
+
+.cta-section{
+    padding:120px 5%;
+    background: radial-gradient(circle at top left, #0d3b2e, #021b14 70%);
+}
+
+.cta-container{
+    background: linear-gradient(135deg, #06261d, #0d3b2e);
+    border-radius:40px;
+    padding:100px 80px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+.cta-left{
+    width:55%;
+}
+
+.cta-left h1{
+    font-size:60px;
+    font-weight:300;
+    color:#e8dcc4;
+}
+
+.cta-left p{
+    font-size:18px;
+    color:#cfcfcf;
+    margin:30px 0 40px;
+}
+
+.cta-buttons{
+    display:flex;
+    gap:20px;
+}
+
+.btn-primary{
+    padding:14px 35px;
+    border-radius:40px;
+    background:#f4c76b;
+    color:#000;
+    text-decoration:none;
+    font-weight:500;
+}
+
+.btn-secondary{
+    padding:14px 35px;
+    border-radius:40px;
+    border:1px solid rgba(255,255,255,0.2);
+    background:rgba(255,255,255,0.05);
+    color:#fff;
+    text-decoration:none;
+}
+
+.cta-right{
+    width:40%;
+}
+
+.cta-right img{
+    width:100%;
+}
+
+/* ========================= */
+/* RESPONSIVE */
+/* ========================= */
+
+@media(max-width:992px){
+
+    .experience-wrapper,
+    .cta-container{
+        flex-direction:column;
+        text-align:center;
+    }
+
+    .experience-text,
+    .experience-product,
+    .cta-left,
+    .cta-right{
+        width:100%;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- HERO SECTION -->
+<section class="experience-section" id="experienceSection">
+    <div class="experience-wrapper">
+        <div class="experience-text">
+            <h1>
+                Sell Online With <span>Artisan Hub</span>
+            </h1>
+            <p>
+                Reach crores of customers across India.
+                List your handmade products, receive secure payments,
+                and grow your craft business with complete support.
+            </p>
+        </div>
+
+        <div class="experience-product">
+            <img src="https://images.unsplash.com/photo-1602524204448-4bb9d0c1fba8">
+        </div>
+    </div>
+</section>
+
+<!-- HORIZONTAL CARDS -->
+<section class="horizontal-section">
+    <div class="horizontal-wrapper">
+        <div class="horizontal-cards" id="scrollContainer">
+
+            <div class="card">
+                <img src="https://picsum.photos/800/600?1">
+                <div class="card-content">
+                    <h2>45+ Lakh Customers</h2>
+                    <p>Sell your products to a large and growing customer base.</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="https://picsum.photos/800/600?2">
+                <div class="card-content">
+                    <h2>7 Days Secure Payments</h2>
+                    <p>Receive payments directly to your bank account on time.</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="https://picsum.photos/800/600?3">
+                <div class="card-content">
+                    <h2>Low Cost Business</h2>
+                    <p>Start selling with minimal investment and transparent fees.</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- SUCCESS STORIES -->
+<section class="excellence-section">
+    <div class="container-fluid px-4">
+        <h1 class="excellence-title">Seller Success Stories</h1>
+    </div>
+</section>
+
+<!-- STATS -->
+<section class="stats-section">
+    <h1 class="stats-title">Why Sell With Us</h1>
+    <div class="stats-grid">
+        <div class="stat-card">
+            <div class="stat-number">45+</div>
+            <p>Lakh Active Customers</p>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number">7 Days</div>
+            <p>Payment Settlement</p>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number">3000+</div>
+            <p>Product Categories</p>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number">19000+</div>
+            <p>Delivery Pin Codes Across India</p>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number">24/7</div>
+            <p>Seller Support</p>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number">1000+</div>
+            <p>Growing Artisan Sellers</p>
+        </div>
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+    <div class="cta-container">
+        <div class="cta-left">
+            <h1>Start Selling Today</h1>
+            <p>
+                Join our seller community and take your handmade
+                business online with powerful tools and nationwide reach.
+            </p>
+            <div class="cta-buttons">
+                <a href="#" class="btn-primary">Create Account</a>
+                <a href="#" class="btn-secondary">Learn More</a>
+            </div>
+        </div>
+
+        <div class="cta-right">
+            <img src="https://picsum.photos/800/1000?grayscale">
+        </div>
+    </div>
+</section>
+
+<script>
+const horizontalSection = document.querySelector(".horizontal-section");
+const scrollContainer = document.getElementById("scrollContainer");
+
+if(horizontalSection && scrollContainer){
+    window.addEventListener("scroll", () => {
+        const sectionTop = horizontalSection.offsetTop;
+        const scrollY = window.scrollY - sectionTop;
+
+        if(scrollY >= 0 && scrollY <= horizontalSection.offsetHeight){
+            scrollContainer.style.transform =
+                `translateX(-${scrollY}px)`;
+        }
+    });
+}
+</script>
+
+</body>
+</html>

@@ -14,6 +14,7 @@ urlpatterns = [
       re_path('^shipping_info$',views.shipping_info,name="shipping_info"),
       re_path('^my_account$',views.my_account,name="my_account"),
       re_path('^order$',views.order,name="order"),
+      re_path('^seller_home$',views.seller_home,name="seller_home")
 
 
  ]
