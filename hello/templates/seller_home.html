@@ -1,563 +1,913 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
+
 <head>
-<meta charset="UTF-8">
-<title>Seller Page</title>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <title>Seller Page</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+    <style>
+        /* ========================= */
+        /* GLOBAL */
+        /* ========================= */
 
-<style>
-    /* ========================= */
-/* GLOBAL */
-/* ========================= */
+        body {
+            margin: 0;
+            font-family: Segoe UI, sans-serif;
+            background: #ffffff;
+            /* changed to white */
+            color: #222;
+            /* dark text */
+            overflow-x: hidden;
+        }
 
-body{
-    margin:0;
-    font-family:Segoe UI, sans-serif;
-    background:#ffffff;      /* changed to white */
-    color:#222;              /* dark text */
-    overflow-x:hidden;
-}
+        /* ========================= */
+        /* EXPERIENCE SECTION */
+        /* ========================= */
 
-/* ========================= */
-/* EXPERIENCE SECTION */
-/* ========================= */
+        .experience-section {
+            height: 200vh;
+            position: relative;
+            background: #f8f9fa;
+            /* light grey instead of dark gradient */
+        }
 
-.experience-section{
-    height:200vh;
-    position:relative;
-    background:#f8f9fa;      /* light grey instead of dark gradient */
-}
+        .experience-text h1 {
+            font-size: 70px;
+            font-weight: 300;
+            color: #222;
+            /* dark text */
+        }
 
-.experience-text h1{
-    font-size:70px;
-    font-weight:300;
-    color:#222;              /* dark text */
-}
+        .experience-text span {
+            color: #d4a017;
+            /* gold accent */
+        }
 
-.experience-text span{
-    color:#d4a017;           /* gold accent */
-}
+        .experience-text p {
+            margin-top: 30px;
+            font-size: 18px;
+            color: #555;
+            /* softer dark */
+        }
 
-.experience-text p{
-    margin-top:30px;
-    font-size:18px;
-    color:#555;              /* softer dark */
-}
 
-/* ========================= */
-/* HORIZONTAL SCROLL SECTION */
-/* ========================= */
 
-.horizontal-section{
-    position:relative;
-    height:300vh;
-    background:#ffffff;      /* white */
-}
 
-.card{
-    min-width:600px;
-    height:350px;
-    background:#ffffff;      /* white card */
+        /* ========================= */
+        /* HORIZONTAL SCROLL SECTION */
+        /* ========================= */
+
+
+
+        .horizontal-section {
+            height: 300vh;
+            position: relative;
+            background: #020617;
+        }
+
+        .center-text {
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 5;
+        }
+
+        .center-text h1 {
+            font-size: 90px;
+            color: white;
+            opacity: 1;
+            transition: opacity 0.6s ease;
+        }
+
+        .scroll-arrow {
+            font-size: 40px;
+            color: white;
+            margin-top: 20px;
+            opacity: 0.7;
+            transition: opacity 0.6s ease;
+        }
+
+        .horizontal-wrapper {
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .horizontal-cards {
+            display: flex;
+            gap: 40px;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            padding-left: 100vw;
+        }
+
+        /* .card{
+    min-width:420px;
+    height:300px;
+    background:#111;
     border-radius:20px;
-    display:flex;
-    align-items:center;
-    padding:30px;
-    box-shadow:0 10px 30px rgba(0,0,0,0.08);  /* soft shadow */
-}
-
-.card-content h2{
-    color:#d4a017;
-}
-
-/* ========================= */
-/* EXCELLENCE SECTION */
-/* ========================= */
-
-.excellence-section{
-    padding:120px 0;
-    background:#f8f9fa;      /* light grey */
-}
-
-.excellence-title{
-    font-size:70px;
-    font-weight:300;
-    color:#222;
-}
-
-/* Remove dark overlay */
-.big-overlay{
-    position:absolute;
-    inset:0;
-    background:linear-gradient(to right, rgba(255,255,255,0.9), rgba(255,255,255,0.2));
-}
-
-/* ========================= */
-/* STATS SECTION */
-/* ========================= */
-
-.stats-section{
-    padding:120px 5%;
-    background:#ffffff;
-}
-
-.stats-title{
-    font-size:70px;
-    font-weight:300;
-    color:#222;
-}
-
-.stat-card{
-    background:#ffffff;
-    border:1px solid #eee;
-    border-radius:30px;
-    padding:60px 40px;
-    box-shadow:0 8px 25px rgba(0,0,0,0.05);
-}
-
-.stat-number{
-    font-size:50px;
-    font-weight:300;
-    color:#d4a017;
-}
-
-/* ========================= */
-/* CTA SECTION */
-/* ========================= */
-
-.cta-section{
-    padding:120px 5%;
-    background:#f8f9fa;
-}
-
-.cta-container{
-    background:#ffffff;
-    border-radius:40px;
-    padding:100px 80px;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    box-shadow:0 15px 40px rgba(0,0,0,0.08);
-}
-
-.cta-left h1{
-    font-size:60px;
-    font-weight:300;
-    color:#222;
-}
-
-.cta-left p{
-    font-size:18px;
-    color:#555;
-}
-
-.btn-primary{
-    padding:14px 35px;
-    border-radius:40px;
-    background:#d4a017;
-    color:#fff;
-    text-decoration:none;
-    font-weight:500;
-}
-
-.btn-secondary{
-    padding:14px 35px;
-    border-radius:40px;
-    border:1px solid #ddd;
-    background:#fff;
-    color:#333;
-    text-decoration:none;
-}
-
-
-
-
-/* HERO SECTION */
-.hero{
-    height:100vh;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    text-align:center;
-    padding:0 10%;
-    background: linear-gradient(-45deg, #ffffff, #f9f9f9, #f3f3f3, #ffffff);
-    background-size: 400% 400%;
-    animation: gradientMove 12s ease infinite;
-}
-
-@keyframes gradientMove{
-    0%{ background-position:0% 50%; }
-    50%{ background-position:100% 50%; }
-    100%{ background-position:0% 50%; }
-}
-
-.hero-content h1{
-    font-size:65px;
-    font-weight:300;
-    color:#222;
-    margin-bottom:30px;
-}
-
-.highlight{
-    color:#d4a017; /* gold */
-        text-shadow:0 0 20px rgba(212,160,23,0.3);
-
-}
-.hero-btn{
-    display:inline-block;
-    margin-top:40px;
-    padding:14px 40px;
-    background:#d4a017;
-    color:white;
-    border-radius:40px;
-    text-decoration:none;
-    transition:0.3s;
-    position:relative;
     overflow:hidden;
-}
-
-.hero-btn:hover{
-    transform:translateY(-5px);
-    box-shadow:0 10px 25px rgba(212,160,23,0.4);
-}
-
-/* Paragraph */
-.hero-content p{
-    font-size:20px;
-    color:#555;
-    line-height:1.8;
-}
-
-/* Button */
-
-/* ========================= */
-/* TEXT ANIMATION */
-/* ========================= */
-
-.line{
-    display:block;
-    opacity:0;
-    transform:translateY(30px);
-    animation:fadeUp 1s forwards;
-}
-
-/* Delay for each line */
-
-.line1{ animation-delay:0.3s; }
-.line2{ animation-delay:0.8s; }
-.line3{ animation-delay:1.5s; }
-.line4{ animation-delay:2.3s; }
-.line5{ animation-delay:3.1s; }
-.line6{ animation-delay:3.9s; }
-
-.hero-btn{
-    opacity:0;
-    animation:fadeUp 1s forwards;
-    animation-delay:4.7s;
-}
-
-/* Animation keyframe */
-
-@keyframes fadeUp{
-    to{
-        opacity:1;
-        transform:translateY(0);
-    }
-}
+} */
 
 
 
 
+        /* ========================= */
+        /* EXCELLENCE SECTION */
+        /* ========================= */
 
-/* Showcase Section - Shrinking Image + Glass Cards */
-.showcase {
-    height: 400vh;
-    /* Extra height for slower, premium scroll */
-    position: relative;
-    background: radial-gradient(circle at center, #0f1c1a 0%, #030712 100%);
-}
+        .excellence-section {
+            padding: 120px 0;
+            background: #f8f9fa;
+            /* light grey */
+        }
 
-.showcase-sticky {
-    position: sticky;
-    top: 0;
-    height: 100vh;
-    width: 100%;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
+        .excellence-title {
+            font-size: 70px;
+            font-weight: 300;
+            color: #222;
+        }
 
-.showcase-content {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    max-width: 1400px;
-}
+        /* Remove dark overlay */
+        .big-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to right, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.2));
+        }
 
-.center-image-wrapper {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 10;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-}
+        /* ========================= */
+        /* STATS SECTION */
+        /* ========================= */
 
-.shrinking-image {
-    width: 700px;
-    max-width: 1000px;
-    /* Start massive */
-    height: auto;
-    object-fit: cover;
-    border-radius: 40px;
-    transform: scale(2);
-    /* filter: drop-shadow(0 0 100px rgba(0, 255, 150, 0.3)); */
-    transition: transform 0.15s linear, border-radius 0.15s ease-out;
-}
+        .stats-section {
+            padding: 120px 5%;
+            background: #ffffff;
+        }
 
-.features-wrapper {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-}
+        .stats-title {
+            font-size: 70px;
+            font-weight: 300;
+            color: #222;
+        }
 
-.feature-card {
-    position: absolute;
-    background: rgba(255, 255, 255, 0.03);
-    backdrop-filter: blur(25px);
-    -webkit-backdrop-filter: blur(25px);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    padding: 1.8rem 2.2rem;
-    border-radius: 24px;
-    display: flex;
-    align-items: center;
-    gap: 1.8rem;
-    color: white;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
-    min-width: 380px;
-    opacity: 0;
-    z-index: 5;
-    transform: translateY(40px);
-    transition:all 1.2s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.8s ease-out;
-}
+        .stat-card {
+            background: #ffffff;
+            border: 1px solid #eee;
+            border-radius: 30px;
+            padding: 60px 40px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.05);
+        }
 
-/* Card Positions Around Center */
-.item-tl {
-    top: 20%;
-    left: 5%;
-    transform: translate(-30px, -30px);
-}
+        .stat-number {
+            font-size: 50px;
+            font-weight: 300;
+            color: #d4a017;
+        }
 
-.item-tr {
-    top: 20%;
-    right: 5%;
-    transform: translate(30px, -30px);
-}
+        /* ========================= */
+        /* CTA SECTION */
+        /* ========================= */
 
-.item-bl {
-    bottom: 20%;
-    left: 5%;
-    transform: translate(-30px, 30px);
-}
+        .cta-section {
+            padding: 120px 5%;
+            background: #f8f9fa;
+        }
 
-.item-br {
-    bottom: 20%;
-    right: 5%;
-    transform: translate(30px, 30px);
-}
+        .cta-container {
+            background: #ffffff;
+            border-radius: 40px;
+            padding: 100px 80px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+        }
 
-.feature-card.visible {
-    opacity: 1;
-    transform: translate(0);
-}
+        .cta-left h1 {
+            font-size: 60px;
+            font-weight: 300;
+            color: #222;
+        }
 
-.card-text {
-    display: flex;
-    flex-direction: column;
-}
+        .cta-left p {
+            font-size: 18px;
+            color: #555;
+        }
 
-.card-text strong {
-    font-size: 1.2rem;
-    margin-bottom: 0.3rem;
-    background: linear-gradient(to right, #fff, #9ca3af);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
+        .btn-primary {
+            padding: 14px 35px;
+            border-radius: 40px;
+            background: #d4a017;
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+        }
 
-.card-text span {
-    font-size: 0.95rem;
-    color: #9ca3af;
-    line-height: 1.4;
-}
+        .btn-secondary {
+            padding: 14px 35px;
+            border-radius: 40px;
+            border: 1px solid #ddd;
+            background: #fff;
+            color: #333;
+            text-decoration: none;
+        }
 
-.icon-circle {
-    width: 50px;
-    height: 50px;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.5rem;
-    flex-shrink: 0;
-}
 
-/* Animations */
-.reveal {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: all 0.8s ease-out;
-}
 
-.reveal.active {
-    opacity: 1;
-    transform: translateY(0);
-}
 
-.reveal-text {
-    opacity: 0;
-    transform: translateY(20px);
-    animation: revealText 1s forwards;
-}
+        /* HERO SECTION */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 0 10%;
+            background: linear-gradient(-45deg, #ffffff, #f9f9f9, #f3f3f3, #ffffff);
+            background-size: 400% 400%;
+            animation: gradientMove 12s ease infinite;
+        }
 
-.delay-1 {
-    animation-delay: 0.3s;
-}
+        @keyframes gradientMove {
+            0% {
+                background-position: 0% 50%;
+            }
 
-.delay-2 {
-    animation-delay: 0.6s;
-}
+            50% {
+                background-position: 100% 50%;
+            }
 
-@keyframes revealText {
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-</style>
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .hero-content h1 {
+            font-size: 65px;
+            font-weight: 300;
+            color: #222;
+            margin-bottom: 30px;
+        }
+
+        .highlight {
+            color: #d4a017;
+            /* gold */
+            text-shadow: 0 0 20px rgba(212, 160, 23, 0.3);
+
+        }
+
+        .hero-btn {
+            display: inline-block;
+            margin-top: 40px;
+            padding: 14px 40px;
+            background: #d4a017;
+            color: white;
+            border-radius: 40px;
+            text-decoration: none;
+            transition: 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(212, 160, 23, 0.4);
+        }
+
+        /* Paragraph */
+        .hero-content p {
+            font-size: 20px;
+            color: #555;
+            line-height: 1.8;
+        }
+
+        /* Button */
+
+        /* ========================= */
+        /* TEXT ANIMATION */
+        /* ========================= */
+
+        .line {
+            display: block;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeUp 1s forwards;
+        }
+
+        /* Delay for each line */
+
+        .line1 {
+            animation-delay: 0.3s;
+        }
+
+        .line2 {
+            animation-delay: 0.8s;
+        }
+
+        .line3 {
+            animation-delay: 1.5s;
+        }
+
+        .line4 {
+            animation-delay: 2.3s;
+        }
+
+        .line5 {
+            animation-delay: 3.1s;
+        }
+
+        .line6 {
+            animation-delay: 3.9s;
+        }
+
+        .hero-btn {
+            opacity: 0;
+            animation: fadeUp 1s forwards;
+            animation-delay: 4.7s;
+        }
+
+        /* Animation keyframe */
+
+        @keyframes fadeUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+
+
+
+
+        /* Showcase Section - Shrinking Image + Glass Cards */
+        .showcase {
+            height: 280vh;
+            /* Extra height for slower, premium scroll */
+            position: relative;
+            background: radial-gradient(circle at center, #0f1c1a 0%, #030712 100%);
+        }
+
+        .showcase-sticky {
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            width: 100%;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .showcase-content {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            max-width: 1400px;
+        }
+
+        .center-image-wrapper {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 10;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+
+        .shrinking-image {
+            width: clamp(260px, 38vw, 460px);
+            height: auto;
+            border-radius: 40px;
+            transform: scale(1.5);
+            transition: transform 0.15s linear;
+        }
+
+        .features-wrapper {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .feature-card {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 1.8rem 2.2rem;
+            border-radius: 24px;
+            display: flex;
+            align-items: center;
+            gap: 1.8rem;
+            color: white;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+            min-width: auto;
+            width: 320px;
+            max-width: 85vw;
+            opacity: 0;
+            z-index: 5;
+            transform: translateY(40px);
+            transition: all 1.2s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.8s ease-out;
+        }
+
+        /* Card Positions Around Center */
+        .item-tl {
+            top: 20%;
+            left: 5%;
+            transform: translate(-30px, -30px);
+        }
+
+        .item-tr {
+            top: 20%;
+            right: 5%;
+            transform: translate(30px, -30px);
+        }
+
+        .item-bl {
+            bottom: 20%;
+            left: 5%;
+            transform: translate(-30px, 30px);
+        }
+
+        .item-br {
+            bottom: 20%;
+            right: 5%;
+            transform: translate(30px, 30px);
+        }
+
+        .feature-card.visible {
+            opacity: 1;
+            transform: translate(0);
+        }
+
+        .card-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-text strong {
+            font-size: 1.2rem;
+            margin-bottom: 0.3rem;
+            background: linear-gradient(to right, #fff, #9ca3af);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .card-text span {
+            font-size: 0.95rem;
+            color: #9ca3af;
+            line-height: 1.4;
+        }
+
+
+        .card {
+            display: flex;
+            min-width: 1000px;
+            height: 520px;
+            border-radius: 30px;
+            overflow: hidden;
+            background: #071b18;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+
+        }
+
+        .card-left {
+            width: 50%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .card-left video,
+        .card-left img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .card-right {
+            width: 50%;
+            padding: 60px;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+
+            .card-right {
+                padding: 80px 60px;
+            }
+        }
+
+        .card-right h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        .card-right p {
+            color: #b7c3c0;
+            margin-bottom: 20px;
+        }
+
+        .card-right ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .card-right li {
+            margin-bottom: 12px;
+            position: relative;
+            padding-left: 18px;
+        }
+
+        .card-right li::before {
+            content: "•";
+            color: #d7b787;
+            position: absolute;
+            left: 0;
+        }
+
+        .icon-circle {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+
+        .icon-circle {
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        /* Animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reveal-text {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: revealText 1s forwards;
+        }
+
+        .delay-1 {
+            animation-delay: 0.3s;
+        }
+
+        .delay-2 {
+            animation-delay: 0.6s;
+        }
+
+        @keyframes revealText {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+
+        @media (max-width: 1200px) {
+
+            .shrinking-image {
+                width: 55vw;
+                transform: scale(1.2);
+            }
+
+            .feature-card {
+                width: 280px;
+            }
+
+            .item-tl {
+                left: 2%;
+            }
+
+            .item-tr {
+                right: 2%;
+            }
+
+            .item-bl {
+                left: 2%;
+            }
+
+            .item-br {
+                right: 2%;
+            }
+        }
+
+        /* ============================= */
+        /* RESPONSIVE FIX FOR SHOWCASE */
+        /* ============================= */
+        @media (max-width: 1100px) {
+
+            .shrinking-image {
+                width: 35vw;
+            }
+
+            .feature-card {
+                width: 250px;
+            }
+
+            .item-tl {
+                left: 2%;
+            }
+
+            .item-tr {
+                right: 2%;
+            }
+
+            .item-bl {
+                left: 2%;
+            }
+
+            .item-br {
+                right: 2%;
+            }
+        }
+
+        @media (max-width: 768px) {
+
+
+
+            .feature-card {
+                width: 240px;
+            }
+
+            .item-tl {
+                top: 15%;
+                left: 5%;
+            }
+
+            .item-tr {
+                top: 15%;
+                right: 5%;
+            }
+
+            .item-bl {
+                bottom: 15%;
+                left: 5%;
+            }
+
+            .item-br {
+                bottom: 15%;
+                right: 5%;
+            }
+        }
+
+
+        /* Extra Small Devices */
+        @media (max-width: 576px) {
+
+            .shrinking-image {
+                max-width: 300px;
+                border-radius: 25px;
+            }
+
+            .feature-card {
+                padding: 1.2rem;
+                gap: 1rem;
+            }
+
+            .card-text strong {
+                font-size: 1rem;
+            }
+
+            .card-text span {
+                font-size: 0.85rem;
+            }
+        }
+
+        .feature-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 70px rgba(0, 0, 0, 0.5);
+        }
+    </style>
 </head>
 
 <body>
 
-<!-- HERO SECTION -->
-<section class="hero">
-    <div class="hero-content">
-        <h1>
-            <span class="line line1">Sell Online With</span>
-            <span class="line line2 highlight">Artisan Hub</span>
-        </h1>
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>
+                <span class="line line1">Sell Online With</span>
+                <span class="line line2 highlight">Artisan Hub</span>
+            </h1>
 
-        <p>
-            <span class="line line3">Reach crores of customers across India.</span>
-            <span class="line line4">List your handmade products.</span>
-            <span class="line line5">Receive secure payments.</span>
-            <span class="line line6">Grow your craft business with complete support.</span>
-        </p>
+            <p>
+                <span class="line line3">Reach crores of customers across India.</span>
+                <span class="line line4">List your handmade products.</span>
+                <span class="line line5">Receive secure payments.</span>
+                <span class="line line6">Grow your craft business with complete support.</span>
+            </p>
 
-        <a href="#" class="hero-btn">Get Started</a>
-    </div>
-</section>
-
-
- <!-- Showcase Section: Shrinking Masterpiece & Glass Cards -->
-        <section class="showcase">
-            <div class="showcase-sticky">
-                <div class="showcase-content">
-                    <div class="features-wrapper">
-                        <!-- Top Left -->
-                        <div class="feature-card item-tl">
-                            <div class="icon-circle">🎨</div>
-                            <div class="card-text">
-                                <strong>An Integrated Ecosystem</strong>
-                                <span>That unites creativity and manufacturing.</span>
-                            </div>
-                        </div>
-                        <!-- Top Right -->
-                        <div class="feature-card item-tr">
-                            <div class="icon-circle">👥</div>
-                            <div class="card-text">
-                                <strong>A Dedicated Team</strong>
-                                <span>Driving success and trusted partnerships.</span>
-                            </div>
-                        </div>
-                        <!-- Bottom Left -->
-                        <div class="feature-card item-bl">
-                            <div class="icon-circle">🇸🇦</div>
-                            <div class="card-text">
-                                <strong>A Saudi Identity</strong>
-                                <span>Fusing authenticity with modern expression.</span>
-                            </div>
-                        </div>
-                        <!-- Bottom Right -->
-                        <div class="feature-card item-br">
-                            <div class="icon-circle">💡</div>
-                            <div class="card-text">
-                                <strong>Advanced Manufacturing</strong>
-                                <span>Enabling customization and innovation.</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="center-image-wrapper">
-                        <!-- High-quality artisan masterpiece product -->
-                        <!-- <img src="woodencraft1.jpg" alt="Artisan Masterpiece" class="shrinking-image"> -->
-                    <img src="https://picsum.photos/1000/1000?random=1" class="shrinking-image">
-                    </div>
-                </div>
-            </div>
-        </section>
-
-
-<!-- HORIZONTAL CARDS -->
-<!-- <section class="horizontal-section">
-    <div class="horizontal-wrapper">
-        <div class="horizontal-cards" id="scrollContainer">
-
-            <div class="card">
-                <img src="https://picsum.photos/800/600?1">
-                <div class="card-content">
-                    <h2>45+ Lakh Customers</h2>
-                    <p>Sell your products to a large and growing customer base.</p>
-                </div>
-            </div>
-
-            <div class="card">
-                <img src="https://picsum.photos/800/600?2">
-                <div class="card-content">
-                    <h2>7 Days Secure Payments</h2>
-                    <p>Receive payments directly to your bank account on time.</p>
-                </div>
-            </div>
-
-            <div class="card">
-                <img src="https://picsum.photos/800/600?3">
-                <div class="card-content">
-                    <h2>Low Cost Business</h2>
-                    <p>Start selling with minimal investment and transparent fees.</p>
-                </div>
-            </div>
-
+            <a href="#" class="hero-btn">Get Started</a>
         </div>
-    </div>
-</section> -->
+    </section>
 
-<!-- SUCCESS STORIES -->
-<!-- <section class="excellence-section">
+
+    <!-- Showcase Section: Shrinking Masterpiece & Glass Cards -->
+    <section class="showcase">
+        <div class="showcase-sticky">
+            <div class="showcase-content">
+                <div class="features-wrapper">
+                    <h2 class="text-center text-white mt-5">
+                        Why Sell With Artisan Hub
+                    </h2>
+                    <!-- Top Left -->
+                    <div class="feature-card item-tl">
+                        <div class="card-text">
+                            <strong>Easy Seller Dashboard</strong>
+                            <span>Manage your products, orders, and payments in one simple place.</span>
+                        </div>
+                    </div>
+                    <!-- Top Right -->
+                    <div class="feature-card item-tr">
+                        <div class="card-text">
+                            <strong>Seller Support Team</strong>
+                            <span>Get help anytime from our friendly support team.</span>
+                        </div>
+                    </div>
+                    <!-- Bottom Left -->
+                    <div class="feature-card item-bl">
+                        <div class="card-text">
+                            <strong>Handmade & Unique</strong>
+                            <span>Sell your handmade products to customers who love original crafts.</span>
+                        </div>
+                    </div>
+                    <!-- Bottom Right -->
+                    <div class="feature-card item-br">
+                        <div class="card-text">
+                            <strong>Safe & Fast Payments</strong>
+                            <span>Receive secure payments directly to your bank account on time.</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="center-image-wrapper">
+                    <img src="https://picsum.photos/1000/1000?random=1" class="shrinking-image">
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <section class="horizontal-section">
+
+        <div class="center-text">
+            <h1>Start Selling With Artisan Hub</h1>
+            <div class="scroll-arrow">→</div>
+        </div>
+
+        <div class="horizontal-wrapper">
+            <div class="horizontal-cards" id="scrollContainer">
+
+                <!-- CARD 1 -->
+                <div class="card">
+
+                    <div class="card-left">
+                        <video autoplay muted loop playsinline>
+                            <source src="{% static 'videos/video1.mp4' %}" type="video/mp4">
+                        </video>
+                    </div>
+
+                    <div class="card-right">
+
+                        <div class="icon-circle">👤</div>
+
+                        <h2>Create Your Seller Account</h2>
+
+                        <p>
+                            Start your journey on Artisan Hub by creating a free seller account.
+                            Register with your email, phone number, and basic business details.
+                            This will give you access to your personal seller dashboard where
+                            you can manage products, orders, and payments easily.
+                        </p>
+
+                        <ul>
+                            <li>Quick online registration</li>
+                            <li>Simple seller dashboard</li>
+                            <li>Secure account verification</li>
+                            <li>Access to seller tools</li>
+                        </ul>
+
+                    </div>
+
+                </div>
+
+
+                <!-- CARD 2 -->
+                <div class="card">
+
+                    <div class="card-left">
+                        <video autoplay muted loop playsinline>
+                            <source src="{% static 'videos/video2.mp4' %}" type="video/mp4">
+                        </video>
+                    </div>
+
+                    <div class="card-right">
+
+                        <div class="icon-circle">🛍️</div>
+
+                        <h2>List Your Handmade Products</h2>
+
+                        <p>
+                            Upload your handmade products and showcase them to thousands of
+                            customers on Artisan Hub. Add clear images, product descriptions,
+                            and prices so buyers can easily understand and purchase your crafts.
+                        </p>
+
+                        <ul>
+                            <li>Add product photos and details</li>
+                            <li>Set your own pricing</li>
+                            <li>Manage inventory easily</li>
+                            <li>Reach customers across India</li>
+                        </ul>
+
+                    </div>
+
+                </div>
+                <!-- CARD 3 -->
+                <div class="card">
+
+                    <div class="card-left">
+                        <video autoplay muted loop playsinline>
+
+                            <source src="{% static 'videos/video3.mp4' %}" type="video/mp4">
+                        </video>
+                    </div>
+
+                    <div class="card-right">
+
+                        <div class="icon-circle">💳</div>
+
+                        <h2>Deliver Orders & Get Paid</h2>
+
+                        <p>
+                            Once customers place orders, prepare and ship the products safely.
+                            Artisan Hub ensures secure payments and transfers the amount directly
+                            to your bank account within the payment cycle.
+                        </p>
+
+                        <ul>
+                            <li>Receive order notifications</li>
+                            <li>Track shipments easily</li>
+                            <li>Secure payment system</li>
+                            <li>Direct bank transfer</li>
+                        </ul>
+
+                    </div>
+
+                </div>
+
+
+
+
+    </section>
+
+    <!-- SUCCESS STORIES -->
+    <!-- <section class="excellence-section">
     <div class="container-fluid px-4">
         <h1 class="excellence-title">Seller Success Stories</h1>
     </div>
-</section> -->
+</section>
 
 <!-- STATS -->
-<!-- <section class="stats-section">
+    <!-- <section class="stats-section">
     <h1 class="stats-title">Why Sell With Us</h1>
     <div class="stats-grid">
         <div class="stat-card">
@@ -587,8 +937,8 @@ body{
     </div>
 </section> -->
 
-<!-- CTA -->
-<!-- <section class="cta-section">
+    <!-- CTA -->
+    <!-- <section class="cta-section">
     <div class="cta-container">
         <div class="cta-left">
             <h1>Start Selling Today</h1>
@@ -607,40 +957,90 @@ body{
         </div>
     </div>
 </section> -->
-<script>
-const showcase = document.querySelector('.showcase');
-const shrinkingImage = document.querySelector('.shrinking-image');
-const featureCards = document.querySelectorAll('.feature-card');
+    <script>
+        const showcase = document.querySelector('.showcase');
+        const shrinkingImage = document.querySelector('.shrinking-image');
+        const featureCards = document.querySelectorAll('.feature-card');
 
-window.addEventListener('scroll', () => {
+        function handleScroll() {
 
-    const sectionTop = showcase.offsetTop;
-    const sectionHeight = showcase.offsetHeight;
-    const scrollY = window.scrollY;
+            const sectionTop = showcase.offsetTop;
+            const sectionHeight = showcase.offsetHeight;
+            const scrollY = window.scrollY;
+            const scrollDistance = sectionHeight - window.innerHeight;
 
-    // Total scroll distance inside showcase
-    const scrollDistance = sectionHeight - window.innerHeight;
+            let progress = (scrollY - sectionTop) / scrollDistance;
+            progress = Math.max(0, Math.min(1, progress));
 
-    let progress = (scrollY - sectionTop) / scrollDistance;
-    progress = Math.max(0, Math.min(1, progress));
+            let startScale;
+            let endScale;
 
-    let scale;
+            // Desktop
+            if (window.innerWidth > 900) {
+                startScale = 1.6;
+                endScale = 0.8;
+            }
+            // Tablet
+            else if (window.innerWidth > 600) {
+                startScale = 1.3;
+                endScale = 0.9;
+            }
+            // Mobile
+            else {
+                startScale = 1.2;
+                endScale = 0.8;
+            }
 
-    // Keep big first 70%
-    scale = 2 - (progress * 1.4); 
-// 2 → 0.6 smoothly across whole section
+            let shrinkProgress = Math.min(progress / 0.6, 1);
+            let scale = startScale - (shrinkProgress * (startScale - endScale));
 
-shrinkingImage.style.transform = `scale(${scale})`;
+            shrinkingImage.style.transform = `scale(${scale})`;
+            if (progress > 0.85) {
+                featureCards.forEach(card => card.classList.add('visible'));
+            } else {
+                featureCards.forEach(card => card.classList.remove('visible'));
+            }
+        }
 
-    shrinkingImage.style.transform = `scale(${scale})`;
+        window.addEventListener('scroll', handleScroll);
+        window.addEventListener('resize', handleScroll);
 
-    if (progress > 0.95) {
-        featureCards.forEach(card => card.classList.add('visible'));
-    } else {
-        featureCards.forEach(card => card.classList.remove('visible'));
-    }
+        handleScroll();
 
-});
-</script>
+
+        const section = document.querySelector(".horizontal-section");
+        const cards = document.querySelector("#scrollContainer");
+        const text = document.querySelector(".center-text h1");
+        const arrow = document.querySelector(".scroll-arrow");
+
+        window.addEventListener("scroll", () => {
+
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.offsetHeight;
+            const scrollY = window.scrollY;
+
+            let progress = (scrollY - sectionTop) / (sectionHeight - window.innerHeight);
+            progress = Math.max(0, Math.min(1, progress));
+
+            /* TEXT + ARROW FADE OUT */
+            if (progress < 0.2) {
+                text.style.opacity = 1;
+                arrow.style.opacity = 1;
+            } else {
+                text.style.opacity = 0;
+                arrow.style.opacity = 0;
+            }
+
+            /* HORIZONTAL SLIDE */
+            const maxMove = cards.scrollWidth - window.innerWidth;
+            const moveX = progress * maxMove;
+
+            cards.style.transform = `translateX(${-moveX}px) translateY(-50%)`;
+
+        });
+
+    </script>
+
 </body>
+
 </html>
