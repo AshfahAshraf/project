@@ -7,327 +7,14 @@
     <title>Seller Page</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
-    <style>
-    /* HORIZONTAL SCROLL SECTION */
-        .horizontal-section {
-            height: 300vh;
-            position: relative;
-            background: #020617;
-        }
-
-        .center-text {
-            position: sticky;
-            top: 0;
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            z-index: 5;
-        }
-
-        .center-text h1 {
-            font-size: 90px;
-            color: white;
-            opacity: 1;
-            transition: opacity 0.6s ease;
-        }
-
-        .scroll-arrow {
-            font-size: 40px;
-            color: white;
-            margin-top: 20px;
-            opacity: 0.7;
-            transition: opacity 0.6s ease;
-        }
-
-        .horizontal-wrapper {
-            position: sticky;
-            top: 0;
-            height: 100vh;
-            overflow: hidden;
-        }
-
-        .horizontal-cards {
-            display: flex;
-            gap: 40px;
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            padding-left: 100vw;
-        }
-
-
-        .feature-card.visible {
-            opacity: 1;
-            transform: translate(0);
-        }
-
-        .card-text {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .card-text strong {
-            font-size: 1.2rem;
-            margin-bottom: 0.3rem;
-            background: linear-gradient(to right, #fff, #9ca3af);
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .card-text span {
-            font-size: 0.95rem;
-            color: #9ca3af;
-            line-height: 1.4;
-        }
-
-
-        .card {
-            display: flex;
-            min-width: 1000px;
-            height: 520px;
-            border-radius: 30px;
-            overflow: hidden;
-            background: #071b18;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-
-        }
-
-        .card-left {
-            width: 50%;
-            height: 100%;
-            overflow: hidden;
-        }
-
-        .card-left video,
-        .card-left img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-        }
-
-        .card-right {
-            width: 50%;
-            padding: 60px;
-            color: white;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            padding: 80px 60px;
-        }
-
-        .card-right h2 {
-            font-size: 36px;
-            margin-bottom: 20px;
-        }
-
-        .card-right p {
-            color: #b7c3c0;
-            margin-bottom: 20px;
-        }
-
-        .card-right ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        .card-right li {
-            margin-bottom: 12px;
-            position: relative;
-            padding-left: 18px;
-        }
-
-        .card-right li::before {
-            content: "•";
-            color: #d7b787;
-            position: absolute;
-            left: 0;
-        }
-
-        .icon-circle {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 20px;
-            font-size: 24px;
-        }
-
-        .icon-circle {
-            width: 50px;
-            height: 50px;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            flex-shrink: 0;
-        }
-
-        /* Animations */
-        .reveal {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s ease-out;
-        }
-
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .reveal-text {
-            opacity: 0;
-            transform: translateY(20px);
-            animation: revealText 1s forwards;
-        }
-
-        .delay-1 {
-            animation-delay: 0.3s;
-        }
-
-        .delay-2 {
-            animation-delay: 0.6s;
-        }
-
-        @keyframes revealText {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-
-        @media (max-width: 1200px) {
-
-            .shrinking-image {
-                width: 55vw;
-                transform: scale(1.2);
-            }
-
-            .feature-card {
-                width: 280px;
-            }
-
-            .item-tl {
-                left: 2%;
-            }
-
-            .item-tr {
-                right: 2%;
-            }
-
-            .item-bl {
-                left: 2%;
-            }
-
-            .item-br {
-                right: 2%;
-            }
-        }
-
-        /* ============================= */
-        /* RESPONSIVE FIX FOR SHOWCASE */
-        /* ============================= */
-        @media (max-width: 1100px) {
-
-            .shrinking-image {
-                width: 35vw;
-            }
-
-            .feature-card {
-                width: 250px;
-            }
-
-            .item-tl {
-                left: 2%;
-            }
-
-            .item-tr {
-                right: 2%;
-            }
-
-            .item-bl {
-                left: 2%;
-            }
-
-            .item-br {
-                right: 2%;
-            }
-        }
-
-        @media (max-width: 768px) {
-
-
-
-            .feature-card {
-                width: 240px;
-            }
-
-            .item-tl {
-                top: 15%;
-                left: 5%;
-            }
-
-            .item-tr {
-                top: 15%;
-                right: 5%;
-            }
-
-            .item-bl {
-                bottom: 15%;
-                left: 5%;
-            }
-
-            .item-br {
-                bottom: 15%;
-                right: 5%;
-            }
-        }
-
-
-        /* Extra Small Devices */
-        @media (max-width: 576px) {
-
-            .shrinking-image {
-                max-width: 300px;
-                border-radius: 25px;
-            }
-
-            .feature-card {
-                padding: 1.2rem;
-                gap: 1rem;
-            }
-
-            .card-text strong {
-                font-size: 1rem;
-            }
-
-            .card-text span {
-                font-size: 0.85rem;
-            }
-        }
-
-        .feature-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 25px 70px rgba(0, 0, 0, 0.5);
-        }
-    </style>
+    <link rel="stylesheet" href="{% static 'css/seller_home.css' %}">
 </head>
 
 <body>
 
     <!-- HERO SECTION -->
     <section class="hero">
-        <!-- <div class="hero-content">
+        <div class="hero-content">
             <h1>
                 <span class="line line1">Sell Online With</span>
                 <span class="line line2 highlight">Artisan Hub</span>
@@ -341,7 +28,7 @@
             </p>
 
             <a href="#" class="hero-btn">Get Started</a>
-        </div> -->
+        </div>
     </section>
 
 
@@ -406,18 +93,6 @@
                 <div class="card">
 
                     <div class="card-left">
-                        <!-- <video autoplay muted loop playsinline>
-                            <source src="{% static 'videos/video1.mp4' %}" type="video/mp4">
-                        </video> -->
-
-                        <video controls width="100%">
-                            <source src="{% static 'videos/video1.mp4' %}" type="video/mp4">
-                        </video>
-
-                    </div>
-
-                    <div class="card-right">
-
                         <div class="icon-circle">👤</div>
 
                         <h2>Create Your Seller Account</h2>
@@ -438,6 +113,16 @@
 
                     </div>
 
+
+                    <div class="card-right">
+
+                        <video autoplay muted loop playsinline>
+                            <source src="{% static 'videos/video1.mp4' %}" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+
+
+                    </div>
                 </div>
 
 
@@ -445,12 +130,6 @@
                 <div class="card">
 
                     <div class="card-left">
-                        <video autoplay muted loop playsinline>
-                            <source src="{% static 'videos/video2.mp4' %}" type="video/mp4">
-                        </video>
-                    </div>
-
-                    <div class="card-right">
 
                         <div class="icon-circle">🛍️</div>
 
@@ -469,6 +148,16 @@
                             <li>Reach customers across India</li>
                         </ul>
 
+
+                    </div>
+
+                    <div class="card-right">
+
+                        <video autoplay muted loop playsinline>
+                            <source src="{% static 'videos/video2.mp4' %}" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+
                     </div>
 
                 </div>
@@ -476,13 +165,6 @@
                 <div class="card">
 
                     <div class="card-left">
-                        <video autoplay muted loop playsinline>
-
-                            <source src="{% static 'videos/video3.mp4' %}" type="video/mp4">
-                        </video>
-                    </div>
-
-                    <div class="card-right">
 
                         <div class="icon-circle">💳</div>
 
@@ -500,6 +182,15 @@
                             <li>Secure payment system</li>
                             <li>Direct bank transfer</li>
                         </ul>
+                    </div>
+
+                    <div class="card-right">
+
+                        <video autoplay muted loop playsinline>
+                            <source src="{% static 'videos/video3.mp4' %}" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+
 
                     </div>
 
@@ -507,67 +198,69 @@
 
 
 
-
+            </div>
+        </div>
     </section>
 
     <!-- SUCCESS STORIES -->
-    <!-- <section class="excellence-section">
-    <div class="container-fluid px-4">
-        <h1 class="excellence-title">Seller Success Stories</h1>
-    </div>
-</section>
+    <section class="excellence-section">
+        <div class="container-fluid px-4">
+            <h1 class="excellence-title">Seller Success Stories</h1>
+        </div>
+    </section>
 
-<!-- STATS -->
-    <!-- <section class="stats-section">
-    <h1 class="stats-title">Why Sell With Us</h1>
-    <div class="stats-grid">
-        <div class="stat-card">
-            <div class="stat-number">45+</div>
-            <p>Lakh Active Customers</p>
-        </div>
-        <div class="stat-card">
-            <div class="stat-number">7 Days</div>
-            <p>Payment Settlement</p>
-        </div>
-        <div class="stat-card">
-            <div class="stat-number">3000+</div>
-            <p>Product Categories</p>
-        </div>
-        <div class="stat-card">
-            <div class="stat-number">19000+</div>
-            <p>Delivery Pin Codes Across India</p>
-        </div>
-        <div class="stat-card">
-            <div class="stat-number">24/7</div>
-            <p>Seller Support</p>
-        </div>
-        <div class="stat-card">
-            <div class="stat-number">1000+</div>
-            <p>Growing Artisan Sellers</p>
-        </div>
-    </div>
-</section> -->
-
-    <!-- CTA -->
-    <!-- <section class="cta-section">
-    <div class="cta-container">
-        <div class="cta-left">
-            <h1>Start Selling Today</h1>
-            <p>
-                Join our seller community and take your handmade
-                business online with powerful tools and nationwide reach.
-            </p>
-            <div class="cta-buttons">
-                <a href="#" class="btn-primary">Create Account</a>
-                <a href="#" class="btn-secondary">Learn More</a>
+    <!-- STATS -->
+    <section class="stats-section">
+        <h1 class="stats-title">Why Sell With Us</h1>
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-number">45+</div>
+                <p>Lakh Active Customers</p>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">7 Days</div>
+                <p>Payment Settlement</p>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">3000+</div>
+                <p>Product Categories</p>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">19000+</div>
+                <p>Delivery Pin Codes Across India</p>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">24/7</div>
+                <p>Seller Support</p>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">1000+</div>
+                <p>Growing Artisan Sellers</p>
             </div>
         </div>
+    </section>
 
-        <div class="cta-right">
-            <img src="https://picsum.photos/800/1000?grayscale">
+    <!-- CTA -->
+    <section class="cta-section">
+        <div class="cta-container">
+            <div class="cta-left">
+                <h1>Start Selling Today</h1>
+                <p>
+                    Join our seller community and take your handmade
+                    business online with powerful tools and nationwide reach.
+                </p>
+                <div class="cta-buttons">
+                    <a href="#" class="btn-primary">Create Account</a>
+                    <a href="#" class="btn-secondary">Learn More</a>
+                </div>
+            </div>
+
+            <div class="cta-right">
+                <img src="https://picsum.photos/800/1000?grayscale">
+            </div>
         </div>
-    </div>
-</section> -->
+    </section>
+
     <script>
         const showcase = document.querySelector('.showcase');
         const shrinkingImage = document.querySelector('.shrinking-image');
@@ -646,8 +339,25 @@
             const maxMove = cards.scrollWidth - window.innerWidth;
             const moveX = progress * maxMove;
 
-            cards.style.transform = `translateX(${-moveX}px) translateY(-50%)`;
+            cards.style.transform = `translate(${-moveX}px, -50%)`
+        });
 
+        // Diagnostic & Force Play script
+        document.querySelectorAll('video').forEach(vid => {
+            // Force play on first scroll if autoplay was blocked
+            window.addEventListener('scroll', () => {
+                if (vid.paused) vid.play().catch(() => { });
+            }, { once: true });
+
+            vid.play().catch(error => {
+                console.warn("Autoplay blocked, waiting for interaction", error);
+            });
+
+            vid.addEventListener('error', (e) => {
+                console.error("Video error:", e);
+                // Fallback to a color or image if video fails
+                vid.parentElement.style.background = '#0a2322';
+            });
         });
 
     </script>
