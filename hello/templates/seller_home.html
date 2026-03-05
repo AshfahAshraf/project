@@ -93,6 +93,21 @@
                 <div class="card">
 
                     <div class="card-left">
+
+
+                        <video autoplay muted loop playsinline>
+                            <source src="{% static 'videos/video1.mp4' %}" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+
+
+
+
+                    </div>
+
+
+                    <div class="card-right">
+
                         <div class="icon-circle">👤</div>
 
                         <h2>Create Your Seller Account</h2>
@@ -112,17 +127,6 @@
                         </ul>
 
                     </div>
-
-
-                    <div class="card-right">
-
-                        <video autoplay muted loop playsinline>
-                            <source src="{% static 'videos/video1.mp4' %}" type="video/mp4">
-                            Your browser does not support the video tag.
-                        </video>
-
-
-                    </div>
                 </div>
 
 
@@ -130,6 +134,19 @@
                 <div class="card">
 
                     <div class="card-left">
+
+
+
+                        <video autoplay muted loop playsinline>
+                            <source src="{% static 'videos/video2.mp4' %}" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+
+                    </div>
+
+                    <div class="card-right">
+
+
 
                         <div class="icon-circle">🛍️</div>
 
@@ -147,17 +164,6 @@
                             <li>Manage inventory easily</li>
                             <li>Reach customers across India</li>
                         </ul>
-
-
-                    </div>
-
-                    <div class="card-right">
-
-                        <video autoplay muted loop playsinline>
-                            <source src="{% static 'videos/video2.mp4' %}" type="video/mp4">
-                            Your browser does not support the video tag.
-                        </video>
-
                     </div>
 
                 </div>
@@ -165,6 +171,17 @@
                 <div class="card">
 
                     <div class="card-left">
+
+                        <video autoplay muted loop playsinline>
+                            <source src="{% static 'videos/video3.mp4' %}" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+
+                    <div class="card-right">
+
+
+
 
                         <div class="icon-circle">💳</div>
 
@@ -182,15 +199,6 @@
                             <li>Secure payment system</li>
                             <li>Direct bank transfer</li>
                         </ul>
-                    </div>
-
-                    <div class="card-right">
-
-                        <video autoplay muted loop playsinline>
-                            <source src="{% static 'videos/video3.mp4' %}" type="video/mp4">
-                            Your browser does not support the video tag.
-                        </video>
-
 
                     </div>
 
@@ -202,46 +210,71 @@
         </div>
     </section>
 
-    <!-- SUCCESS STORIES -->
-    <section class="excellence-section">
-        <div class="container-fluid px-4">
-            <h1 class="excellence-title">Seller Success Stories</h1>
+    <section class="approach-section">
+
+        <div class="container">
+            <h1 class="fw-bold p-5 text-center mb-5">
+                How we Support Artisans
+            </h1>
+            <div class="row g-4">
+                <div class=" col-lg-6 col-md-6 col-12">
+                    <div class="artisan-card">
+                        <img src="{% static 'images/seller_home_img1.jpg' %}" class="artisan-img" alt="">
+                        <div class="artisan-overlay text-center">
+                            <div class="fs-2 mb-2">🛠️</div>
+                            <h5 class="card-title">True Craftsmanship</h5>
+                            <p class="card-text">Every product is handmade by skilled artisans using traditional
+                                techniques.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class=" col-lg-6 col-md-6 col-12">
+                    <div class="artisan-card">
+                        <img src="{% static 'images/seller_home_img2.jpg' %}" class="artisan-img" alt="">
+                        <div class="artisan-overlay text-center">
+                            <div class="fs-2 mb-2">🛠️</div>
+                            <h5 class="card-title">Creative Designs</h5>
+                            <p class="card-text">We encourage artisans to bring creativity and new ideas into their
+                                crafts.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6 col-md-6 col-12">
+                    <div class="artisan-card">
+                        <img src="{% static 'images/seller_home_img3.jpg' %}" class="artisan-img">
+                        <div class="artisan-overlay text-center">
+                            <div class="fs-2 mb-2">🎯</div>
+                            <h5 class="card-title">Quality Products</h5>
+                            <p class="card-text">Our focus is to provide high-quality handmade products customers love.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="col-lg-6 col-md-6 col-12">
+                    <div class="artisan-card">
+                        <img src="{% static 'images/seller_home_img4.jpg' %}" class="artisan-img">
+                        <div class="artisan-overlay text-center">
+                            <div class="fs-2 mb-2">🤝</div>
+                            <h5 class="card-title">Supporting Communities</h5>
+                            <p class="card-text">We help artisans grow their business and support their communities.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
         </div>
+
+
     </section>
 
-    <!-- STATS -->
-    <section class="stats-section">
-        <h1 class="stats-title">Why Sell With Us</h1>
-        <div class="stats-grid">
-            <div class="stat-card">
-                <div class="stat-number">45+</div>
-                <p>Lakh Active Customers</p>
-            </div>
-            <div class="stat-card">
-                <div class="stat-number">7 Days</div>
-                <p>Payment Settlement</p>
-            </div>
-            <div class="stat-card">
-                <div class="stat-number">3000+</div>
-                <p>Product Categories</p>
-            </div>
-            <div class="stat-card">
-                <div class="stat-number">19000+</div>
-                <p>Delivery Pin Codes Across India</p>
-            </div>
-            <div class="stat-card">
-                <div class="stat-number">24/7</div>
-                <p>Seller Support</p>
-            </div>
-            <div class="stat-card">
-                <div class="stat-number">1000+</div>
-                <p>Growing Artisan Sellers</p>
-            </div>
-        </div>
-    </section>
 
     <!-- CTA -->
-    <section class="cta-section">
+    <!-- <section class="cta-section">
         <div class="cta-container">
             <div class="cta-left">
                 <h1>Start Selling Today</h1>
@@ -255,11 +288,50 @@
                 </div>
             </div>
 
-            <div class="cta-right">
-                <img src="https://picsum.photos/800/1000?grayscale">
-            </div>
+           
         </div>
-    </section>
+    </section> -->
+
+<section class="seller-benefits py-5 bg-light">
+
+<div class="container">
+
+<h2 class="text-center mb-5 fw-semibold">
+Sell Your Crafts with Crafttover
+</h2>
+
+<div class="row text-center align-items-center">
+
+<div class="col">
+<i class="fa-solid fa-users text-primary fs-1 mb-2"></i>
+<p>45+ Lakh Customers</p>
+</div>
+
+<div class="col border-start">
+<i class="fa-solid fa-wallet text-primary fs-1 mb-2"></i>
+<p>Secure 7 Day Payments</p>
+</div>
+
+<div class="col border-start">
+<i class="fa-solid fa-hand-holding-dollar text-primary fs-1 mb-2"></i>
+<p>Low Selling Fees</p>
+</div>
+
+<div class="col border-start">
+<i class="fa-solid fa-headset text-primary fs-1 mb-2"></i>
+<p>24/7 Seller Support</p>
+</div>
+
+<div class="col border-start">
+<i class="fa-solid fa-store text-primary fs-1 mb-2"></i>
+<p>Grow Your Craft Business</p>
+</div>
+
+</div>
+
+</div>
+
+</section>
 
     <script>
         const showcase = document.querySelector('.showcase');
@@ -336,7 +408,7 @@
             }
 
             /* HORIZONTAL SLIDE */
-            const maxMove = cards.scrollWidth - window.innerWidth;
+            const maxMove = cards.scrollWidth - section.offsetWidth;
             const moveX = progress * maxMove;
 
             cards.style.transform = `translate(${-moveX}px, -50%)`
@@ -359,7 +431,69 @@
                 vid.parentElement.style.background = '#0a2322';
             });
         });
+        const cardsList = document.querySelectorAll(".card");
 
+        function revealCards() {
+
+            const triggerBottom = window.innerHeight * 0.85;
+
+            cardsList.forEach(card => {
+
+                const cardTop = card.getBoundingClientRect().top;
+
+                if (cardTop < triggerBottom) {
+                    card.classList.add("active");
+                }
+
+            });
+
+        }
+
+        window.addEventListener("scroll", revealCards);
+        revealCards();
+
+
+        /* How we Support Artisans */
+
+
+
+        const artisanCards = document.querySelectorAll(".artisan-card");
+
+        function revealArtisanCards() {
+
+            const trigger = window.innerHeight * 0.85;
+
+            artisanCards.forEach(card => {
+
+                const top = card.getBoundingClientRect().top;
+
+                if (top < trigger) {
+                    card.classList.add("show");
+                }
+
+            });
+
+        }
+
+        window.addEventListener("scroll", revealArtisanCards);
+        revealArtisanCards();
+
+
+        const heading = document.querySelector(".approach-heading");
+
+        function revealHeading() {
+
+            const trigger = window.innerHeight * 0.9;
+            const top = heading.getBoundingClientRect().top;
+
+            if (top < trigger) {
+                heading.classList.add("show");
+            }
+
+        }
+
+        window.addEventListener("scroll", revealHeading);
+        revealHeading();
     </script>
 
 </body>
