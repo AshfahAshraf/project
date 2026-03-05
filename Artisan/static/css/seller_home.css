@@ -575,3 +575,22 @@ transform:scale(1.2);
 
 
 
+/* sucessss */
+
+.success-story{
+    max-width:700px;
+    padding:30px;
+}
+
+.success-story h3{
+    font-size:28px;
+    margin-bottom:15px;
+}
+
+.success-story p{
+    font-size:17px;
+    color:#555;
+    line-height:1.7;
+}
+
+

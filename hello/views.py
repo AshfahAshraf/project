@@ -43,5 +43,3 @@ def my_account(request):
 def order(request):
     return render(request,"order.html")
 
-def seller_home(request):
-    return render(request,"seller_home.html")
