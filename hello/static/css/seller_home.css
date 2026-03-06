@@ -594,3 +594,68 @@ transform:scale(1.2);
 }
 
 
+
+/* sell */
+/* SELL YOUR CRAFT SECTION */
+
+.sellyou{
+    background: linear-gradient(135deg,#020617,#0f172a,#1e293b);
+    padding:120px 0;
+    text-align:center;
+    color:white;
+}
+
+/* container size */
+.sellyou .container{
+    max-width:900px;
+}
+
+/* title */
+.sellyou-title{
+    font-size:56px;
+    font-weight:700;
+    color:white;
+    line-height:1.2;
+}
+
+/* paragraph */
+.sellyou-text{
+    color:#cbd5e1;
+    font-size:18px;
+    margin-top:20px;
+}
+
+/* button */
+.sellyou-btn{
+    display:inline-block;
+    margin-top:30px;
+    background:#fbbf24;
+    padding:14px 40px;
+    border-radius:40px;
+    font-weight:600;
+    text-decoration:none;
+    color:black;
+    transition:0.3s;
+}
+
+/* button hover */
+.sellyou-btn:hover{
+    background:#f59e0b;
+    transform:translateY(-3px);
+}
+
+/* animation */
+.sellyou-content{
+    animation:fadeInUp 1s ease;
+}
+
+@keyframes fadeInUp{
+    from{
+        opacity:0;
+        transform:translateY(40px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}

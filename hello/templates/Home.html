@@ -23,15 +23,15 @@
       <div class="carousel-inner rounded-5">
 
         <div class="carousel-item active">
-          <img src="{% static 'images/banner1.jpg' %}" class="d-block w-100" alt="">
+          <img src="{% static 'images/new.jpg' %}" class="d-block w-100" alt="">
         </div>
 
         <div class="carousel-item">
-          <img src="{% static 'images/banner2.jpg' %}" class="d-block w-100" alt="">
+          <img src="{% static 'images/new2.jpg' %}" class="d-block w-100" alt="">
         </div>
 
         <div class="carousel-item">
-          <img src="{% static 'images/banner3.jpg' %}" class="d-block w-100" alt="">
+          <img src="{% static 'images/new3.jpg' %}" class="d-block w-100" alt="">
         </div>
 
         <div class="carousel-item">
@@ -761,6 +761,19 @@
       duration: 1000,
       once: false
     });
+
+    const dealSection = document.querySelector(".deal-section");
+
+window.addEventListener("scroll", () => {
+
+const trigger = window.innerHeight * 0.85;
+const top = dealSection.getBoundingClientRect().top;
+
+if(top < trigger){
+dealSection.classList.add("show");
+}
+
+});
   </script>
 
 
