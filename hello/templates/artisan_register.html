@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+    <section>
+        <div class="container">
+            <h2 class="text-center">Artisan Register</h2>
+            <form method="POST" action="">
+                {% csrf_token %}
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="fullname" placeholder="Name" required>
+                    <label for="fullname">Enter Full Name</label>
+
+
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="email" class="form-control" id="textEmal" placeholder="Email" required>
+                    <label for="email">Enter Email</label>
+
+
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="password" class="form-control" id="textPassword" placeholder="password" required>
+                    <label for="password">Create Password</label>
+
+
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="password" class="form-control" id="textpassword" placeholder="password" required>
+                    <label for="password">Confirm Password</label>
+
+
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Craft Category</label>
+                    <select class="form-select" id="category" onchange="updateSubCategory()">
+                        <option value="">Select Category</option>
+                        <option value="pottery_clay">Pottery & clay items</option>
+                        <option value="Handloom_textile">Handloom & Textile </option>
+                        <option value="wooden_craft">Wooden Crafts </option>
+                        <option value="Handmade_Jewelry">Handmade Jewelry </option>
+                        <option value="painting_artwork">Painting & Artwork </option>
+                        <option value="bamboo_naturalfiber">Bamboo & natural Fiber Products </option>
+                        <option value="handmadehome_lifestyle">Handmade home & lifestyle Products</option>
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label" for="">sub Category</label>
+                    <select class="form-select" name="" id="subcategory">
+                        <option value=""> Select Sub Category</option>
+                    </select>
+                </div>
+
+
+
+
+                <div class="form-floating mb-3">
+                    <textarea class="form-control" id="textAddress" placeholder="address" style="height: 100px;" required></textarea>
+                    <label for="address">Enter Address</label>
+
+
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="fullname" placeholder="shopname" required>
+                    <label for="shopname">Enter Shop Name</label>
+
+
+                </div>
+              <div class="form-check mb-3">
+                <input class="form-check-input" type="checkbox" id="terms" required>
+                <label for="form-check-label" for="terms">I agree to the <a href="#">Terms & Conditions</label>
+
+              </div>
+
+             <div class="d-grid">
+    <button type="submit" class="btn btn-primary">Register</button>
+</div>
+            </form>
+        </div>
+    </section>
+
+
+    <script>
+        function updateSubCategory() {
+            let category = document.getElementById("category").value
+            let sub = document.getElementById("subcategory")
+
+
+            sub.innerHTML = '<option value="">select Sub Category</option>';
+
+            if (category === "pottery_clay") {
+                sub.innerHTML += "<option>Terracotta items</option>";
+                sub.innerHTML += "<option>Ceramic Mugs</option>";
+                sub.innerHTML += "<option>Handmade Plates</option>";
+                sub.innerHTML += "<option>Diya</option>";
+
+            }
+
+            if (category === "Handloom_textile") {
+                sub.innerHTML += "<option>Handloom sarees</option>";
+                sub.innerHTML += "<option>Scarves</option>";
+                sub.innerHTML += "<option>Block printed fabrics</option>";
+                sub.innerHTML += "<option>Embroidered clothes</option>";
+                sub.innerHTML += "<option>Cushion overs</option>";
+
+            }
+
+            if (category === "wooden_craft") {
+                sub.innerHTML += "<option>Wooden toys</option>";
+                sub.innerHTML += "<option>Wall decor</option>";
+                sub.innerHTML += "<option>Jewlery boxes</option>";
+                sub.innerHTML += "<option>Wooden spoons</option>";
+                sub.innerHTML += "<option>key holders</option>";
+
+
+            }
+
+            if (category === "Handmade_Jewelry") {
+                sub.innerHTML += "<option>Beaded necklaces</option>";
+                sub.innerHTML += "<option>Earrings</option>";
+                sub.innerHTML += "<option>Bangles</option>";
+                sub.innerHTML += "<option>Terracotta jewelry</option>";
+                sub.innerHTML += "<option>Anklets</option>";
+
+
+            }
+
+            if (category === "painting_artwork") {
+                sub.innerHTML += "<option>Canvas paintings</option>";
+                sub.innerHTML += "<option> Wall art </option>";
+                sub.innerHTML += "<option>Traditional paintings</option>";
+                sub.innerHTML += "<option>Handmade greeting cards</option>";
+
+
+
+            }
+
+            if (category === "bamboo_naturalfiber") {
+                sub.innerHTML += "<option>Bamboo baskets</option>";
+                sub.innerHTML += "<option>Cane chairs </option>";
+                sub.innerHTML += "<option>Jute bags</option>";
+                sub.innerHTML += "<option>Mats</option>";
+                sub.innerHTML += "<option>Eco-friendly decor</option>";
+
+
+
+
+            }
+
+                if (category === "handmadehome_lifestyle") {
+                sub.innerHTML += "<option>Scented candles</option>";
+                sub.innerHTML += "<option>Handmade soaps </option>";
+                sub.innerHTML += "<option>Resin art items</option>";
+                sub.innerHTML += "<option>Macramé wall hangings</option>";
+                sub.innerHTML += "<option>Photo frames</option>";
+
+
+
+
+            }
+        }
+    </script>
+</body>
+
+</html>

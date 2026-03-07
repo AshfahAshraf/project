@@ -15,7 +15,7 @@ urlpatterns = [
       re_path('^my_account$',views.my_account,name="my_account"),
       re_path('^order$',views.order,name="order"),
       re_path('^seller_home$',views.seller_home,name="seller_home"),
-
+      re_path('^artisan_register$',views.artisan_register,name="artisan_register"),
 
 
 

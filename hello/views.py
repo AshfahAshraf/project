@@ -46,3 +46,5 @@ def order(request):
 def seller_home(request):
     return render(request,"seller_home.html")
 
+def artisan_register(request):
+    return render(request,"artisan_register.html")
