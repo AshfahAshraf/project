@@ -6,6 +6,12 @@ from django.shortcuts import render
 def index(request):
     return render(request, "register.html")
 
+def terms_conditon(request):
+    return render(request, "terms_conditon.html")
+
+def privacy_policy(request):
+    return render(request,"privacy_policy.html")
+
 def navbar(request):
     return render(request,"navbar.html")
 

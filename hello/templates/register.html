@@ -2,94 +2,116 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login/Signup Page</title>
-    
-
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-    <link rel="stylesheet" href="{% static 'css/register.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
-
+    <link rel="stylesheet" href="{% static 'css/register.css' %}">
 </head>
+
 <body>
+
     <div class="container ">
-    <!-- Login Form-->
-     <div class="form-box login">
-        <form action="#">
-            <h1>Login</h1>
-            <div class="input-box">
-                <input type="text" placeholder="Email or Phone Number" required>
-                
-            </div>
-             <div class="input-box">
-                <input type="password" placeholder="Password" required>
-               
-            </div>
-            <div class="forgot-link">
-                <a href="#">Forgot Password?</a> 
-            </div>
-            <button type="submit" class="custom-btn">Sign in</button>
-            <p>or Login with social platforms</p>
-            <div class="social-icons">
-                <a href="#"><i class="fa-brands fa-google"></i></a>
-                <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
-                
-            </div>
-        </form>
-     </div>
-     <!-- Register Form-->
-      <div class="form-box register">
-        
-        <form onsubmit="return validateForm()" >
-            <h1>Create Account</h1>
-            <div class="input-box">
-                <input type="text" id="email_or_phone" placeholder="Email or Phone Number">
-                <div id="userError" class="error-text"></div>
-            </div>
-             <div class="input-box">
-                <input type="password" id="password" placeholder="Password" >
-               <div id="passwordError" class="error-text"></div>
-            </div>
-             <div class="input-box">
-                <input type="password" id="confirmPassword" placeholder="Confirm Password">
-                <div id="confirmError" class="error-text"></div>
-            </div>
-           
-            <button type="submit" class="custom-btn">Sign Up</button>
-            <div class="terms">
-            <input type="checkbox" required>
-            <label for="terms">By creating an account, i accept the<a href="#"> Terms & Conditions</a> &<a href="#">Privacy Policy</a> </label></div>
-            <p>or register with social platforms</p>
-            <div class="social-icons">
-                <a href="#"><i class="fa-brands fa-google"></i></a>
-                <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
-                
-            </div>
-            
-        </form>
-     </div>
-      
-      
-    <!-- Toggle Box -->
-     <div class="toggle-box"></div>
-     <!-- Toggle Box Left-->
-     <div class="toggle-panel toggle-left">
-        <h1>Hello. Welcome!</h1>
-        <p>Don't have an account!</p>
-        <button type="button" class="btn register-btn">Create Account</button>
-     </div>
-     <!-- Toggle Box Right-->
+        <!-- Login Form-->
+
+        <div class="form-box login">
+            <form method="POST" action="#">
+                {% csrf_token %}
+                <h1 class="mb-3">Login</h1>
+
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="textEmailPhone" placeholder="Email or Phone Number"required>
+                    <label for="textEmailPhone"> Email or phone Number</label>
+                </div>
+
+                <div class="form-floating mb-3">
+                    <input type="password" class="form-control" id="textpassword" placeholder="Password" required>
+                    <label for="textPassword">Password</label>
+                </div>
+                <div class="forgot-link">
+                    <a href="#">Forgot Password?</a>
+                </div>
+                <button type="submit" class="custom-btn">Sign in</button>
+                <p>Or continue with</p>
+                <div class="social-icons">
+                        <button class="btn btn-light border w-100">
+                            <img src="{% static 'images/google_logo.png' %}" height="20" alt="">
+                            Continue with Google
+                        </button>
+                 </div>
+            </form>
+        </div>
+
+
+
+        <!-- Register Form-->
+        <div class="form-box register">
+
+            <form method="POST" action="">
+                {% csrf_token %}
+
+                <h1 class="mb-3">Create Account</h1>
+
+
+                 <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="textEmailPhone" placeholder="Email or Phone Number"required>
+                    <label for="textEmailPhone"> Email or phone Number</label>
+                </div>
+
+             
+              <div class="form-floating mb-3">
+                    <input type="password" class="form-control" id="textpassword" placeholder="Password" required>
+                    <label for="textPassword">Password</label>
+                </div>
+
+                <div class="form-floating mb-3">
+                    <input type="password" class="form-control" id="textpassword" placeholder="Password" required>
+                    <label for="textPassword">Confirm Password</label>
+                </div>
+
+                <button type="submit" class="custom-btn">Sign Up</button>
+
+                <div class="terms">
+                    <input type="checkbox" required>
+                    <label for="terms">By creating an account, i accept the<a href="{% url 'terms_conditons' %}"> Terms & Conditions</a> &
+                    <a href="{% url 'privacy_policy' %}">Privacy Policy</a> </label>
+                </div>
+
+                <p>Or continue with</p>
+                 <div class="social-icons">
+                        <button class="btn btn-light border w-100">
+                            <img src="{% static 'images/google_logo.png' %}" height="20" alt="">
+                            Continue with Google
+                        </button>
+                 </div>
+
+            </form>
+        </div>
+
+
+        <!-- Toggle Box -->
+        <div class="toggle-box"></div>
+        <!-- Toggle Box Left-->
+        <div class="toggle-panel toggle-left">
+            <h1>Hello. Welcome!</h1>
+            <p>Don't have an account!</p>
+            <button type="button" class="btn register-btn">Create Account</button>
+        </div>
+        <!-- Toggle Box Right-->
         <div class="toggle-panel toggle-right">
             <h1>Welcome Back!</h1>
             <p>Already have an account?</p>
             <button type="button" class="btn login-btn">Sign In</button>
         </div>
-     </div>
-     </div>
+    </div>
+    </div>
 
     <script src="{% static 'js/register.js' %}"></script>
 </body>
+
 </html>

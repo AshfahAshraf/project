@@ -2,6 +2,8 @@ from django.urls import re_path
 from .import views
 urlpatterns = [
       re_path("^$",views.index,name='register'),
+      re_path('^terms_conditons',views.terms_conditon,name='terms_conditons'),
+      re_path('^privacy_policy$',views.privacy_policy,name='privacy_policy'),
       re_path("^navbar$",views.navbar,name="navbar"),
       re_path("^footer$",views.footer,name="footer"),
       re_path('^home$',views.home,name="home"),
