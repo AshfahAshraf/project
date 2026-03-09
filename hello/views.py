@@ -1,10 +1,89 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
+from .models import * 
+from django.db.models import Q
+
+# email
+import random
+from django.core.mail import send_mail
+
 
 # Create your views here.
 
 
 def index(request):
+
+    if request.method == 'POST':
+
+        #REGISTER
+        if "register" in request.POST:
+            username = request.POST["textUsername"]
+            email_phone = request.POST["textEmailPhone"]
+            password = request.POST["textPassword"]
+            confirm_password = request.POST["textConfirmPassword"]
+
+            if password != confirm_password:
+                print("passwords do not match")
+                return render(request,"register.html")
+        
+            email = None
+            phone_number = None
+
+            if "@" in email_phone:
+                email = email_phone
+            else:
+                phone_number = email_phone
+
+            reg = User(Username =username,
+                       Email =email,
+                       Phone_Number =phone_number,
+                       Password = password
+            ) 
+            reg.save()
+
+
+        #LOGIN
+
+        elif "login" in request.POST:
+            email_phone = request.POST["textEmailPhone"]  # email or phone
+            password = request.POST["textPassword"]
+
+            try:
+                user = User.objects.get(
+                    Q(Email = email_phone) | Q(Phone_Number = email_phone),
+                    Password =password
+                )
+
+                request.session["user"] = user.id
+                return redirect("home")
+            except User.DoesNotExist:
+                print("invalid login")
+        
+
     return render(request, "register.html")
+
+def send_otp(request):
+
+    if request.method == "POST":
+        email = request.POST["email"]
+
+        otp = str(random.randint(100000, 999999))
+
+        EmailOTP.objects.create(email =email, otp =otp)
+
+        send_mail(
+            "Password Reset OTP",
+            f"Your OTP is {otp}",
+            "yourgmail@gmail.com",
+            [email],
+            fail_silently=False,
+        )
+
+        request.session['email'] = email
+
+        return redirect("verify_otp")
+    
+    return render(request, "send_otp.html")
+
 
 def terms_conditon(request):
     return render(request, "terms_conditon.html")

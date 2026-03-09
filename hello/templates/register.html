@@ -25,18 +25,18 @@
                 <h1 class="mb-3">Login</h1>
 
                 <div class="form-floating mb-3">
-                    <input type="text" class="form-control" id="textEmailPhone" placeholder="Email or Phone Number"required>
+                    <input type="text" class="form-control" name="textEmailPhone" id="textEmailPhone" placeholder="Email or Phone Number"required>
                     <label for="textEmailPhone"> Email or phone Number</label>
                 </div>
 
                 <div class="form-floating mb-3">
-                    <input type="password" class="form-control" id="textpassword" placeholder="Password" required>
+                    <input type="password" class="form-control" name="textPassword" id="textpassword" placeholder="Password" required>
                     <label for="textPassword">Password</label>
                 </div>
                 <div class="forgot-link">
-                    <a href="#">Forgot Password?</a>
+                    <!-- <a href="{% url 'forget_password' %}">Forgot Password?</a> -->
                 </div>
-                <button type="submit" class="custom-btn">Sign in</button>
+                <button type="submit" name="login" class="custom-btn">Sign in</button>
                 <p>Or continue with</p>
                 <div class="social-icons">
                         <button class="btn btn-light border w-100">
@@ -58,23 +58,29 @@
                 <h1 class="mb-3">Create Account</h1>
 
 
+                  <div class="form-floating mb-3">
+                    <input type="text" class="form-control" name="textUsername" id="textUsername" placeholder="username"required>
+                    <label for="username"> User Name</label>
+                </div>
+
+
                  <div class="form-floating mb-3">
-                    <input type="text" class="form-control" id="textEmailPhone" placeholder="Email or Phone Number"required>
+                    <input type="text" class="form-control" name="textEmailPhone" id="textEmailPhone" placeholder="Email or Phone Number"required>
                     <label for="textEmailPhone"> Email or phone Number</label>
                 </div>
 
              
               <div class="form-floating mb-3">
-                    <input type="password" class="form-control" id="textpassword" placeholder="Password" required>
+                    <input type="password" class="form-control" name="textPassword" id="textPassword" placeholder="Password" required>
                     <label for="textPassword">Password</label>
                 </div>
 
                 <div class="form-floating mb-3">
-                    <input type="password" class="form-control" id="textpassword" placeholder="Password" required>
-                    <label for="textPassword">Confirm Password</label>
+                    <input type="password" class="form-control" name="textConfirmPassword" id="textConfirmPassword" placeholder="Password" required>
+                    <label for="textConfirmPassword">Confirm Password</label>
                 </div>
 
-                <button type="submit" class="custom-btn">Sign Up</button>
+                <button type="submit" name="register" class="custom-btn">Sign Up</button>
 
                 <div class="terms">
                     <input type="checkbox" required>
