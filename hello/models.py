@@ -1,57 +1,127 @@
 from django.db import models
 
 # Create your models here.
+#-----  User ----#
 
 class User(models.Model):
     Name = models.CharField(max_length=200)
     Username =models.CharField(max_length=250)
     Email =models.EmailField(unique=True,null=True, blank=True)
     Phone_Number = models.CharField(max_length=20,null=True,blank=True)
-    Address =models.CharField(max_length=200)
+    Address =models.CharField(max_length=200,null=True,blank=True)
     Password = models.CharField(max_length=250)
 
     def __str__(self):
         return self.Username
     
+# ---  Artisan ----#
+
+class Artisan(models.Model):  
+     name = models.CharField(max_length=200)
+     email = models.EmailField(unique=True)
+     phone = models.CharField(max_length=20)
+
+     shop_name = models.CharField(max_length=200)
+
+     address = models.CharField(max_length=200)
+     city = models.CharField(max_length=100)
+     state =models.CharField(max_length=100)
+     pincode =models.CharField(max_length=10)
+
+     profile_image = models.ImageField(upload_to="artisan_profiles/",null=True,blank=True)
+
+     bio = models.TextField(blank=True)
+     experience_years = models.IntegerField(null=True,blank=True)
+
+     bank_account_number = models.CharField(max_length=30)
+     ifsc_code = models.CharField(max_length=20)
+
+     created_at = models.DateTimeField(auto_now_add=True)
+     is_verified = models.BooleanField(default=False)
+
+     def __str__(self):
+          return self.shop_name
+
+# -----  Product -----#
+
 class Product(models.Model):
      artisan = models.ForeignKey(Artisan, on_delete=models.CASCADE)
+
      Product_name = models.CharField(max_length=200)
-     Actual_price = models.CharField(max_length=20)
+
+     Actual_price = models.DecimalField(max_digits=10, decimal_places=2)
+     Offer_price = models.DecimalField(max_digits= 10, decimal_places=2)
+     
      Quantity = models.IntegerField()
-     Offer_price = models.CharField(max_length=10)
+
      Description = models.TextField()
+     
+     product_image = models.ImageField(upload_to="products/")
+     created_at = models.DateTimeField(auto_now_add=True)
+
 
      def __str__(self):
           return self.Product_name
 
+#----- cart -----#
+
 class Cart(models.Model):
+
      user =models.ForeignKey(User, on_delete=models.CASCADE)
      product=models.ForeignKey(Product, on_delete=models.CASCADE)
-     quantity = models.IntegerField(default=1)
-     
 
+     quantity = models.IntegerField(default=1)
+
+     def __str__(self):
+          return f"{self.user.username} - {self.product.Product_name}"
+     
+     class Meta:
+          unique_together = ('user', 'product')
+
+#------ Wishlist ------#
+          
 class Wishlist(models.Model):
      user = models.ForeignKey(User, on_delete=models.CASCADE)
      product = models.ForeignKey(Product, on_delete=models.CASCADE)
+
+
+     def __str__(self):
+        return f"{self.user.username} - {self.product.product_name}"
     
+ #----  Order -----#
           
 
 class Order(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    product =models.ForeignKey(Product, on_delete=models.CASCADE)
-    quantity = models.IntegerField()
-    order_date = models.DateField(auto_now_add=True)
 
-class Artisan(models.Model):  
-     huio
+     STATUS_CHOICES = [
+          ("Pending","Pending"),
+          ("Shipped","Shipped"),
+          ("Delivered","Delivered"),
+          ("Cancelled","Cancelled"),
+     ]
+
+     user = models.ForeignKey(User, on_delete=models.CASCADE)
+     product =models.ForeignKey(Product, on_delete=models.CASCADE)
+     
+     quantity = models.IntegerField()
+     total_price = models.DecimalField(max_digits=10,decimal_places=2)
+     address = models.TextField(null=True,blank=True)
+     order_date = models.DateField(auto_now_add=True)
+     status = models.CharField(max_length=20,choices=STATUS_CHOICES, default="Pending")
+
+     def __str__(self):
+        return f"Order {self.id} - {self.status}"
+
+#----- Complaint ----#
 
 class Complaint(models.Model):
      
      Fullname =models.CharField(max_length=100)
      Email =models.EmailField()
      Phonenumber = models.CharField(max_length=15)
-     Orderid = models.CharField(max_length=50)
-     Productname = models.CharField(max_length=100)
+
+     Orderid = models.ForeignKey(Order, on_delete=models.CASCADE)
+     Productname = models.ForeignKey(Product, on_delete=models.CASCADE)
      Issue_type = models.CharField(max_length=100)
      Product_image =models.ImageField(upload_to="complaints/",null=True, blank=True)
      Description = models.TextField()
