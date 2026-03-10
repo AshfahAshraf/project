@@ -1,7 +1,13 @@
-from django.urls import re_path
+from django.urls import re_path,path
 from .import views
 urlpatterns = [
-      re_path("^$",views.index,name='register'),
+    #register and login page
+      path("",views.index,name='register'),
+      #email otp
+      path("send-otp",views.send_otp,name="send_otp"),
+      path("verify-otp",views.verify_otp,name="verify_otp"),
+      path("reset-password",views.reset_password,name="reset_password"),
+
       re_path('^terms_conditons',views.terms_conditon,name='terms_conditons'),
       re_path('^privacy_policy$',views.privacy_policy,name='privacy_policy'),
       re_path("^navbar$",views.navbar,name="navbar"),

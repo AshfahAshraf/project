@@ -11,7 +11,7 @@ class User(models.Model):
     def __str__(self):
         return self.Username
     
-    class EmailOTP(models.Model):
+class EmailOTP(models.Model):
         email = models.EmailField()
         otp = models.CharField(max_length=6)
 

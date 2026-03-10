@@ -7,6 +7,7 @@ import random
 from django.core.mail import send_mail
 
 
+
 # Create your views here.
 
 
@@ -61,6 +62,10 @@ def index(request):
 
     return render(request, "register.html")
 
+#email 
+
+# send otp 
+
 def send_otp(request):
 
     if request.method == "POST":
@@ -84,6 +89,45 @@ def send_otp(request):
     
     return render(request, "send_otp.html")
 
+
+#verify otp
+
+def verify_otp(request):
+
+    if request.method == "POST":
+        user_otp = request.POST["otp"]
+        email = request.session.get("email")
+
+        otp_record = EmailOTP.objects.filter(email=email, otp=user_otp).first()
+
+        if otp_record:
+            request.session["otp_verified"] = True
+            otp_record.delete()
+            return redirect("reset_password")
+        else:
+            print("invalid OTP")
+
+    return render(request, "verify_otp.html")
+
+
+#reset password
+
+def reset_password(request):
+
+    if not request.session.get("otp_verified"):
+        return redirect("send_otp")
+
+    if request.method == "POST":
+        new_password = request.POST["newPassword"]
+        email = request.session.get("email")
+
+        user = User.objects.get(Email=email)
+        user.Password = new_password
+        user.save()
+
+        return redirect("register")
+    
+    return render(request,"reset_password.html")
 
 def terms_conditon(request):
     return render(request, "terms_conditon.html")
