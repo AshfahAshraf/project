@@ -26,7 +26,16 @@
                 style="background:linear-gradient(139deg,rgb(174, 122, 207),rgb(151, 151, 71)) ">
                 <div class="row">
                     <div class="col-md-6 p-5">
-                        <form action="">
+
+                        {% if messages %}
+                        {% for message in messages %}
+                        <div class="alert alert-success text-center">
+                            {{ message }}
+                        </div>
+                        {% endfor %}
+                        {% endif %}
+                        <form method="POST" enctype="multipart/form-data" action="">
+                            {% csrf_token %}
 
                             <div class="mb-3">
                                 <label class="form-label">Full Name</label>
@@ -57,11 +66,11 @@
                                 <label class="form-label">Type of issue</label>
                                 <select name="issue_type" class="form-select w-75">
                                     <option value="">Select Issue</option>
-                                    <option value="">Damaged Product</option>
-                                    <option value="">Wrong Product Received</option>
-                                    <option value="">Missing Item</option>
-                                    <option value="">Refund Issue</option>
-                                    <option value="">Delivery Delay</option>
+                                    <option value="Damaged Product">Damaged Product</option>
+                                    <option value="Wrong Product Received">Wrong Product Received</option>
+                                    <option value="Missing Item">Missing Item</option>
+                                    <option value="Refund Issue">Refund Issue</option>
+                                    <option value="Delivery Delay">Delivery Delay</option>
                                 </select>
                             </div>
                             <div class="mb-3">
