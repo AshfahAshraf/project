@@ -12,6 +12,7 @@ from .models import Complaint
 
 # Create your views here.
 
+
 def index(request):
 
     if request.method == 'POST':
