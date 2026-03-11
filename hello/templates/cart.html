@@ -22,45 +22,55 @@
             <div class="col-lg-8 p-5 rounded-start-5" style="background-color: #e6dac8;">
                 <div class="d-flex justify-content-between align-items-center w-100">
                 <h2 class="fw-bold">Shopping Cart</h2>
-                <span class="text-muted">2 items </span>
+                <span class="text-muted">{{ total_items }} items</span>
                 </div>
                 <hr>
+
+            {% for item in cart_items %}
+
                 <div class="row align-items-center mb-4">
 
 
                     <div class="col-md-2">
-                        <img src="{% static 'images/about_us.jpg' %}" alt="" class="img-fluid rounded ">
+                        <img src="{{ item.product.product_image.url }}" class="img-fluid rounded ">
                     </div>
 
                     <div class="col-md-4">
-                        <h6>vrfvdvg</h6>
-                        <small class="text-muted">vrtfrvg</small>
+                        <h6>{{ item.product.Product_name }}</h6>
+                        <small class="text-muted">{{ item.product.Description }}</small>
                     </div>
 
                     <div class="col-md-3">
                         <div class="input-group">
-                            <button class="btn btn-outline-secondary">-</button>
-                            <input type="text" class="form-control text-center fw-bold" style="background-color: #e6dac8;" value="1">
-                            <button class="btn btn-outline-secondary">+</button>
+
+                        <a href="{% url 'decrease' item.id %}" class="btn btn-outline-secondary">-</a>
+
+                        <input type="text"
+                        class="form-control text-center fw-bold"
+                        value="{{ item.quantity }}"
+                        readonly>
+
+                        <a href="{% url 'inrcease' item.id %}" class="btn btn-outline-secondary">+</a>
+
                         </div>
                     </div>
 
 
                     <div class="col-md-2 text-end">
-                        <strong>1200</strong>
+                        <strong>{{ item.product.Offer_price }}</strong>
                     </div>
 
                     <div class="col-md-1 text-end">
-                        <button class="btn btn-sm btn-outline-danger">x</button>
+                        <a href="{% url 'remove_cart' item.id %}" class="btn btn-sm btn-outline-danger">X</a>
                     </div>
 
                 </div>
 
                 <hr>
-                <a href="" class="text-decoration-none"> ← back to shop</a>
+                <a href="{% url 'home' %}" class="text-decoration-none"> ← back to shop</a>
             </div>
 
-
+            {% endfor %}
             <!---Summary-->
 
             
@@ -70,16 +80,17 @@
                     <hr>
 
                     <div class="d-flex justify-content-between mb-2">
-                        <span>item 3</span>
-                        <span>3600</span>
+                        <span>{{ total_items }} items</span>
+                        <span>{{ total_price }}</span>
                     </div>
 
                     <div class="mb-3">
                         <label for="" class="form-label">shipping</label>
-                        <select class="form-select" name="" id="">
-                            <option value="" disabled selected>Choose delivery option</option>
-                            <option value="">Standard Delivery - ₹100</option>
-                            <option value="">Express delivery - ₹200</option>
+                        <select class="form-select" name="" id="shipping">
+
+                            <option value="0" disabled selected>Choose delivery option</option>
+                            <option value="100">Standard Delivery - ₹100</option>
+                            <option value="200">Express delivery - ₹200</option>
                         </select>
                     </div>
 
@@ -87,7 +98,7 @@
 
                     <div class="d-flex justify-content-between mb-3">
                         <strong>Total Price</strong>
-                        <strong>3700</strong>
+                        <strong id="final_price">₹{{ total_price}}</strong>
                     </div>
 
                     <button class="btn btn-dark w-100 rounded-3">
@@ -100,7 +111,7 @@
         
 
     </div>
-    <!-- </div> -->
+    
 
 
 </body>

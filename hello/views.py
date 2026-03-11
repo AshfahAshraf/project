@@ -8,8 +8,11 @@ from django.core.mail import send_mail
 
 # contact
 from django.contrib import messages
-from .models import Complaint
 
+#cart
+from django.shortcuts import get_object_or_404
+from django.contrib.auth.decorators import login_required
+@login_required
 # Create your views here.
 
 
@@ -149,7 +152,7 @@ def navbar(request):
 def footer(request):
     return render(request,"footer.html")
 
-def home(request):
+def home(request):                #
     return render(request ,"Home.html")
 
 def aboutus(request):
@@ -195,11 +198,140 @@ def contact(request):
 
     return render(request,"contact.html")
 
-def cart(request):
-    return render (request,"cart.html")
+########## cart
 
-def wishlist(request):
-    return render(request,"wishlist.html")
+def cart_view(request):
+
+    cart_items= []
+    total_price = 0
+    total_items = 0
+
+    if request.user.is_authenticated:
+        cart_items = Cart.objects.filter(user=request.user)
+
+   
+
+    for item in cart_items:
+        total_price += item.product.offer_price * item.quantity
+        total_items += item.quantity
+
+    context = {
+        "cart_items": cart_items,
+        "total_price": total_price,
+        "total_items": total_items
+    }
+
+    return render(request,"cart.html", context)
+
+# add product to cart
+
+def add_to_cart(request, product_id):
+
+    product = get_object_or_404(Product, id=product_id)
+    cart_item, created = Cart.objects.get_or_create(
+        user= request.user,
+        product =product
+    )
+    if not created:
+        cart_item.quantity +=1
+        cart_item.save()
+    return redirect("cart")
+
+# remove product from cart
+
+def remove_from_cart(request, cart_id):
+    item =get_object_or_404(Cart, id=cart_id, user=request.user)
+    item.delete()
+
+    return redirect("cart")
+
+# increase_quantity
+
+def increase_quantity(request, cart_id):
+    item = get_object_or_404(Cart, id=cart_id, user=request.user)
+
+    if item.quantity < item.product.Quantity: 
+        item.quantity +=1
+        item.save()
+
+    return redirect("cart")
+
+
+# decrease_quantity 
+
+def decrease_quantity(request, cart_id):
+    item = get_object_or_404(Cart, id=cart_id, user=request.user)
+
+    if item.quantity > 1:
+        item.quantity -= 1
+        item.save()
+
+    return redirect("Cart")
+
+
+################
+
+
+# wishlist
+
+# add product to wishlist
+
+def add_to_wishlist(request, product_id):
+
+    product = get_object_or_404(Product, id=product_id)
+
+    Wishlist.objects.get_or_create(
+        user=request.user,
+        product=product
+    )
+
+    return redirect("wishlist")
+
+# wislist page view
+
+def wishlist_view(request):
+
+
+    if request.user.is_authenticated:
+        wishlist_items = Wishlist.objects.filter(user=request.user)
+    else:
+        wishlist_items = []
+    context ={
+        "wishlist_items": wishlist_items
+    }
+
+    return render(request, "wishlist.html",context)
+
+# remove from wishlist
+
+def remove_wishlist(request, wishlist_id):
+    item = get_object_or_404(Wishlist, id=wishlist_id, user=request.user)
+
+    item.delete()
+
+    return redirect("wishlist")
+
+# move wishlist item to cart
+
+def wishlist_to_cart(request, wishlist_id):
+    wishlist_item = get_object_or_404(
+        Wishlist,
+        id=wishlist_id,
+        user =request.user)
+
+    product = wishlist_item.product
+
+    cart_item, created = Cart.objects.get_or_create(
+        user=request.user,
+        product=product
+    )
+    if not created:
+        cart_item.quantity += 1
+        cart_item.save()
+
+    wishlist_item.delete()
+
+    return redirect("wishlist")
 
 def faq(request):
     return render(request,'faq.html')
