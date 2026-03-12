@@ -11,6 +11,8 @@ class User(models.Model):
     Address =models.CharField(max_length=200,null=True,blank=True)
     Password = models.CharField(max_length=250)
 
+    profile_image = models.ImageField(upload_to="profile_images/", blank=True,null=True)
+
     def __str__(self):
         return self.Username
     
@@ -73,7 +75,7 @@ class Cart(models.Model):
      quantity = models.IntegerField(default=1)
 
      def __str__(self):
-          return f"{self.user.username} - {self.product.Product_name}"
+          return f"{self.user.Username} - {self.product.Product_name}"
      
      class Meta:
           unique_together = ('user', 'product')
@@ -90,7 +92,7 @@ class Wishlist(models.Model):
           unique_together = ('user', 'product')
 
      def __str__(self):
-        return f"{self.user.username} - {self.product.product_name}"
+        return f"{self.user.Username} - {self.product.Product_name}"
     
  #----  Order -----#
           
@@ -135,4 +137,15 @@ class Complaint(models.Model):
      def __str__(self):
           return self.Fullname
 
-         
+### my account
+class Address(models.Model):
+     user =models.ForeignKey(User, on_delete=models.CASCADE)
+     full_name = models.CharField(max_length=100)
+     street = models.CharField(max_length=200) 
+     city = models.CharField(max_length=100)
+     state = models.CharField(max_length=100)
+     pincode = models.CharField(max_length=10)
+     phone = models.CharField(max_length=15)
+
+     def __str__(self):
+          return self.full_name

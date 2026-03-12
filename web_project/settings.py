@@ -141,3 +141,12 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'ashfahashraf@gmail.com'
 EMAIL_HOST_PASSWORD = 'bxsj rlan ikze ewkm'
+
+
+
+LOGIN_URL = '/?next=/'
+
+# my account media
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"

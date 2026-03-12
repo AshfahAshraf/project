@@ -332,6 +332,7 @@ def wishlist_to_cart(request, wishlist_id):
     wishlist_item.delete()
 
     return redirect("wishlist")
+#########
 
 def faq(request):
     return render(request,'faq.html')
@@ -344,7 +345,41 @@ def shipping_info(request):
     return render(request,"shipping_info.html")
 
 def my_account(request):
-    return render(request,"my_account.html")
+
+    user_id = request.session.get("user_id")
+
+  
+
+    # if not user_id:
+    #     return redirect("register")
+
+
+    user = User.objects.filter(id=user_id).first()
+
+    # if not user:
+    #     request.session.flush()
+    #     return redirect("register")
+
+    if request.method == "POST":
+
+        user.Username = request.POST["username"]
+        user.email = request.POST["email"]
+        user.phone_number = request.POST["phone_number"] 
+
+        user.save()   
+
+
+    orders = Order.objects.filter(user=user).order_by("-order_date")[:3]
+
+    address = Address.objects.filter(user =user).first()
+
+
+    context = {
+        "user": user,
+        "orders": orders,
+        "address": address
+    }
+    return render(request,"my_account.html", context)
 
 def order(request):
     return render(request,"order.html")
@@ -354,3 +389,13 @@ def seller_home(request):
 
 def artisan_register(request):
     return render(request,"artisan_register.html")
+
+def change_password(request):
+    return render(request, "change_password.html")
+
+def address(request):
+    return render(request, "address.html")
+
+def logout_view(request):
+    request.session.flush()
+    return redirect("/")
