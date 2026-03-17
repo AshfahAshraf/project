@@ -1,6 +1,12 @@
 from django.shortcuts import render,redirect
 from .models import * 
-from django.db.models import Q
+from django.db.models import Q ,Sum
+from django.conf import settings
+
+#order
+
+from datetime import timedelta
+from django.utils import timezone
 
 # email
 import random
@@ -9,10 +15,15 @@ from django.core.mail import send_mail
 # contact
 from django.contrib import messages
 
+
+
 #cart
 from django.shortcuts import get_object_or_404
-from django.contrib.auth.decorators import login_required
-@login_required
+# from django.contrib.auth.decorators import login_required
+# @login_required
+
+
+
 # Create your views here.
 
 
@@ -59,13 +70,18 @@ def index(request):
                     Password =password
                 )
 
-                request.session["user"] = user.id
+                request.session["user_id"] = user.id
+                request.session["user_name"] = user.Username
                 return redirect("home")
             except User.DoesNotExist:
                 print("invalid login")
         
 
     return render(request, "register.html")
+
+
+
+ 
 ########
 #email 
 
@@ -350,15 +366,15 @@ def my_account(request):
 
   
 
-    # if not user_id:
-    #     return redirect("register")
+    if not user_id:
+        return redirect("register")
 
 
     user = User.objects.filter(id=user_id).first()
 
-    # if not user:
-    #     request.session.flush()
-    #     return redirect("register")
+    if not user:
+        request.session.flush()
+        return redirect("register")
 
     if request.method == "POST":
 
@@ -381,14 +397,344 @@ def my_account(request):
     }
     return render(request,"my_account.html", context)
 
-def order(request):
-    return render(request,"order.html")
+def orders(request):
+
+    user_id = request.session.get("user_id")
+
+    orders = Order.objects.filter(user_id=user_id)
+
+    # STATUS FILTER
+    status_list = request.GET.getlist("status")
+
+    if status_list:
+        orders = orders.filter(status__in=status_list)
+
+    # LAST  FILTER
+    date = request.GET.get("date")
+    year = request.GET.get("year")
+
+    context = {
+        "orders": orders,
+        "status_list": status_list,
+        "date": date,
+        "year": year,
+    }
+
+    return render(request,"order.html", context)
+
+def cancel_order(request, order_id):
+    order = get_object_or_404(Order, id=order_id)
+
+
+    if order.status != "Delivered":
+        order.status = "Cancelled"
+        order.save()
+    return redirect("orders")
 
 def seller_home(request):
     return render(request,"seller_home.html")
 
+from django.conf import settings
+import random
+from django.core.mail import send_mail
+
 def artisan_register(request):
-    return render(request,"artisan_register.html")
+
+    message = ""
+    show_otp = False
+    show_step2 = False
+
+    if request.method == "POST":
+
+        # SEND OTP
+        if "send_otp" in request.POST:
+
+            email = request.POST.get("email")
+
+            if Artisan.objects.filter(email=email).exists():
+                return render(request, "artisan_register.html", {
+                    "message": "Email already registered"
+                })
+
+            otp = random.randint(1000,9999)
+
+            request.session["email"] = email
+            request.session["email_otp"] = str(otp)
+
+            send_mail(
+                "Email Verification OTP",
+                f"Your OTP is {otp}",
+                settings.EMAIL_HOST_USER,
+                [email],
+                fail_silently=False,
+            )
+
+            print("OTP:", otp)
+
+            return render(request, "artisan_register.html", {
+                "show_otp": True,
+                "email": email
+            })
+
+        # VERIFY OTP
+        elif "verify_otp" in request.POST:
+
+            user_otp = request.POST.get("otp")
+            saved_otp = request.session.get("email_otp")
+
+            if user_otp == saved_otp:
+
+                return render(request, "artisan_register.html", {
+                    "show_step2": True,
+                    "email": request.session.get("email")
+                })
+
+            else:
+                return render(request, "artisan_register.html", {
+                    "show_otp": True,
+                    "message": "Invalid OTP"
+                })
+
+        # FINAL REGISTER
+        elif "register" in request.POST:
+
+            password = request.POST.get("password")
+            confirm_password = request.POST.get("confirm_password")
+
+            if password != confirm_password:
+                return render(request, "artisan_register.html", {
+                    "show_step2": True,
+                    "email": request.session.get("email"),
+                    "message": "Passwords do not match"
+                })
+
+            Artisan.objects.create(
+                name=request.POST.get("name"),
+                email=request.session.get("email"),
+                password=password,   # simple (no hashing)
+                phone=request.POST.get("phone"),
+                shop_name=request.POST.get("shop_name"),
+                address=request.POST.get("address"),
+                city=request.POST.get("city"),
+                state=request.POST.get("state"),
+                pincode=request.POST.get("pincode"),
+            )
+
+            request.session.flush()
+            return redirect("artisan_login")
+
+    return render(request, "artisan_register.html")
+
+def artisan_login(request):
+
+    message = ""
+
+    if request.method == "POST":
+
+        email = request.POST["email"]
+        password = request.POST["password"]
+
+        try:
+            artisan = Artisan.objects.get(email=email,password=password)
+
+            request.session["artisan_id"] = artisan.id
+
+            return redirect("artisan_dashboard")
+
+        except Artisan.DoesNotExist:
+
+            message = "Invalid Email or Password"
+
+    return render(request,"artisan_login.html",{"message":message})
+
+def artisan_dashboard(request):
+
+    total_orders = Order.objects.count()
+
+    pending_orders = Order.objects.filter(status = "Pending").count()
+
+    total_revenue = Order.objects.aggregate(
+        total = Sum("total_price")
+    )["total"] or 0
+
+    total_products = Product.objects.count()
+
+
+    context = {
+        "total_orders": total_orders,
+        "pending_orders": pending_orders,
+        "total_revenue": total_revenue,
+        "total_products": total_products
+    }
+
+    return render (request, "artisan_dashboard.html", context)
+
+def artisan_products(request):
+
+    artisan_id = request.session.get("artisan_id")
+
+    products = Product.objects.filter(artisan_id=artisan_id)
+
+    return render(request, "artisan_products.html", {"products": products})
+
+def add_product(request):
+
+    if request.method == "POST":
+
+        product_name = request.POST.get("product_name")
+        actual_price = request.POST.get("actual_price")
+        offer_price = request.POST.get("offer_price")
+        quantity = request.POST.get("quantity")
+        description = request.POST.get("description")
+        product_image = request.FILES.get("product_image")
+
+        category_id = request.POST.get("category")
+        subcategory_id = request.POST.get("subcategory")
+
+        artisan_id = request.session.get("artisan_id")
+
+        artisan = Artisan.objects.get(id=artisan_id)
+
+        Product.objects.create(
+            artisan=artisan,
+            category_id=category_id,
+            subcategory_id=subcategory_id,
+            Product_name=product_name,
+            Actual_price=actual_price,
+            Offer_price=offer_price,
+            Quantity=quantity,
+            Description=description,
+            product_image=product_image
+        )
+
+        return redirect("artisan_products")
+    
+
+def edit_product(request, id):
+
+    artisan_id = request.session.get("artisan_id")
+
+    product = Product.objects.get(id=id, artisan_id=artisan_id)
+
+    if request.method == "POST":
+
+        product.Product_name = request.POST.get("product_name")
+        product.Actual_price = request.POST.get("actual_price")
+        product.Offer_price = request.POST.get("offer_price")
+        product.Quantity = request.POST.get("quantity")
+        product.Description = request.POST.get("description")
+
+        if request.FILES.get("product_image"):
+            product.product_image = request.FILES.get("product_image")
+
+        product.save()
+
+        return redirect("artisan_products")
+
+    return render(request, "edit_product.html", {"product": product})
+
+
+def delete_product(request, id):
+
+    artisan_id = request.session.get("artisan_id")
+
+    product = Product.objects.get(id=id, artisan_id=artisan_id)
+
+    product.delete()
+
+    return redirect("artisan_products")
+
+# CREATE PRODUCT VIEW PAGE
+def product_list(request, sub_id):
+
+    products = Product.objects.filter(subcategory_id=sub_id)
+
+    return render(request, "product_list.html", {
+        "products": products
+    })
+
+def artisan_orders(request):
+    artisan_id = request.session.get("artisan_id")
+
+    orders = Order.objects.filter(
+        product__artisan_id = artisan_id
+    ).order_by("-id")
+
+    context = {
+        "orders": orders
+    }
+
+    return render(request, "artisan_orders.html",context)
+
+
+def cancel_order(request, order_id):
+    
+    artisan_id = request.session.get("artisan_id")
+
+    order = get_object_or_404(
+        Order,
+        id=order_id,
+        product__artisan_id = artisan_id
+            
+    )
+
+    order.status = "Cancelled"
+    order.save()
+
+    return redirect("artisan_orders")
+
+
+
+
+
+def artisan_profile(request):
+
+    artisan_id = request.session.get("artisan_id")
+
+    # if not artisan_id:
+    #     return redirect("artisan_login")
+    artisan = Artisan.objects.first()
+
+
+    # artisan = get_object_or_404(Artisan, id=artisan_id)
+
+    if request.method == "POST":
+
+        artisan.name = request.POST.get("name")
+        artisan.email = request.POST.get("email")
+        artisan.phone = request.POST.get("phone")
+
+        artisan.shop_name = request.POST.get("shop_name")
+
+        artisan.address = request.POST.get("address")
+        artisan.city = request.POST.get("city")
+        artisan.state = request.POST.get("state")
+        artisan.pincode = request.POST.get("pincode")
+
+        artisan.bio = request.POST.get("bio")
+
+        artisan.bank_account_number = request.POST.get("bank_account_number")
+        artisan.ifsc_code = request.POST.get("ifsc_code")
+
+        if request.FILES.get("profile_image"):
+            artisan.profile_image = request.FILES.get("profile_image")
+
+        artisan.save()
+
+        return redirect("artisan_profile")
+
+    context = {
+        "artisan": artisan
+    }
+
+    return render(request, "artisan_profile.html", context)
+
+def artisan_logout(request):
+
+    if "artisan_id" in request.session:
+        del request.session["artisan_id"]
+
+    return redirect("artisan_login")
 
 def change_password(request):
     return render(request, "change_password.html")

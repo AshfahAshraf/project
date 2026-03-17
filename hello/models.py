@@ -22,6 +22,7 @@ class Artisan(models.Model):
      name = models.CharField(max_length=200)
      email = models.EmailField(unique=True)
      phone = models.CharField(max_length=20)
+     password = models.CharField(max_length=255)   # ✅ ADD THIS
 
      shop_name = models.CharField(max_length=200)
 
@@ -33,21 +34,34 @@ class Artisan(models.Model):
      profile_image = models.ImageField(upload_to="artisan_profiles/",null=True,blank=True)
 
      bio = models.TextField(blank=True)
-     experience_years = models.IntegerField(null=True,blank=True)
+
 
      bank_account_number = models.CharField(max_length=30)
      ifsc_code = models.CharField(max_length=20)
 
      created_at = models.DateTimeField(auto_now_add=True)
-     is_verified = models.BooleanField(default=False)
+   
 
      def __str__(self):
           return self.shop_name
+     
+
+class Category(models.Model):
+    name = models.CharField(max_length=100)
+
+
+class SubCategory(models.Model):
+    category = models.ForeignKey(Category, on_delete=models.CASCADE)
+    name = models.CharField(max_length=100)
 
 # -----  Product -----#
 
 class Product(models.Model):
      artisan = models.ForeignKey(Artisan, on_delete=models.CASCADE)
+
+
+     category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True)
+     subcategory = models.ForeignKey(SubCategory, on_delete=models.CASCADE, null=True)
 
      Product_name = models.CharField(max_length=200)
 

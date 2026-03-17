@@ -27,12 +27,62 @@
                 <div class="sidebar shadow-sm">
 
                     <div class="text-center mb-4">
-                        {% if user.profile_image %}
-                        <img src="{{ user.profile_image.url }}" class="rounded-circle img-fluid profile-img"
-                            alt="profile">
-                        {% endif %}
+
+                        <button class="border-0 bg-transparent" data-bs-toggle="modal"
+                            data-bs-target="#profileImageModal">
+
+                            {% if user.profile_image %}
+                            <img src="{{ user.profile_image.url }}" class="rounded-circle img-fluid profile-img"
+                                width="120">
+                            {% else %}
+                            <img src="{% static 'images/user.png' %}" class="rounded-circle img-fluid profile-img" width="120">
+                            {% endif %}
+
+                        </button>
+
                         <h5 class="mb-0">{{ user.username }}</h5>
                         <small class="text-muted">{{ user.email }}</small>
+
+                    </div>
+
+                    <div class="modal fade" id="profileImageModal" tabindex="-1">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Profile Image</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                </div>
+
+                                <form method="POST" enctype="multipart/form-data">
+                                    {% csrf_token %}
+
+                                    <div class="modal-body text-center">
+
+                                        {% if user.profile_image %}
+                                        <img src="{{ user.profile_image.url }}" class="rounded-circle mb-3" width="120">
+                                        {% endif %}
+
+                                        <input type="file" name="profile_image" class="form-control mb-3">
+
+                                    </div>
+
+                                    <div class="modal-footer">
+
+                                        <button type="submit" name="upload_image" class="btn btn-success">
+                                            Upload / Update
+                                        </button>
+
+                                        <button type="submit" name="remove_image" class="btn btn-danger">
+                                            Remove
+                                        </button>
+
+                                    </div>
+
+                                </form>
+
+                            </div>
+                        </div>
                     </div>
 
                     <a href="{% url 'order' %}"><i class="fa-solid fa-box me-2"></i> Orders</a>
@@ -46,50 +96,63 @@
             <!--Main Content-->
             <div class="col-lg-9 col-md-8 col-12">
                 <!--profile info-->
-                <form method="POST">
-                    {% csrf_token %}
+            <div class="card shadow-sm mb-4">
+    <div class="card-body">
 
-                    <div class="card shadow-sm mb-4">
-                        <div class="card-body">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h5 class="mb-0">Profile Information</h5>
 
-                            <div
-                                class="d-flex flex-column flex-md-row justify-content-between align-items-end align-items-md-center">
-                                <div>
-                                    <h5>Profile information</h5>
+            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#profileModal">
+                Edit Profile
+            </button>
+        </div>
 
-                                    <p>
-                                        <strong>Name:</strong>
-                                        <span id="nameText">{{ user.username }}</span>
-                                        <input type="text" name="username" value="{{ user.username }}" id="nameInput"
-                                            class="form-control d-none">
-                                    </p>
+        <p><strong>Name:</strong> {{ user.username }}</p>
+        <p><strong>Email:</strong> {{ user.email }}</p>
+        <p><strong>Phone:</strong> {{ user.phone_number }}</p>
 
+    </div>
+</div>
 
-                                    <p>
-                                        <strong>Email:</strong>
-                                        <span id="emailText">{{ user.email }}</span>
-                                        <input type="email" name="email" value="{{ user.email }}" id="emailInput"
-                                            class="form-control d-none">
-                                    </p>
+                <!-- EDIT PROFILE MODAL -->
 
-                                    <p>
-                                        <strong>Phone:</strong>
-                                        <span id="phoneText">{{ user.phone_number }}</span>
-                                        <input type="text" name="phone_number" value="{{ user.phone_number }}"
-                                            id="phoneInput" class="form-control d-none">
-                                    </p>
+                <div class="modal fade" id="profileModal" tabindex="-1">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
 
-
-                                    <button type="button" class="btn btn-primary" onclick="editProfile()"
-                                        id="editBtn">Edit
-                                        profile</button>
-
-                                    <button type="submit" class="btn btn-success d-none" id="saveBtn">Save</button>
-                                </div>
+                            <div class="modal-header">
+                                <h5 class="modal-title">Edit Profile</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                             </div>
+
+
+                            <form method="POST">
+                                {% csrf_token %}
+
+                                <div class="modal-body">
+
+                                    <label>Name</label>
+                                    <input type="text" name="username" value="{{ user.username }}"
+                                        class="form-control mb-3">
+
+                                    <label>Email</label>
+                                    <input type="email" name="email" value="{{ user.email }}" class="form-control mb-3">
+
+                                    <label>Phone</label>
+                                    <input type="text" name="phone_number" value="{{ user.phone_number }}"
+                                        class="form-control mb-3">
+
+                                </div>
+
+                                <div class="modal-footer">
+                                    <button type="submit" class="btn btn-success">Save Changes</button>
+                                </div>
+
+                            </form>
+
                         </div>
                     </div>
-                </form>
+                </div>
                 <!-- Recent Order-->
                 <div class="card shadow-sm mb-4">
 
@@ -134,10 +197,60 @@
 
 
                 <!--Address-->
+                <!-- Add Address Modal -->
+                <div class="modal fade" id="addressModal" tabindex="-1">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+
+                            <div class="modal-header">
+                                <h5 class="modal-title">Add Address</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                            </div>
+
+                            <form method="POST">
+                                {% csrf_token %}
+
+                                <div class="modal-body">
+
+                                    <input type="text" name="full_name" class="form-control mb-2"
+                                        placeholder="Full Name" required>
+
+                                    <input type="text" name="street" class="form-control mb-2" placeholder="Street"
+                                        required>
+
+                                    <input type="text" name="city" class="form-control mb-2" placeholder="City"
+                                        required>
+
+                                    <input type="text" name="state" class="form-control mb-2" placeholder="State"
+                                        required>
+
+                                    <input type="text" name="pincode" class="form-control mb-2" placeholder="Pincode"
+                                        required>
+
+                                    <input type="text" name="phone" class="form-control mb-2" placeholder="Phone"
+                                        required>
+
+                                </div>
+
+                                <div class="modal-footer">
+                                    <button type="submit" class="btn btn-success">Save Address</button>
+                                </div>
+
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <!-- Address Card -->
                 <div class="card shadow-sm mb-4 p-4">
                     <div class="card-body">
+
                         <div class="d-flex justify-content-between align-items-center mb-3">
                             <h5>Saved Address</h5>
+
                             <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addressModal">
                                 + Add New Address
                             </button>
@@ -147,19 +260,20 @@
 
                         <p class="mb-1 fw-bold">{{ address.full_name }}</p>
                         <p class="mb-1">{{ address.street }}</p>
-                        <p class="mb-1">{{ address.state}}</p>
+                        <p class="mb-1">{{ address.city }}, {{ address.state }}</p>
                         <p class="mb-1">Pin Code : {{ address.pincode }}</p>
                         <p class="mb-2">Phone : {{ address.phone }}</p>
 
                         <div class="d-flex gap-2 justify-content-end mb-3">
-                            <button class="btn btn-outline-primary ">Edit</button>
-                            <button class="btn btn-outline-danger ">Delete</button>
+                            <button class="btn btn-outline-primary">Edit</button>
+                            <button class="btn btn-outline-danger">Delete</button>
                         </div>
 
                         {% else %}
                         <p>No address saved</p>
 
                         {% endif %}
+
                     </div>
                 </div>
             </div>

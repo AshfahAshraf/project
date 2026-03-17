@@ -11,6 +11,8 @@ urlpatterns = [
       re_path('^terms_conditons',views.terms_conditon,name='terms_conditons'),
       re_path('^privacy_policy$',views.privacy_policy,name='privacy_policy'),
       re_path("^navbar$",views.navbar,name="navbar"),
+      path('logout/', views.logout_view, name='logout'),
+
       re_path("^footer$",views.footer,name="footer"),
       path('',views.home,name="home"),
       re_path('^about_us$',views.aboutus,name="about_Us"),
@@ -39,10 +41,24 @@ urlpatterns = [
       path('address',views.address,name='address'),
       path('change_password',views.change_password,name="change_password"),
 
-      re_path('^order$',views.order,name="order"),
-      re_path('^seller_home$',views.seller_home,name="seller_home"),
-      re_path('^artisan_register$',views.artisan_register,name="artisan_register"),
-      path("logout/", views.logout_view, name="logout"),
+      path('orders',views.orders,name="order"),
+      path('cancel-order/<int:order_id>/',views.cancel_order,name="cancel_order"),
+
+      path('seller_home',views.seller_home,name="seller_home"),
+      path('artisan_register',views.artisan_register,name="artisan_register"),
+      path("artisan-login/",views.artisan_login,name="artisan_login"),
+      path('artisan_dashboard',views.artisan_dashboard,name="artisan_dashboard"),
+      path("artisan_products/", views.artisan_products, name="artisan_products"),
+      path("add_product/", views.add_product, name="add_product"),
+      path("edit_product/<int:id>/", views.edit_product, name="edit_product"),
+      path("delete_product/<int:id>/", views.delete_product, name="delete_product"),
+      path("artisan/orders/", views.artisan_orders, name="artisan_orders"),
+      path('products/<int:sub_id>/', views.product_list, name='product_list'),
+
+    path("cancel-order/<int:order_id>/", views.cancel_order, name="cancel_order"),
+    path("artisan_profile/", views.artisan_profile, name="artisan_profile"),
+    path("artisan_logout/", views.artisan_logout, name="artisan_logout"),
+    path("logout/", views.logout_view, name="logout"),
 
 
 

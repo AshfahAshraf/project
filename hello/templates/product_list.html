@@ -1,0 +1,44 @@
+<div class="container py-5">
+  <div class="row g-4">
+
+    {% for product in products %}
+    <div class="col-md-4">
+
+      <div class="card shadow-sm border-0 position-relative">
+
+        <span class="badge bg-dark position-absolute m-2">20% OFF</span>
+
+        <div class="position-absolute end-0 m-2">🤍</div>
+
+        <img src="{{ product.product_image.url }}" 
+             class="card-img-top p-3"
+             style="height:220px; object-fit:contain;">
+
+        <div class="card-body">
+
+          <h6>{{ product.Product_name }}</h6>
+
+          <small class="text-muted">
+            {{ product.subcategory.name }}
+          </small>
+
+          <div>
+            <b>₹{{ product.Offer_price }}</b>
+            <small class="text-decoration-line-through text-muted">
+              ₹{{ product.Actual_price }}
+            </small>
+          </div>
+
+          <small class="text-success">
+            Save ₹{{ product.Actual_price|add:"-product.Offer_price" }}
+          </small>
+
+        </div>
+
+      </div>
+
+    </div>
+    {% endfor %}
+
+  </div>
+</div>
