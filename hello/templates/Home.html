@@ -1,770 +1,361 @@
-{% extends "navbar.html" %}
 {% load static %}
 
-{% block content %}
-
-<div class="container-fluid p-5 ">
-
-  <div id="carouselExampleAutoplaying" class="carousel slide " data-bs-ride="carousel">
-
-    <div class="carousel-inner rounded-5">
-
-      <div class="carousel-item active">
-        <img src="{% static 'images/new.jpg' %}" class="d-block w-100" alt="">
-      </div>
-
-      <div class="carousel-item">
-        <img src="{% static 'images/new2.jpg' %}" class="d-block w-100" alt="">
-      </div>
-
-      <div class="carousel-item">
-        <img src="{% static 'images/new3.jpg' %}" class="d-block w-100" alt="">
-      </div>
-
-      <div class="carousel-item">
-        <img src="{% static 'images/banner4.jpg' %}" class="d-block w-100" alt="">
-      </div>
-
-      <div class="carousel-item">
-        <img src="{% static 'images/banner5.jpg' %}" class="d-block w-100" alt="">
-      </div>
-
-    </div>
-
-    <!-- Buttons MUST be here -->
-    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying"
-      data-bs-slide="prev">
-      <span class="carousel-control-prev-icon"></span>
-    </button>
-
-    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying"
-      data-bs-slide="next">
-      <span class="carousel-control-next-icon"></span>
-    </button>
-
-  </div>
-
-</div>
-
-<section>
-  <div class="container">
-    <h3>Deal of the day</h3>
-    <div class="row my-5  ">
-      <div class="col-12 col-md-6 col-lg-4 mt-5  img-fluid uniform-img">
-        <img src="{% static 'images/woodencraft1.jpg' %}" alt="" class="img-fluid object-fit-cover w-100"
-          style="height: 100%;">
-
-      </div>
-      <div class="col-12 col-md-6 col-lg-4 mt-5 img-fluid uniform-img ">
-        <img src="{% static 'images/woodencraft2.jpg' %}" alt="" class="img-fluid object-fit-cover w-100"
-          style="height: 100%;">
-      </div>
-
-      <div class="col-12 col-md-6 col-lg-4 mt-5 img-fluid uniform-img">
-        <img src="{% static 'images/woodencraft3.jpg' %}" alt="" class="img-fluid object-fit-cover w-100"
-          style="height: 100%;">
-      </div>
-    </div>
-
-  </div>
-</section>
-<section>
-  <div class="container bg-light p-3 rounded-5">
-    <div class="row my-5 align-items-center ">
-
-      <!-- Image Column -->
-      <div class="col-12 col-md-6 mt-5 mt-5   " data-aos="fade-right">
-        <img src="{% static 'images/handmadejewelry_banner1.jpg' %}" class="img-fluid w-100 rounded-5 "
-          style="height: 80vh; object-fit: cover;">
-      </div>
-
-      <!-- Text Column -->
-      <div class="col-12 col-md-6 mt-5 mt-5 d-flex justify-content-center flex-column " data-aos="fade-left">
-        <p class="fs-4">
-          Handcrafted with patience and passion, this floral necklace reflects the beauty of subtle elegance. Each
-          tiny bloom is carefully shaped by skilled hands, creating a rhythm of delicate gold that rests gracefully
-          around the neck. Designed for those who appreciate quiet luxury and timeless artistry.
-        </p>
-      </div>
-
-    </div>
-  </div>
-
-
-
-</section>
-
-<section class="container-fluid bg-light p-3 rounded-5 mt-4">
-
-  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-5 g-4 my-5">
-
-
-
-    <div class="col d-flex" data-aos="fade-right">
-      <div class="card w-100 h-100 shadow-sm border-0 rounded-4">
-
-        <img src="{% static 'images/jewelry_item1.jpg' %}" class="card-img-top product-img rounded-top-4">
-
-        <div class="card-body d-flex flex-column">
-
-          <h6 class="fw-bold">Royal Emerald Pearl Bridal Choker</h6>
-
-          <p class="text-muted small mb-1">200+ bought in past month</p>
-
-          <div class="mb-2">
-            <span class="badge bg-danger">35% off</span>
-            <span class="text-danger small ms-2">Limited time deal</span>
-          </div>
-
-          <h5 class="fw-bold">₹2,799.00</h5>
-
-          <p class="small mb-2">
-            M.R.P.:
-            <span class="text-decoration-line-through text-muted">
-              ₹4,299.00
-            </span>
-          </p>
-
-          <p class="text-success small fw-semibold">FREE Delivery</p>
-
-          <p class="text-muted small">Fulfilled by Artisan Store</p>
-
-          <div class="mt-auto d-grid gap-2">
-            <button class="btn btn-warning btn-sm">Add to Cart</button>
-            <button class="btn btn-danger btn-sm">Buy Now</button>
-            <button class="btn btn-outline-secondary btn-sm">
-              <i class="fa-regular fa-heart"></i> Wishlist
-            </button>
-          </div>
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find What Moves You — Artisan Handcrafts</title>
+<link rel="stylesheet" href="{% static 'css/Home.css' %}">    <!-- Google Fonts for elegant typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700;900&family=Playfair+Display:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet">
+</head>
+<body class="loading-locked">
+    <div class="grain-overlay"></div>
+    <!-- PRELOADER -->
+    <div id="preloader">
+        <div class="loader-content">
+            <span class="loader-text">CRAFTHOVER</span>
+            <div class="loader-line"></div>
         </div>
-      </div>
     </div>
 
+    <!-- CUSTOM CURSOR -->
+    <div class="custom-cursor">
+        <div class="cursor-dot"></div>
+    </div>
 
+    <div class="hero-scroll-container">
+        <section class="hero-section">
+        <!-- Background elements -->
+        <div class="sky-gradient"></div>
+        <div class="lighting-overlay"></div>
 
-
-
-
-    <div class="col d-flex" data-aos="fade-right">
-      <div class="card w-100 h-100 shadow-sm border-0 rounded-4">
-        <!-- product image-->
-
-        <img src="{% static 'images/jewelry_item2.jpg' %}" class="card-img-top product-img rounded-top-4">
-
-        <!-- product details-->
-        <div class="card-body d-flex flex-column">
-
-          <h6 class="fw-bold">Golden Leaf Pearl Drop Necklace</h6>
-
-          <!--boght info-->
-          <p class="text-muted small mb-1">
-            200+ bought in past month</p>
-          <!--offer-->
-          <div class="mb-2">
-            <span class="badge bg-danger">37% off</span>
-            <span class="text-danger small ms-2">Limited time deal</span>
-          </div>
-
-          <!--price-->
-          <h5 class="fw-bold">₹1,249.00</h5>
-          <!--mrp-->
-
-          <p class="small mb-2">
-            M.R.P.: <span class="text-decoration-line-through text-muted"> ₹1,999.00</span>
-          </p>
-          <!-- Delivery -->
-          <p class="text-success fw-semibold mb-1">
-            FREE Delivery
-          </p>
-          <p class="text-muted small fw-semibold">Fulfilled by Artisan Store</p>
-
-          <div class="mt-auto d-grid gap-2">
-            <button class="btn btn-warning btn-sm">
-              Add to Cart
-            </button>
-            <button class="btn btn-danger btn-sm">
-              Buy Now
-            </button>
-            <button class="btn btn-outline-secondary btn-sm">
-              <i class="fa-regular fa-heart"></i> Add to Wishlist
-            </button>
-          </div>
+        <!-- Main Content -->
+        <div class="contentArea">
+            <h1 class="headline">Find What Moves You</h1>
+            <p class="subtitle">Discover our exclusive collection of handcrafted artisan pieces, designed to elevate your everyday elegance with a touch of magic.</p>
+            <a href="#collections" class="cta-button">Explore Collections</a>
         </div>
 
+        <!-- Artisan Display with Fog -->
+        <div class="product-showcase">
+            <img src="{% static 'images/woman_necklace.png' %}"  alt="Beautiful artisan crafted piece" class="jewelry-image">
+        </div>
+        
+        <!-- Scrolling Outline Text -->
+        <svg class="scroll-text-svg" width="100%" height="100%">
+            <!-- Position perfectly centered -->
+            <text x="50%" y="50%" text-anchor="middle" dominant-baseline="middle" class="scroll-text">CRAFTHOVER</text>
+        </svg>
 
-
-      </div>
+        <!-- The Mist/Fog Layer that overlaps the bottom -->
+        <div class="fog-layer"></div>
+        <!-- New Cloud Background (Fades in after CRAFTHOVER) -->
+        <div class="new-cloud-background">
+            <canvas id="cloudCanvas"></canvas>
+        </div>
+    </section>
     </div>
 
-
-
-    <div class="col d-flex" data-aos="fade-right">
-      <div class="card w-100 h-100 shadow-sm border-0 rounded-4">
-        <!-- product image-->
-        <img src="{% static 'images/jewelry_item3.jpg' %}" class="card-img-top product-img rounded-top-4">
-
-        <!-- product details-->
-        <div class="card-body d-flex flex-column">
-
-          <h6 class="fw-bold">Classic Gold & Black Bead Mangalsutra Chain</h6>
-
-          <!--boght info-->
-          <p class="text-muted small mb-1">200+ bought in past month</p>
-
-          <!--offer-->
-          <div class="mb-2">
-            <span class="badge bg-danger">36% off</span>
-            <span class="text-danger small ms-2">Limited time deal</span>
-          </div>
-
-          <!--price-->
-          <h4 class="fw-bold">₹1,399.00</h4>
-          <!--mrp-->
-
-          <p class="small mb-2">M.R.P.: <span class="text-decoration-line-through text-muted"> ₹2,199.00</span> </p>
-          <!-- Delivery -->
-          <p class="text-success fw-semibold mb-1">
-            FREE Delivery
-          </p>
-          <p class="text-muted small">Fulfilled by Artisan Store</p>
-
-          <div class="mt-auto d-grid gap-2">
-            <button class="btn btn-warning btn-sm">
-              Add to Cart
-            </button>
-            <button class="btn btn-danger btn-sm">
-              Buy Now
-            </button>
-            <button class="btn btn-outline-secondary btn-sm">
-              <i class="fa-regular fa-heart"></i> Add to Wishlist
-            </button>
-          </div>
+    <!-- FULL CATEGORIES SHOWCASE -->
+    <section id="full-categories" class="full-categories-section">
+        <div class="category-header scroll-reveal reveal-fade">
+            <h2 class="section-title split-reveal">Masterful Collections</h2>
+            <p class="section-subtitle">Discover pieces that elevate your aura with traditional heritage.</p>
         </div>
 
-
-
-      </div>
-
-    </div>
-
-
-
-
-    <div class="col d-flex " data-aos="fade-right">
-      <div class="card w-100 h-100 shadow-sm border-0 rounded-4">
-
-        <!-- product image-->
-        <img src="{% static 'images/jewelry_item4.jpg' %}" class="card-img-top product-img rounded-top-4">
-
-        <!-- product details-->
-        <div class="card-body d-flex flex-column">
-
-          <h6 class="fw-bold">Minimal Silver Bead Chain Necklace</h6>
-
-          <!--boght info-->
-          <p class="text-muted small mb-1">200+ bought in past month</p>
-          <!--offer-->
-          <div class="mb-2">
-            <span class="badge bg-danger">42% off</span>
-            <span class="text-danger small ms-2">Limited time deal</span>
-          </div>
-
-          <!--price-->
-          <h5 class="fw-bold">₹699.00</h5>
-          <!--mrp-->
-
-          <p class="mb-2">M.R.P.: <span class="text-decoration-line-through text-muted"> ₹1,199.00</span> </p>
-          <!-- Delivery -->
-          <p class="text-success small">
-            FREE Delivery
-          </p>
-          <p class="text-muted small">Fulfilled by Artisan Store</p>
-
-          <div class="d-grid gap-2 mt-3">
-            <button class="btn btn-warning btn-sm">
-              Add to Cart
-            </button>
-            <button class="btn btn-danger btn-sm">
-              Buy Now
-            </button>
-            <button class="btn btn-outline-secondary btn-sm">
-              <i class="fa-regular fa-heart"></i> Add to Wishlist
-            </button>
-          </div>
+        <!-- 1. Pottery -->
+        <div class="cat-row">
+            <div class="cat-text scroll-reveal reveal-left">
+                <span class="cat-number">01</span>
+                <h3 class="cat-title">Pottery & Clay Crafts</h3>
+                <p class="cat-desc">Mold earth into timeless elegance. Our masterful ceramics bring the heart of the earth directly to your sanctuary.</p>
+                <ul class="subcats">
+                    <li>Clay Pots</li>
+                    <li>Ceramic Mugs</li>
+                    <li>Decorative Vases</li>
+                    <li>Diyas</li>
+                </ul>
+                <a href="#" class="explore-btn">Explore Ceramic Art</a>
+            </div>
+            <div class="cat-image scroll-reveal reveal-right">
+                <img src="{% static 'images/pottery_Clay_Crafts_box.jpg' %}" alt="Pottery & Clay Crafts">
+            </div>
         </div>
 
-
-
-      </div>
-
-    </div>
-
-
-    <div class="col d-flex" data-aos="fade-right">
-      <div class="card w-100 h-100 shadow-sm border-0 rounded-4">
-
-
-        <!-- product image-->
-        <img src="{% static 'images/jewelry_item5.jpg' %}" class="card-img-top product-img  rounded-top-4">
-
-        <!-- product details-->
-        <div class="card-body d-flex flex-column">
-
-          <h6 class="fw-bold">Bold Gold Link Statement Necklace</h6>
-
-          <!--boght info-->
-          <p class="text-muted small mb-1">200+ bought in past month</p>
-          <!--offer-->
-          <div class="mb-2">
-            <span class="badge bg-danger">36% off</span>
-            <span class="text-danger small ms-2">Limited time deal</span>
-          </div>
-
-          <!--price-->
-          <h5 class="fw-bold mb-1">₹1,799.00</h5>
-          <!--mrp-->
-
-          <p class="small mb-2">M.R.P.: <span class="text-decoration-line-through text-muted"> ₹2,799.00</span> </p>
-          <!-- Delivery -->
-          <p class="text-success small">FREE Delivery</p>
-          <p class="text-muted small">Fulfilled by Artisan Store</p>
-
-          <div class="mt-auto d-grid gap-2">
-            <button class="btn btn-warning btn-sm">
-              Add to Cart
-            </button>
-            <button class="btn btn-danger btn-sm">
-              Buy Now
-            </button>
-            <button class="btn btn-outline-secondary btn-sm">
-              <i class="fa-regular fa-heart"></i> Add to Wishlist
-            </button>
-          </div>
+        <!-- 2. Handloom (Alternate side) -->
+        <div class="cat-row reverse">
+            <div class="cat-text scroll-reveal reveal-right">
+                <span class="cat-number">02</span>
+                <h3 class="cat-title">Handloom & Textile</h3>
+                <p class="cat-desc">Woven with tradition, our textiles tell stories of heritage, featuring rich textures and intricate block prints.</p>
+                <ul class="subcats">
+                    <li>Sarees</li>
+                    <li>Shawls</li>
+                    <li>Block Printed Fabrics</li>
+                    <li>Cushion Covers</li>
+                </ul>
+                <a href="#" class="explore-btn">Explore Textiles</a>
+            </div>
+            <div class="cat-image scroll-reveal reveal-left">
+                <img src="{% static 'images/handloom_box.jpg' %}" alt="Handloom & Textile">
+            </div>
         </div>
 
-
-
-      </div>
-    </div>
-
-</section>
-
-<section class="container bg-light mt-5">
-
-  <div class="container bg-light p-3 rounded-5">
-    <div class="row my-5 align-items-center ">
-
-      <!-- Image Column -->
-      <div class="col-12 d-flex justify-content-center mt-5" data-aos="fade-right">
-        <img src="{% static 'images/painting_banner.jpg' %}" class="img-fluid rounded-5"
-          style="max-height: 500px; max-width: 500px; object-fit: contain;">
-      </div>
-
-
-      <!-- Text Column -->
-      <div class="col-12 col-md-12 mt-5 mt-5 d-flex justify-content-center flex-column " data-aos="fade-left">
-        <p class="fs-4">
-          Art is where imagination meets reality. It captures feelings, memories, and dreams, transforming them into
-          something that speaks to the soul. Through art, creativity becomes timeless.
-        </p>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<section>
-  <div id="carouselExample" class="carousel slide" data-bs-ride="carousel" data-bs-interval="2500">
-    <div class="carousel-inner">
-
-      <div class="carousel-item active">
-        <div class="row g-3">
-
-          <div class="col-6 col-md-3">
-            <img src="{% static 'images/painting1.jpg' %}" class="img-fluid rounded gallery-img">
-          </div>
-
-          <div class="col-6 col-md-3">
-            <img src="{% static 'images/painting2.jpg' %}" class="img-fluid rounded gallery-img">
-          </div>
-
-          <div class="col-6 col-md-3">
-            <img src="{% static 'images/painting3.jpg' %}" class="img-fluid rounded gallery-img">
-          </div>
-
-          <div class="col-6 col-md-3">
-            <img src="{% static 'images/painting4.jpg' %}" class="img-fluid rounded gallery-img">
-          </div>
-
-        </div>
-      </div>
-
-      <div class="carousel-item">
-        <div class="row g-3">
-
-          <div class="col-6 col-md-3">
-            <img src="{% static 'images/painting5.jpg' %}" class="img-fluid rounded gallery-img">
-          </div>
-
-          <div class="col-6 col-md-3">
-            <img src="{% static 'images/painting6.jpg' %}" class="img-fluid rounded gallery-img">
-          </div>
-
-          <div class="col-6 col-md-3">
-            <img src="{% static 'images/painting7.jpg' %}" class="img-fluid rounded gallery-img">
-          </div>
-
-          <div class="col-6 col-md-3">
-            <img src="{% static 'images/painting8.jpg' %}" class="img-fluid rounded gallery-img">
-          </div>
-
-        </div>
-      </div>
-
-    </div>
-
-    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-      <span class="carousel-control-prev-icon"></span>
-    </button>
-
-    <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-      <span class="carousel-control-next-icon"></span>
-    </button>
-
-  </div>
-
-</section>
-
-
-<section>
-  <div class="container bg-light p-3 rounded-5">
-    <div class="row my-5 align-items-center ">
-
-      <!-- Image Column -->
-      <div class="col-12 col-md-6 mt-5 mt-5   " data-aos="fade-right">
-        <img src="{% static 'images/bambo_banner.jpg' %}" class="img-fluid w-100 rounded-5 "
-          style="height: 80vh; object-fit: cover;">
-      </div>
-
-      <!-- Text Column -->
-      <div class="col-12 col-md-6 mt-5 mt-5 d-flex justify-content-center flex-column " data-aos="fade-left">
-        <p class="fs-4">
-          This peaceful bamboo forest feels calm and refreshing. The tall green trees and soft sunlight create a quiet
-          and relaxing atmosphere. It’s a place that makes you slow down, breathe deeply, and enjoy the beauty of
-          nature.
-        </p>
-      </div>
-
-    </div>
-  </div>
-
-
-
-</section>
-
-
-<section class="container-fluid bg-light p-3 rounded-5 mt-4">
-
-  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-5 g-4 my-5">
-
-
-
-    <div class="col d-flex" data-aos="fade-right">
-      <div class="card w-100 h-100 shadow-sm border-0 rounded-4">
-
-        <img src="{% static 'images/bambo_item1.jpg' %}" class="card-img-top product-img rounded-top-4">
-
-        <div class="card-body d-flex flex-column">
-
-          <h6 class="fw-bold">Handwoven Bamboo Storage Basket</h6>
-
-          <p class="text-muted small mb-1">150+ bought in past month</p>
-
-          <div class="mb-2">
-            <span class="badge bg-danger">30% off</span>
-            <span class="text-danger small ms-2">Limited time deal</span>
-          </div>
-
-          <h5 class="fw-bold">₹899.00</h5>
-
-          <p class="small mb-2">
-            M.R.P.:
-            <span class="text-decoration-line-through text-muted">
-              ₹1,299.00
-            </span>
-          </p>
-
-          <p class="text-success small fw-semibold">FREE Delivery</p>
-
-          <p class="text-muted small">Fulfilled by Artisan Store</p>
-
-          <div class="mt-auto d-grid gap-2">
-            <button class="btn btn-warning btn-sm">Add to Cart</button>
-            <button class="btn btn-danger btn-sm">Buy Now</button>
-            <button class="btn btn-outline-secondary btn-sm">
-              <i class="fa-regular fa-heart"></i> Wishlist
-            </button>
-          </div>
-
-        </div>
-      </div>
-    </div>
-
-
-
-
-
-
-    <div class="col d-flex" data-aos="fade-right">
-      <div class="card w-100 h-100 shadow-sm border-0 rounded-4">
-        <!-- product image-->
-
-        <img src="{% static 'images/bambo_item2.jpg' %}" class="card-img-top product-img rounded-top-4">
-
-        <!-- product details-->
-        <div class="card-body d-flex flex-column">
-
-          <h6 class="fw-bold">Natural Woven Planter Basket</h6>
-
-          <!--boght info-->
-          <p class="text-muted small mb-1">
-            278+ bought in past month</p>
-          <!--offer-->
-          <div class="mb-2">
-            <span class="badge bg-danger">31% off</span>
-            <span class="text-danger small ms-2">Limited time deal</span>
-          </div>
-
-          <!--price-->
-          <h5 class="fw-bold">₹1,249.00</h5>
-          <!--mrp-->
-
-          <p class="small mb-2">
-            M.R.P.: <span class="text-decoration-line-through text-muted"> ₹1,799.00</span>
-          </p>
-          <!-- Delivery -->
-          <p class="text-success fw-semibold mb-1">
-            FREE Delivery
-          </p>
-          <p class="text-muted small fw-semibold">Fulfilled by Artisan Store</p>
-
-          <div class="mt-auto d-grid gap-2">
-            <button class="btn btn-warning btn-sm">
-              Add to Cart
-            </button>
-            <button class="btn btn-danger btn-sm">
-              Buy Now
-            </button>
-            <button class="btn btn-outline-secondary btn-sm">
-              <i class="fa-regular fa-heart"></i> Add to Wishlist
-            </button>
-          </div>
+        <!-- 3. Wooden -->
+        <div class="cat-row">
+            <div class="cat-text scroll-reveal reveal-left">
+                <span class="cat-number">03</span>
+                <h3 class="cat-title">Wooden Crafts</h3>
+                <p class="cat-desc">Carved with precision and care. Explore our selection of majestic woodwork bringing the vitality of the forest home.</p>
+                <ul class="subcats">
+                    <li>Wooden Toys</li>
+                    <li>Wall Décor</li>
+                    <li>Jewelry Boxes</li>
+                    <li>Kitchen Items</li>
+                </ul>
+                <a href="#" class="explore-btn">Explore Woodwork</a>
+            </div>
+            <div class="cat-image scroll-reveal reveal-right">
+                <img src="{% static 'images/wooden_Craft_box.jpg' %}" alt="Wooden Crafts">
+            </div>
         </div>
 
-
-
-      </div>
-    </div>
-
-
-
-    <div class="col d-flex" data-aos="fade-right">
-      <div class="card w-100 h-100 shadow-sm border-0 rounded-4">
-        <!-- product image-->
-        <img src="{% static 'images/bambo_item3.jpg' %}" class="card-img-top product-img rounded-top-4">
-
-        <!-- product details-->
-        <div class="card-body d-flex flex-column">
-
-          <h6 class="fw-bold">Premium Handwoven Storage Basket</h6>
-
-          <!--boght info-->
-          <p class="text-muted small mb-1">214+ bought in past month</p>
-
-          <!--offer-->
-          <div class="mb-2">
-            <span class="badge bg-danger">27% off</span>
-            <span class="text-danger small ms-2">Limited time deal</span>
-          </div>
-
-          <!--price-->
-          <h4 class="fw-bold">₹1,599.00</h4>
-          <!--mrp-->
-
-          <p class="small mb-2">M.R.P.: <span class="text-decoration-line-through text-muted"> ₹2,199.00</span> </p>
-          <!-- Delivery -->
-          <p class="text-success fw-semibold mb-1">
-            FREE Delivery
-          </p>
-          <p class="text-muted small">Fulfilled by Artisan Store</p>
-
-          <div class="mt-auto d-grid gap-2">
-            <button class="btn btn-warning btn-sm">
-              Add to Cart
-            </button>
-            <button class="btn btn-danger btn-sm">
-              Buy Now
-            </button>
-            <button class="btn btn-outline-secondary btn-sm">
-              <i class="fa-regular fa-heart"></i> Add to Wishlist
-            </button>
-          </div>
+        <!-- 4. Handmade Jewelry -->
+        <div class="cat-row reverse">
+            <div class="cat-text scroll-reveal reveal-right">
+                <span class="cat-number">04</span>
+                <h3 class="cat-title">Handmade Jewelry</h3>
+                <p class="cat-desc">Adorn yourself with breathtaking, handcrafted jewelry reflecting true artisanal elegance and beauty.</p>
+                <ul class="subcats">
+                    <li>Necklaces</li>
+                    <li>Earrings</li>
+                    <li>Bangles</li>
+                    <li>Anklets</li>
+                </ul>
+                <a href="#" class="explore-btn">Explore Jewelry</a>
+            </div>
+            <div class="cat-image scroll-reveal reveal-left">
+                <img src="{% static 'images/jewelry_box.jpg' %}" alt="Handmade Jewelry">
+            </div>
         </div>
 
-
-
-      </div>
-
-    </div>
-
-
-
-
-    <div class="col d-flex " data-aos="fade-right">
-      <div class="card w-100 h-100 shadow-sm border-0 rounded-4">
-
-        <!-- product image-->
-        <img src="{% static 'images/bambo_item4.jpg' %}" class="card-img-top product-img rounded-top-4">
-
-        <!-- product details-->
-        <div class="card-body d-flex flex-column">
-
-          <h6 class="fw-bold">Handcrafted Bamboo Accent Stool</h6>
-
-          <!--boght info-->
-          <p class="text-muted small mb-1">132+ bought in past month</p>
-          <!--offer-->
-          <div class="mb-2">
-            <span class="badge bg-danger">28% off</span>
-            <span class="text-danger small ms-2">Limited time deal</span>
-          </div>
-
-          <!--price-->
-          <h5 class="fw-bold">₹2,299.00</h5>
-          <!--mrp-->
-
-          <p class="mb-2">M.R.P.: <span class="text-decoration-line-through text-muted"> ₹3,199.00</span> </p>
-          <!-- Delivery -->
-          <p class="text-success small">
-            FREE Delivery
-          </p>
-          <p class="text-muted small">Fulfilled by Artisan Store</p>
-
-          <div class="d-grid gap-2 mt-3">
-            <button class="btn btn-warning btn-sm">
-              Add to Cart
-            </button>
-            <button class="btn btn-danger btn-sm">
-              Buy Now
-            </button>
-            <button class="btn btn-outline-secondary btn-sm">
-              <i class="fa-regular fa-heart"></i> Add to Wishlist
-            </button>
-          </div>
+        <!-- 5. Paintings & Artwork -->
+        <div class="cat-row">
+            <div class="cat-text scroll-reveal reveal-left">
+                <span class="cat-number">05</span>
+                <h3 class="cat-title">Paintings & Artwork</h3>
+                <p class="cat-desc">A stroke of genius capturing culture onto canvas. Indulge in traditional and modern handcrafted masterpieces.</p>
+                <ul class="subcats">
+                    <li>Canvas Paintings</li>
+                    <li>Wall Art</li>
+                    <li>Traditional Paintings</li>
+                    <li>Greeting Cards</li>
+                </ul>
+                <a href="#" class="explore-btn">Explore Artwork</a>
+            </div>
+            <div class="cat-image scroll-reveal reveal-right">
+                <img src="{% static 'images/art_work_box.jpg' %}" alt="Paintings & Artwork">
+            </div>
         </div>
 
-
-
-      </div>
-
-    </div>
-
-
-    <div class="col d-flex" data-aos="fade-right">
-      <div class="card w-100 h-100 shadow-sm border-0 rounded-4">
-
-
-        <!-- product image-->
-        <img src="{% static 'images/bambo_item5.jpg' %}" class="card-img-top product-img  rounded-top-4">
-
-        <!-- product details-->
-        <div class="card-body d-flex flex-column">
-
-          <h6 class="fw-bold">Handwoven Bamboo Chair Back Panel</h6>
-
-          <!--boght info-->
-          <p class="text-muted small mb-1">147+ bought in past month</p>
-          <!--offer-->
-          <div class="mb-2">
-            <span class="badge bg-danger">29% off</span>
-            <span class="text-danger small ms-2">Limited time deal</span>
-          </div>
-
-          <!--price-->
-          <h5 class="fw-bold mb-1">₹1,349.00</h5>
-          <!--mrp-->
-
-          <p class="small mb-2">M.R.P.: <span class="text-decoration-line-through text-muted"> ₹1,899.00</span> </p>
-          <!-- Delivery -->
-          <p class="text-success small">FREE Delivery</p>
-          <p class="text-muted small">Fulfilled by Artisan Store</p>
-
-          <div class="mt-auto d-grid gap-2">
-            <button class="btn btn-warning btn-sm">
-              Add to Cart
-            </button>
-            <button class="btn btn-danger btn-sm">
-              Buy Now
-            </button>
-            <button class="btn btn-outline-secondary btn-sm">
-              <i class="fa-regular fa-heart"></i> Add to Wishlist
-            </button>
-          </div>
+        <!-- 6. Bamboo & Natural Fiber -->
+        <div class="cat-row reverse">
+            <div class="cat-text scroll-reveal reveal-right">
+                <span class="cat-number">06</span>
+                <h3 class="cat-title">Bamboo & Natural Fiber</h3>
+                <p class="cat-desc">Sustainable, stunning, and sturdy. Our natural fiber crafts breathe tranquility into any living space.</p>
+                <ul class="subcats">
+                    <li>Bamboo Baskets</li>
+                    <li>Cane Furniture</li>
+                    <li>Jute Bags</li>
+                    <li>Mats</li>
+                </ul>
+                <a href="#" class="explore-btn">Explore Bamboo Details</a>
+            </div>
+            <div class="cat-image scroll-reveal reveal-left">
+                <img src="{% static 'images/bamboo_box.jpg' %}" alt="Bamboo & Natural Fiber">
+            </div>
         </div>
 
+        <!-- 7. Leather & Accessories -->
+        <div class="cat-row">
+            <div class="cat-text scroll-reveal reveal-left">
+                <span class="cat-number">07</span>
+                <h3 class="cat-title">Leather & Accessories</h3>
+                <p class="cat-desc">Premium quality leather shaped by skilled hands. Discover genuine durability styled for the modern aesthete.</p>
+                <ul class="subcats">
+                    <li>Wallets</li>
+                    <li>Bags</li>
+                    <li>Belts</li>
+                    <li>Keychains</li>
+                </ul>
+                <a href="#" class="explore-btn">Explore Leather Goods</a>
+            </div>
+            <div class="cat-image scroll-reveal reveal-right">
+                <img src="{% static 'images/leather_box.jpg' %}" alt="Leather & Accessories">
+            </div>
+        </div>
+    </section>
+
+    <!-- TRENDING PIECES -->
+    <section id="trending" class="trending-section">
+        <div class="trending-header scroll-reveal reveal-fade">
+            <h2 class="section-title split-reveal">Trending Pieces</h2>
+            <p class="section-subtitle">Exquisite masterworks currently capturing the hearts of collectors.</p>
+        </div>
+        
+        <div class="trending-grid">
+            <!-- Product 1 -->
+            <div class="product-card scroll-reveal reveal-fade">
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1610701596007-11502861dcfa?q=80&w=600&auto=format&fit=crop" alt="The Obsidian Vessel">
+                    <div class="product-overlay">
+                        <button class="quick-view-btn">Quick View</button>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <h4 class="product-name">The Obsidian Vessel</h4>
+                    <p class="product-price">$1,200</p>
+                    <button class="add-cart-text">+ Add to Cart</button>
+                </div>
+            </div>
+
+            <!-- Product 2 -->
+            <div class="product-card scroll-reveal reveal-fade" style="transition-delay: 0.1s;">
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1599643477873-1efeed81d119?q=80&w=600&auto=format&fit=crop" alt="Gold Crescent Necklace">
+                    <div class="product-overlay">
+                        <button class="quick-view-btn">Quick View</button>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <h4 class="product-name">Crescent Aura Necklace</h4>
+                    <p class="product-price">$850</p>
+                    <button class="add-cart-text">+ Add to Cart</button>
+                </div>
+            </div>
+
+            <!-- Product 3 -->
+            <div class="product-card scroll-reveal reveal-fade" style="transition-delay: 0.2s;">
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1605370288673-9da57d903932?q=80&w=600&auto=format&fit=crop" alt="Woven Throw">
+                    <div class="product-overlay">
+                        <button class="quick-view-btn">Quick View</button>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <h4 class="product-name">Heritage Indigo Throw</h4>
+                    <p class="product-price">$340</p>
+                    <button class="add-cart-text">+ Add to Cart</button>
+                </div>
+            </div>
+
+            <!-- Product 4 -->
+            <div class="product-card scroll-reveal reveal-fade" style="transition-delay: 0.3s;">
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1610555356070-d0efb6505f81?q=80&w=600&auto=format&fit=crop" alt="Carved Wooden Bowl">
+                    <div class="product-overlay">
+                        <button class="quick-view-btn">Quick View</button>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <h4 class="product-name">Walnut Kinship Bowl</h4>
+                    <p class="product-price">$410</p>
+                    <button class="add-cart-text">+ Add to Cart</button>
+                </div>
+            </div>
+        </div>
+        
+    </section>
 
 
-      </div>
-    </div>
 
-</section>
+    <!-- 2. CINEMATIC STUDIO VIDEO REVEAL -->
+    <section class="studio-reveal">
+        <div class="studio-sticky">
+            <div class="video-clipper" id="videoClipper">
+                <!-- Using a high-res still image as a placeholder for a cinematic silent video -->
+                <img src="https://images.unsplash.com/photo-1544974127-d0df6eeeb5af?q=80&w=2000&auto=format&fit=crop" alt="Artisan at work" class="studio-video">
+                <div class="studio-text-overlay">
+                    <h2>Forged in Silence</h2>
+                    <p>Witness the meticulous dedication behind every curve.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. INFINITE FLOATING PRODUCT MARQUEE -->
+    <section class="product-marquee-section">
+        <div class="marquee-wrapper">
+            <div class="pm-track" id="pmTrack">
+                <img src="https://images.unsplash.com/photo-1610701596007-11502861dcfa?q=80&w=500&auto=format&fit=crop" alt="Product">
+                <img src="https://images.unsplash.com/photo-1610555356070-d0efb6505f81?q=80&w=500&auto=format&fit=crop" alt="Product">
+                <img src="https://images.unsplash.com/photo-1605370288673-9da57d903932?q=80&w=500&auto=format&fit=crop" alt="Product">
+                <img src="https://images.unsplash.com/photo-1599643477873-1efeed81d119?q=80&w=500&auto=format&fit=crop" alt="Product">
+                <img src="https://images.unsplash.com/photo-1590874103328-eac38a683ce7?q=80&w=500&auto=format&fit=crop" alt="Product">
+                <img src="https://images.unsplash.com/photo-1528698827591-e19ccd700a5d?q=80&w=500&auto=format&fit=crop" alt="Product">
+                <!-- Duplicates to fill the loop seamlessly -->
+                <img src="https://images.unsplash.com/photo-1610701596007-11502861dcfa?q=80&w=500&auto=format&fit=crop" alt="Product">
+                <img src="https://images.unsplash.com/photo-1610555356070-d0efb6505f81?q=80&w=500&auto=format&fit=crop" alt="Product">
+                <img src="https://images.unsplash.com/photo-1605370288673-9da57d903932?q=80&w=500&auto=format&fit=crop" alt="Product">
+                <img src="https://images.unsplash.com/photo-1599643477873-1efeed81d119?q=80&w=500&auto=format&fit=crop" alt="Product">
+            </div>
+        </div>
+    </section>
 
 
-<section>
-  <div class="container bg-light p-3 rounded-5">
-    <div class="row my-5 align-items-center ">
-
-      <!-- Image Column -->
-      <div class="col-12 col-md-6 mt-5 mt-5   " data-aos="fade-right">
-        <img src="{% static 'images/handmade_lifestyle_banner.jpg' %}" class="img-fluid w-100 rounded-5 "
-          style="height: 80vh; object-fit: cover;">
-      </div>
-
-      <!-- Text Column -->
-      <div class="col-12 col-md-6 mt-5 mt-5 d-flex justify-content-center flex-column " data-aos="fade-left">
-        <p class="fs-4">
-          Beautiful handwoven wall baskets arranged with care, bringing warmth and character to the space. The natural
-          textures and earthy tones create a calm and welcoming atmosphere. A simple yet meaningful way to add charm,
-          tradition, and comfort to your home.
-      </div>
-
-    </div>
-  </div>
 
 
 
-</section>
+    <!-- 4. SOCIAL VIDEO REELS AUTOPLAY CAROUSEL -->
+    <section class="social-reels">
+        <div class="reels-header scroll-reveal reveal-fade">
+            <h2 class="split-reveal">Artisan In Motion</h2>
+            <p>Experience the texture, movement, and life of our creations.</p>
+        </div>
+        
+        <div class="reels-container">
+            <button class="scroll-btn left" id="scrollLeftBtn">&lt;</button>
+            
+            <div class="reels-track" id="reelsTrack">
+                <div class="video-card">
+                    <video autoplay loop muted playsinline poster="https://images.unsplash.com/photo-1610701596007-11502861dcfa?q=80&w=400&auto=format&fit=crop">
+                        <source src="assets/videos/reel-1.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="video-card">
+                    <video autoplay loop muted playsinline poster="https://images.unsplash.com/photo-1605370288673-9da57d903932?q=80&w=400&auto=format&fit=crop">
+                        <source src="assets/videos/reel-2.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="video-card">
+                    <video autoplay loop muted playsinline poster="https://images.unsplash.com/photo-1599643477873-1efeed81d119?q=80&w=400&auto=format&fit=crop">
+                        <source src="assets/videos/reel-3.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="video-card">
+                    <video autoplay loop muted playsinline poster="https://images.unsplash.com/photo-1610555356070-d0efb6505f81?q=80&w=400&auto=format&fit=crop">
+                        <source src="assets/videos/reel-4.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="video-card">
+                    <video autoplay loop muted playsinline poster="https://images.unsplash.com/photo-1590874103328-eac38a683ce7?q=80&w=400&auto=format&fit=crop">
+                        <source src="assets/videos/reel-5.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="video-card">
+                    <video autoplay loop muted playsinline poster="https://images.unsplash.com/photo-1528698827591-e19ccd700a5d?q=80&w=400&auto=format&fit=crop">
+                        <source src="assets/videos/reel-6.mp4" type="video/mp4">
+                    </video>
+                </div>
+            </div>
 
-<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-<script>
-  AOS.init({
-    duration: 1000,
-    once: false
-  });
+            <button class="scroll-btn right" id="scrollRightBtn">&gt;</button>
+        </div>
+    </section>
 
-  const dealSection = document.querySelector(".deal-section");
-
-  window.addEventListener("scroll", () => {
-
-    const trigger = window.innerHeight * 0.85;
-    const top = dealSection.getBoundingClientRect().top;
-
-    if (top < trigger) {
-      dealSection.classList.add("show");
-    }
-
-  });
-</script>
-
-{% endblock %}
+<script src="{% static 'js/Home.js' %}"></script></body>
+</html>

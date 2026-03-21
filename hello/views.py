@@ -165,6 +165,19 @@ def privacy_policy(request):
 def navbar(request):
     return render(request,"navbar.html")
 
+def example(request):
+    return render(request, "example.html")
+
+
+def your_view(request):
+    categories = Category.objects.all()
+    subcategories = SubCategory.objects.all()
+
+    return render(request, "your_template.html", {
+        "categories": categories,
+        "subcategories": subcategories
+    })
+
 def footer(request):
     return render(request,"footer.html")
 
@@ -574,8 +587,56 @@ def artisan_products(request):
     artisan_id = request.session.get("artisan_id")
 
     products = Product.objects.filter(artisan_id=artisan_id)
+    categories = Category.objects.all()
+    product_types = SubCategory.objects.all()
 
-    return render(request, "artisan_products.html", {"products": products})
+    return render(request, "artisan_products.html", {"products": products,  "categories": categories,
+        "product_types": product_types})
+
+# def add_product(request):
+
+#     if request.method == "POST":
+
+#         product_name = request.POST.get("product_name")
+#         actual_price = request.POST.get("actual_price")
+#         offer_price = request.POST.get("offer_price")
+#         quantity = request.POST.get("quantity")
+#         description = request.POST.get("description")
+#         product_image = request.FILES.get("product_image")
+
+#         category_id = request.POST.get("category")
+#         subcategory_id = request.POST.get("product_type")
+
+#         artisan_id = request.session.get("artisan_id")
+
+#         artisan = Artisan.objects.get(id=artisan_id)
+
+#         Product.objects.create(
+#             artisan=artisan,
+#             category_id=category_id,
+#             subcategory_id=subcategory_id,
+#             Product_name=product_name,
+#             Actual_price=actual_price,
+#             Offer_price=offer_price,
+#             Quantity=quantity,
+#             Description=description,
+#             product_image=product_image
+
+#             )
+#           
+
+#                  # ✅ Handle multiple images
+#             images = request.FILES.getlist('product_images')
+
+#             for img in images:
+#                 ProductImage.objects.create(
+#                     product=product,
+#                     image=img
+            
+#         )
+
+#         return redirect("artisan_products")
+
 
 def add_product(request):
 
@@ -586,16 +647,15 @@ def add_product(request):
         offer_price = request.POST.get("offer_price")
         quantity = request.POST.get("quantity")
         description = request.POST.get("description")
-        product_image = request.FILES.get("product_image")
 
         category_id = request.POST.get("category")
-        subcategory_id = request.POST.get("subcategory")
+        subcategory_id = request.POST.get("product_type")
 
         artisan_id = request.session.get("artisan_id")
-
         artisan = Artisan.objects.get(id=artisan_id)
 
-        Product.objects.create(
+        # ✅ Create product
+        product = Product.objects.create(
             artisan=artisan,
             category_id=category_id,
             subcategory_id=subcategory_id,
@@ -603,13 +663,19 @@ def add_product(request):
             Actual_price=actual_price,
             Offer_price=offer_price,
             Quantity=quantity,
-            Description=description,
-            product_image=product_image
+            Description=description
         )
 
-        return redirect("artisan_products")
-    
+        # ✅ Multiple images
+        images = request.FILES.getlist('product_images')
 
+        for img in images:
+            ProductImage.objects.create(
+                product=product,
+                image=img
+            )
+
+        return redirect("artisan_products")
 def edit_product(request, id):
 
     artisan_id = request.session.get("artisan_id")
@@ -645,12 +711,27 @@ def delete_product(request, id):
     return redirect("artisan_products")
 
 # CREATE PRODUCT VIEW PAGE
-def product_list(request, sub_id):
+def product_list(request, subcategory_id):
+    products = Product.objects.filter(subcategory_id=subcategory_id)
+    subcategory = SubCategory.objects.get(id=subcategory_id)
 
-    products = Product.objects.filter(subcategory_id=sub_id)
+
+      # ✅ Calculate save amount
+    for product in products:
+        product.save_amount = product.Actual_price - product.Offer_price
 
     return render(request, "product_list.html", {
-        "products": products
+        "products": products,
+        "subcategory": subcategory
+    })
+# product VIEW
+def product_detail(request, product_id):
+    product = get_object_or_404(Product, id=product_id)
+
+    product.save_amount = product.Actual_price - product.Offer_price
+
+    return render(request, "product_detail.html", {
+        "product": product
     })
 
 def artisan_orders(request):
@@ -745,3 +826,10 @@ def address(request):
 def logout_view(request):
     request.session.flush()
     return redirect("/")
+
+
+from .models import Category
+
+def home(request):
+    categories = Category.objects.all()
+    return render(request, "home.html", {"categories": categories})

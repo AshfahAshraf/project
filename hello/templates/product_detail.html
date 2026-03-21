@@ -1,0 +1,130 @@
+{% extends 'navbar.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="container py-5">
+
+  <div class="row">
+
+    <!-- 🔹 LEFT THUMBNAILS -->
+    <div class="col-md-2">
+      {% for img in product.images.all %}
+        <img src="{{ img.image.url }}"
+             class="img-thumbnail mb-2 thumb-img"
+             style="cursor:pointer; height:80px; object-fit:cover;">
+      {% endfor %}
+    </div>
+
+    <!-- 🔹 MAIN IMAGE -->
+    <div class="col-md-5">
+
+      <div class="main-image-container">
+        {% if product.images.all %}
+          <img id="mainImage"
+               src="{{ product.images.all.0.image.url }}"
+               class="img-fluid main-img">
+        {% else %}
+          <img src="{{ product.product_image.url }}"
+               class="img-fluid">
+        {% endif %}
+      </div>
+
+    </div>
+
+    <!-- 🔹 RIGHT SIDE DETAILS -->
+    <div class="col-md-5">
+
+      <h3>{{ product.Product_name }}</h3>
+
+      <h4 class="text-success mt-2">
+        ₹{{ product.Offer_price }}
+      </h4>
+
+      <p>
+        <span class="text-decoration-line-through text-muted">
+          ₹{{ product.Actual_price }}
+        </span>
+
+        <span class="text-success ms-2">
+          Save ₹{{ product.Actual_price|floatformat:0|add:"-"|add:product.Offer_price }}
+        </span>
+      </p>
+
+      <hr>
+
+      <!-- Artisan -->
+      <p><b>Made by:</b> {{ product.artisan.username }}</p>
+
+      <!-- Stock -->
+      <p><b>Stock:</b> {{ product.Quantity }}</p>
+
+      <hr>
+
+      <!-- Description -->
+      <h6>Product Description</h6>
+      <p>{{ product.description }}</p>
+
+      <hr>
+
+      <!-- Add to Cart -->
+      <a href="{% url 'add_to_cart' product.id %}" class="btn btn-dark w-100">
+        ADD TO CART
+      </a>
+
+    </div>
+
+  </div>
+
+</div>
+
+<!-- 🔥 CSS -->
+<style>
+.main-image-container {
+    overflow: hidden;
+    position: relative;
+}
+
+.main-img {
+    width: 100%;
+    transition: transform 0.3s ease;
+}
+
+/* Hover zoom */
+.main-image-container:hover .main-img {
+    transform: scale(1.8);
+    cursor: zoom-in;
+}
+</style>
+
+<!-- 🔥 JS -->
+<script>
+
+// Change main image on click
+document.querySelectorAll(".thumb-img").forEach(img => {
+    img.addEventListener("click", function () {
+        document.getElementById("mainImage").src = this.src;
+    });
+});
+
+// Advanced zoom (mouse move)
+const mainImg = document.getElementById("mainImage");
+
+if (mainImg){
+    mainImg.addEventListener("mousemove", function(e) {
+        const rect = mainImg.getBoundingClientRect();
+        const x = (e.clientX - rect.left) / rect.width * 100;
+        const y = (e.clientY - rect.top) / rect.height * 100;
+
+        mainImg.style.transformOrigin = x + "% " + y + "%";
+        mainImg.style.transform = "scale(2)";
+    });
+
+    mainImg.addEventListener("mouseleave", function() {
+        mainImg.style.transform = "scale(1)";
+    });
+}
+
+</script>
+
+{% endblock %}

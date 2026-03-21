@@ -59,10 +59,9 @@ class SubCategory(models.Model):
 class Product(models.Model):
      artisan = models.ForeignKey(Artisan, on_delete=models.CASCADE)
 
-
-     category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True)
-     subcategory = models.ForeignKey(SubCategory, on_delete=models.CASCADE, null=True)
-
+     category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, blank=True)
+     subcategory = models.ForeignKey(SubCategory, on_delete=models.SET_NULL, null=True, blank=True)
+  
      Product_name = models.CharField(max_length=200)
 
      Actual_price = models.DecimalField(max_digits=10, decimal_places=2)
@@ -72,13 +71,18 @@ class Product(models.Model):
 
      Description = models.TextField()
      
-     product_image = models.ImageField(upload_to="products/")
-     created_at = models.DateTimeField(auto_now_add=True)
+     # artisan = models.ForeignKey(User, on_delete=models.CASCADE)
 
 
      def __str__(self):
           return self.Product_name
 
+class ProductImage(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name="images")
+    image = models.ImageField(upload_to="products/")
+
+    def __str__(self):
+        return self.product.product_name
 #----- cart -----#
 
 class Cart(models.Model):
@@ -163,3 +167,5 @@ class Address(models.Model):
 
      def __str__(self):
           return self.full_name
+     
+

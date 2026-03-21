@@ -53,12 +53,14 @@ urlpatterns = [
       path("edit_product/<int:id>/", views.edit_product, name="edit_product"),
       path("delete_product/<int:id>/", views.delete_product, name="delete_product"),
       path("artisan/orders/", views.artisan_orders, name="artisan_orders"),
-      path('products/<int:sub_id>/', views.product_list, name='product_list'),
+path('products/<int:subcategory_id>/', views.product_list, name='product_list'),
+       path('product/<int:product_id>/', views.product_detail, name='product_detail'),  # ✅ NEW
 
     path("cancel-order/<int:order_id>/", views.cancel_order, name="cancel_order"),
     path("artisan_profile/", views.artisan_profile, name="artisan_profile"),
     path("artisan_logout/", views.artisan_logout, name="artisan_logout"),
     path("logout/", views.logout_view, name="logout"),
+    path("example/", views.example, name="example"),
 
 
 

@@ -1,72 +1,868 @@
-
-.carousel-item{
-    height: 80vh;
+:root {
+    --primary-color: #1a1a1a;
+    --text-color: #333333;
+    --bg-color: #f7f9fa;
 }
-.carousel-item img {
+
+/* --- SPLIT TEXT REVEAL --- */
+.split-reveal .char {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1),
+        opacity 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.split-reveal.active .char {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* --- HERO SECTION --- */
+/* --- PRELOADER --- */
+body.loading-locked {
+    overflow: hidden;
+}
+
+#preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: #050505;
+    z-index: 99999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 1s cubic-bezier(0.77, 0, 0.175, 1), visibility 1s;
+}
+
+.loader-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.loader-text {
+    font-size: 1.2rem;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 300;
+    color: #fff;
+    letter-spacing: 12px;
+    margin-bottom: 25px;
+    margin-right: -12px;
+    /* compensate for tracking */
+    animation: trackingIn 2s cubic-bezier(0.215, 0.610, 0.355, 1.000) both;
+}
+
+.loader-line {
+    width: 0;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.5);
+    animation: extendLine 1.5s cubic-bezier(0.645, 0.045, 0.355, 1.000) 0.5s forwards;
+}
+
+@keyframes trackingIn {
+    0% {
+        letter-spacing: -0.5em;
+        opacity: 0;
+        filter: blur(10px);
+    }
+
+    40% {
+        opacity: 0.8;
+        filter: blur(0);
+    }
+
+    100% {
+        opacity: 1;
+        letter-spacing: 12px;
+    }
+}
+
+@keyframes extendLine {
+    0% {
+        width: 0;
+        opacity: 0;
+    }
+
+    100% {
+        width: 120px;
+        opacity: 1;
+    }
+}
+
+#preloader.fade-out {
+    opacity: 0;
+    visibility: hidden;
+}
+
+/* --- GLOBAL STYLES --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    cursor: none !important;
+    /* Premium custom cursor only */
+}
+
+.grain-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("https://www.transparenttextures.com/patterns/notebook.png");
+    opacity: 0.04;
+    pointer-events: none;
+    z-index: 100000;
+}
+
+/* --- CUSTOM CURSOR --- */
+.custom-cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 999999;
+}
+
+.cursor-dot {
+    width: 8px;
+    height: 8px;
+    background-color: #fff;
+    border-radius: 50%;
+    position: fixed;
+    transform: translate(-50%, -50%);
+    mix-blend-mode: difference;
+    z-index: 1000001;
+}
+
+
+body {
+    font-family: 'Outfit', sans-serif;
+    background-color: #ffffff;
+    overflow-x: hidden;
+    /* Hide horizontal scroll */
+}
+
+.hero-scroll-container {
+    height: 800vh;
+    position: relative;
+    z-index: 1;
+}
+
+/* 
+    HERO SECTION CONTAINER
+    Creates the full screen 16:9 cinematic feel.
+  */
+.hero-section {
+    position: sticky;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    min-height: 800px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+/* SKY GRADIENT BACKGROUND */
+.sky-gradient {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    /* Soft blue transitioning to warm orange sunset tones */
+    background: linear-gradient(180deg,
+            #8db9dd 0%,
+            #a9cce5 25%,
+            #d9e2e6 50%,
+            #f6d5c0 75%,
+            #ffb88c 100%);
+    z-index: 1;
+}
+
+/* CINEMATIC LIGHTING OVERLAY */
+.lighting-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 50% 30%, rgba(255, 255, 255, 0.4) 0%, transparent 65%);
+    z-index: 2;
+    pointer-events: none;
+}
+
+/* MAIN CONTENT */
+.contentArea {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    margin-top: 10vh;
+    /* Push content down slightly */
+    padding: 0 20px;
+    animation: fadeInDown 1.5s ease-out;
+}
+
+.headline {
+    font-size: 5.5rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    letter-spacing: -2.5px;
+    line-height: 1.1;
+    margin-bottom: 20px;
+    text-shadow: 0px 10px 30px rgba(0, 0, 0, 0.08);
+    /* Soft shadow for premium feel */
+}
+
+.subtitle {
+    font-size: 1.25rem;
+    font-weight: 400;
+    color: #333;
+    max-width: 600px;
+    margin: 0 auto 45px auto;
+    line-height: 1.6;
+}
+
+/* CSS GLASSMORPHISM STYLE BUTTON */
+.cta-button {
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.25);
+    color: #1a1a1a;
+    padding: 18px 50px;
+    border-radius: 50px;
+    font-size: 1.1rem;
+    font-weight: 500;
+    text-decoration: none;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.05);
+}
+
+.cta-button:hover {
+    background: #1a1a1a;
+    color: #ffffff;
+    border-color: #1a1a1a;
+    transform: translateY(-4px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+/* ARTISAN JEWELRY SHOWCASE */
+.product-showcase {
+    position: absolute;
+    bottom: 0px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 450px;
+    height: auto;
+    z-index: 5;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    /* Floating animation */
+    animation: float 6s ease-in-out infinite;
+}
+
+.jewelry-image {
     width: 100%;
     height: 100%;
     object-fit: cover;
-   
-    transition:transform 0.6s ease;
+    mix-blend-mode: multiply;
+
+    /* Softly fade out the top and side edges of the image to hide the white box, 
+       while keeping the bottom (necklace area) completely solid & visible. */
+    -webkit-mask-image: radial-gradient(ellipse at bottom, black 55%, transparent 85%);
+    mask-image: radial-gradient(ellipse at bottom, black 55%, transparent 85%);
+
+    /* Optimize for smooth Javascript animations */
+    will-change: transform;
+    transform-origin: center 80%;
 }
 
-.carousel-item:hover img{
-    transform:scale(1.05);
+/* SCROLL OUTLINE TEXT */
+.scroll-text-svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 8;
+    /* Overlaps model perfectly but goes under navbar */
+    pointer-events: none;
 }
 
-.product-img {
+.scroll-text {
+    font-size: 8.5vw;
+    /* Decreased size as requested */
+    font-weight: 900;
+    /* Increased native font weight instead of thick stroke */
+    font-family: 'Outfit', sans-serif;
+    text-transform: uppercase;
+    fill: transparent;
+    /* Keep the center hollow */
+    stroke: rgba(255, 255, 255, 0.95);
+    stroke-width: 3px;
+    /* Reduced to fix the inner overlapping outlines issue */
+    stroke-linejoin: round;
+    paint-order: stroke fill;
+    letter-spacing: 5px;
+    will-change: stroke-dashoffset;
+    filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.25));
+    /* Provides cinematic pop! */
+}
+
+/* FOG/MIST EFFECT */
+.fog-layer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
     width: 100%;
-    aspect-ratio: 3 / 4;   /* same proportion for all images */
-    object-fit: cover;
+    height: 35vh;
+    /* White to transparent gradient imitating fog */
+    background: linear-gradient(to top,
+            rgba(255, 255, 255, 1) 0%,
+            rgba(255, 255, 255, 0.6) 45%,
+            rgba(255, 255, 255, 0) 100%);
+    z-index: 6;
+    pointer-events: none;
 }
 
+/* KEYFRAMES */
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
 
-.carousel-item {
-    padding: 0;
-    background: transparent !important;
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
-.carousel-item .row {
-    margin: 0;
+@keyframes float {
+    0% {
+        transform: translate(-50%, 0px);
+    }
+
+    50% {
+        transform: translate(-50%, -15px);
+    }
+
+    100% {
+        transform: translate(-50%, 0px);
+    }
 }
-.gallery-img {
-    height: auto;
-    width: 100%;
+
+/* RESPONSIVE DESIGN */
+@media (max-width: 1024px) {
+    .headline {
+        font-size: 4.5rem;
+    }
+
+    .product-showcase {
+        width: 400px;
+    }
+}
+
+@media (max-width: 768px) {
+    .headline {
+        font-size: 3.5rem;
+        letter-spacing: -1px;
+    }
+
+    .subtitle {
+        font-size: 1.1rem;
+        padding: 0 15px;
+    }
+
+    .product-showcase {
+        width: 350px;
+        bottom: 50px;
+    }
+
+    .fog-layer {
+        height: 45vh;
+    }
+}
+
+/* --- FULL CATEGORIES SHOWCASE --- */
+.full-categories-section {
+    padding: 120px 50px;
+    background-color: #fdfdfd; 
+    position: relative;
+    z-index: 10;
+    overflow-x: hidden;
+}
+
+.category-header {
+    text-align: center;
+    margin-bottom: 100px;
+}
+
+.section-title {
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: 15px;
+    font-family: 'Playfair Display', serif;
+}
+
+.section-subtitle {
+    font-size: 1.1rem;
+    color: #666;
+}
+
+.cat-row {
+    display: flex;
+    align-items: center;
+    max-width: 1400px;
+    margin: 0 auto 150px auto;
+    gap: 80px;
+}
+.cat-row.reverse {
+    flex-direction: row-reverse;
+}
+
+.cat-text {
+    flex: 1;
+    padding: 0 40px;
+}
+
+.cat-number {
+    font-size: 5rem;
+    font-family: 'Playfair Display', serif;
+    color: rgba(26, 26, 26, 0.05);
+    font-weight: 700;
+    line-height: 1;
     display: block;
+    margin-bottom: -30px;
+    margin-left: -20px;
+}
+
+.cat-title {
+    font-size: 3.5rem;
+    font-family: 'Playfair Display', serif;
+    color: var(--primary-color);
+    margin-bottom: 25px;
+    line-height: 1.1;
+    position: relative;
+    z-index: 2;
+}
+
+.cat-desc {
+    font-size: 1.15rem;
+    color: #666;
+    line-height: 1.8;
+    margin-bottom: 35px;
+}
+
+.subcats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    list-style: none;
+    margin-bottom: 45px;
+}
+
+.subcats li {
+    background: #fff;
+    border: 1px solid #eaeaea;
+    padding: 10px 20px;
+    border-radius: 50px;
+    font-size: 0.95rem;
+    color: #444;
+    transition: all 0.3s;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.02);
+}
+
+.subcats li:hover {
+    background: var(--primary-color);
+    color: #fff;
+    border-color: var(--primary-color);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+.explore-btn {
+    display: inline-block;
+    padding: 16px 40px;
+    background: transparent;
+    border: 1px solid var(--primary-color);
+    color: var(--primary-color);
+    text-decoration: none;
+    border-radius: 50px;
+    font-size: 1.1rem;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.explore-btn:hover {
+    background: var(--primary-color);
+    color: #fff;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+}
+
+.cat-image {
+    flex: 1;
+    height: 600px;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 30px 60px rgba(0,0,0,0.08);
+}
+
+.cat-image img {
+    width: 100%;
+    height: 100%;
     object-fit: cover;
-    transition: transform 0.3s ease;
-}
-.carousel-item img{
-    animation: float 5s ease-in-out infinite;
+    transition: transform 1.5s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
-@keyframes float{
-    0%{
-        transform:translateY(0);
-    }
-    50%{
-        transform:translateY(-10px);
-    }
-    100%{
-        transform:translateY(0);
-    }
-}
-
-.deal-section{
-opacity:0;
-transform:translateY(40px);
-transition:all 1s ease;
-}
-
-.deal-section.show{
-opacity:1;
-transform:translateY(0);
-}
-.gallery-img:hover {
+.cat-row:hover .cat-image img {
     transform: scale(1.05);
 }
 
+/* Scroll Animation Classes */
+.scroll-reveal {
+    opacity: 0;
+    transition: all 1.2s cubic-bezier(0.25, 1, 0.5, 1);
+    will-change: transform, opacity;
+}
 
+.reveal-fade {
+    transform: translateY(40px);
+}
 
+.reveal-left {
+    transform: translateX(-80px);
+}
 
+.reveal-right {
+    transform: translateX(80px);
+}
 
+.scroll-reveal.is-active {
+    opacity: 1;
+    transform: translate(0, 0);
+}
+
+/* --- TRENDING PIECES --- */
+.trending-section {
+    padding: 120px 50px;
+    background-color: #ffffff;
+    position: relative;
+    z-index: 10;
+}
+
+.trending-header {
+    text-align: center;
+    margin-bottom: 80px;
+}
+
+.trending-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 40px;
+    max-width: 1400px;
+    margin: 0 auto 80px auto;
+}
+
+.product-card {
+    display: flex;
+    flex-direction: column;
+}
+
+.product-image {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 3/4;
+    overflow: hidden;
+    background: #f4f4f4;
+    border-radius: 8px;
+    margin-bottom: 25px;
+}
+
+.product-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.product-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.05);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: all 0.4s ease;
+}
+
+.quick-view-btn {
+    background: #fff;
+    color: #000;
+    border: none;
+    padding: 14px 30px;
+    border-radius: 50px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    cursor: pointer;
+    transform: translateY(20px);
+    transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.product-card:hover .product-overlay { opacity: 1; }
+.product-card:hover .quick-view-btn { transform: translateY(0); }
+
+.product-info { text-align: center; }
+.product-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    margin-bottom: 8px;
+}
+
+.product-price { color: #666; margin-bottom: 15px; }
+
+.add-cart-text {
+    background: transparent;
+    border: none;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    position: relative;
+}
+
+/* --- CINEMATIC STUDIO VIDEO REVEAL --- */
+.studio-reveal {
+    height: 300vh;
+    background: #050505;
+    position: relative;
+    z-index: 10;
+}
+
+.studio-sticky {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.video-clipper {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    clip-path: circle(5% at 50% 50%);
+    will-change: clip-path;
+}
+
+.studio-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.7;
+}
+
+.studio-text-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    z-index: 2;
+    color: #fff;
+}
+
+.studio-text-overlay h2 {
+    font-size: 5rem;
+    font-family: 'Playfair Display', serif;
+    margin-bottom: 20px;
+}
+
+/* --- INFINITE PRODUCT MARQUEE --- */
+.product-marquee-section {
+    padding: 100px 0;
+    background: #f7f9fa;
+    overflow: hidden;
+    position: relative;
+    z-index: 10;
+}
+
+.marquee-wrapper { width: 100vw; overflow: hidden; }
+.pm-track { display: flex; gap: 40px; width: max-content; }
+.pm-track img { height: 400px; width: 300px; object-fit: cover; border-radius: 12px; }
+
+/* NEW CLOUD BACKGROUND */
+.new-cloud-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    z-index: 7;
+    /* Just below CRAFTHOVER scroll text to cover old background */
+    opacity: 0;
+    /* Hidden initially, controlled by script.js */
+    pointer-events: none;
+    transition: opacity 0.8s ease;
+}
+
+#cloudCanvas {
+    position: absolute;
+    top: -15vh;
+    left: -15vw;
+    width: 130vw;
+    height: 130vh;
+    pointer-events: none;
+    z-index: 5;
+    /* Behind the text */
+    will-change: transform;
+}
+
+/* --- 5. SOCIAL VIDEO REELS --- */
+.social-reels {
+    padding: 100px 50px;
+    background: #ffffff;
+    position: relative;
+    z-index: 10;
+}
+
+.reels-header {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.reels-header h2 {
+    font-size: 3rem;
+    font-family: 'Playfair Display', serif;
+    color: var(--primary-color);
+    margin-bottom: 15px;
+}
+
+.reels-header p {
+    font-size: 1.1rem;
+    color: #666;
+}
+
+.reels-container {
+    position: relative;
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+}
+
+.scroll-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    border: none;
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 300;
+    cursor: pointer;
+    z-index: 20;
+    transition: background 0.3s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(5px);
+}
+
+.scroll-btn:hover {
+    background: var(--primary-color);
+}
+
+.scroll-btn.left {
+    left: -20px;
+}
+
+.scroll-btn.right {
+    right: -20px;
+}
+
+.reels-track {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
+    padding: 20px 0;
+    width: 100%;
+}
+
+/* Hide scrollbar */
+.reels-track::-webkit-scrollbar {
+    display: none;
+}
+
+.reels-track {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.video-card {
+    flex: 0 0 300px;
+    height: 530px;
+    scroll-snap-align: center;
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    background: #000;
+}
+
+.video-card video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.95;
+    transition: opacity 0.3s;
+}
+
+.video-card:hover video {
+    opacity: 1;
+}
+
+@media (max-width: 768px) {
+    .video-card {
+        flex: 0 0 260px;
+        height: 460px;
+    }
+
+    .scroll-btn {
+        display: none;
+    }
+
+    /* relies on native swipe */
+    .reels-track {
+        padding: 10px 10px;
+        gap: 15px;
+    }
+
+    .social-reels {
+        padding: 60px 20px;
+    }
+
+    .reels-header h2 {
+        font-size: 2.2rem;
+    }
+}
